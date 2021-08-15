@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import ChevronUp from '@icons/ChevronUp'
+import ChevronUp from '@icons/ChevronUpIcon'
 import { StyledLink } from './styles'
 
 const LinkToTop = () => {

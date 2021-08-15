@@ -4,7 +4,18 @@ import { MDXRemote } from 'next-mdx-remote'
 import { getFileBySlug, getFiles } from 'lib/mdx'
 import MDXComponents from 'components/MDXComponents'
 import PostIndex from 'components/PostIndex'
-import { Article, Header, Image, Title, Time, Content } from './styles'
+import {
+  Article,
+  Header,
+  Image,
+  Title,
+  Text,
+  Time,
+  ReadTime,
+  Content,
+} from './styles'
+import Calendar from '@icons/CalendarIcon'
+import BookIcon from '@icons/BookIcon'
 import formatDate from 'utils/formatDate'
 
 const Post = ({ source, frontmatter, headings }) => {
@@ -26,9 +37,16 @@ const Post = ({ source, frontmatter, headings }) => {
       <Article>
         <Header>
           <Title>{frontmatter.title}</Title>
-          <Time dateTime={frontmatter.date}>
-            {formatDate(frontmatter.date)}
-          </Time>
+          <Text>
+            <Time dateTime={frontmatter.date}>
+              <Calendar aria-hidden="true" />
+              {formatDate(frontmatter.date)}
+            </Time>
+            <ReadTime>
+              {frontmatter.readTime} minutos de lectura
+              <BookIcon aria-hidden="true" />
+            </ReadTime>
+          </Text>
         </Header>
         <Image src={frontmatter.image} alt={frontmatter.alt || ''} />
         {headings.length && <PostIndex headings={headings} />}

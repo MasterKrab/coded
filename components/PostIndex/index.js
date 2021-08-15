@@ -1,10 +1,14 @@
-import { PostIndexContainer, List, Item, Link } from './styles'
 import { nanoid as id } from 'nanoid'
 import { MDXRemote } from 'next-mdx-remote'
+import { PostIndexContainer, Title, List, Item, Link } from './styles'
+import NotesIcon from '@icons/NotesIcon'
 
 const PostIndex = ({ headings }) => (
   <PostIndexContainer>
-    <h2>Índice</h2>
+    <Title>
+      <NotesIcon aria-hidden="true" />
+      Índice
+    </Title>
     <nav>
       <List>
         {headings.map(({ source, link, type }) => (

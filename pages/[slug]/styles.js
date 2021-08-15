@@ -1,4 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+const centerIcon = css`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
 
 export const Article = styled.article`
   max-width: 800px;
@@ -29,8 +35,19 @@ export const Title = styled.h1`
   padding-left: var(--padding);
 `
 
-export const Time = styled.time`
+export const Text = styled.p`
+  display: flex;
+  justify-content: space-between;
   padding-left: var(--padding);
+  padding-right: var(--padding);
+`
+
+export const Time = styled.time`
+  ${centerIcon}
+`
+
+export const ReadTime = styled.span`
+  ${centerIcon}
 `
 
 export const Content = styled.div`

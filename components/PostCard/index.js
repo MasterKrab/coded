@@ -1,9 +1,11 @@
 import Link from 'next/Link'
 import { useRouter } from 'next/router'
-import { Content, Card, Title, Image } from './styles'
+import { nanoid as id } from 'nanoid'
+import { Card, Title, Footer, Text, Time, List, Item } from './styles'
+import TagIcon from '@icons/TagIcon'
 import formatDate from 'utils/formatDate'
 
-const PostCard = ({ title, slug, date }) => {
+const PostCard = ({ title, slug, date, readTime, tags }) => {
   const router = useRouter()
   const postUrl = `/${slug}`
 
@@ -11,14 +13,25 @@ const PostCard = ({ title, slug, date }) => {
 
   return (
     <Card onClick={handleClick}>
-      <Content>
-        <Title>
-          <Link href={postUrl}>
-            <a aria-label={`Go to post ${title}`}>{title}</a>
-          </Link>
-        </Title>
-        <time dateTime={date}>{formatDate(date)}</time>
-      </Content>
+      <Title>
+        <Link href={postUrl}>
+          <a aria-label={`Go to post ${title}`}>{title}</a>
+        </Link>
+      </Title>
+      <Footer>
+        <Text>
+          {readTime} minutos de lectura
+          <Time dateTime={date}>{formatDate(date)}</Time>
+        </Text>
+        <List>
+          {tags?.map((tag) => (
+            <Item key={id()}>
+              <TagIcon aria-hidden="true" />
+              {tag}
+            </Item>
+          ))}
+        </List>
+      </Footer>
     </Card>
   )
 }

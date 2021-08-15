@@ -14,6 +14,24 @@ export const PostIndexContainer = styled.section`
   }
 `
 
+export const Title = styled.h2`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  & > svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media screen and (min-width: 1300px) {
+    & > svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+`
+
 export const List = styled.ul`
   padding-left: min(3rem, 10vw);
 
