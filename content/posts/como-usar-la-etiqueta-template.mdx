@@ -1,0 +1,100 @@
+---
+  title: 'Como usar la etiqueta template'
+  date: '14-8-2021'
+---
+
+## ¿Qué es?
+
+La etiqueta html `<template>` es una manera de conservar html sin que se muestre para usarlo más adelante mediante Javascript.
+
+## Como usarla
+
+Se debe colocar el contenido que será usado dentro del elemento `template` y localizar el `content` con Javascript.
+
+```html
+<ul id="list"></ul>
+
+<template id="item">
+  <li>
+    <section>
+      <h2 class="title"></h2>
+      <p class="text"></p>
+    </section>
+  </li>
+</template>
+```
+
+```javascript
+const list = document.getElementById('list')
+const item = document.getElementById('item').content
+```
+
+Luego el contenido del elemento `template` se tiene que clonar.
+
+Con cloneNode:
+
+```javascript
+const clone = item.cloneNode(true)
+```
+
+Con importNode:
+
+```javascript
+const clone = document.importNode(item, true)
+```
+
+Y así podemos modificar los elementos localizandolos y posteriormente insertandolos al documento, esto con el fin de agregar la información que queramos, articulos, listas, datos de clientes, etc.
+
+```javascript
+// Etiqueta h2
+const title = clone.querySelector('.title')
+title.textContent = 'Title 1'
+
+// Etiqueta p
+const text = clone.querySelector('.text')
+text.textContent = 'Lorem ipsum dolor sit amet'
+
+list.appendChild(clone)
+```
+
+## Código de ejemplo usando `fragment`
+
+```html
+<ul id="list"></ul>
+
+<template id="item">
+  <li class="list__item">
+    <section class="card">
+      <h2 class="card__title"></h2>
+      <p class="card__text"></p>
+    </section>
+  </li>
+</template>
+```
+
+```javascript
+const list = document.getElementById('list')
+const itemTemplate = document.getElementById('item').content
+const fragment = document.createDocumentFragment()
+
+const items = [
+  { title: 'Title 1', text: 'Lorem ipsum dolor sit amet' },
+  { title: 'Title 2', text: 'Lorem ipsum dolor sit amet' },
+]
+
+document.addEventListener('DOMContentLoaded', () => {
+  items.forEach((item) => {
+    const clone = itemTemplate.cloneNode(true)
+
+    const title = clone.querySelector('.card__title')
+    title.textContent = item.title
+
+    const text = clone.querySelector('.card__text')
+    text.textContent = item.text
+
+    fragment.appendChild(clone)
+  })
+
+  list.appendChild(fragment)
+})
+```
