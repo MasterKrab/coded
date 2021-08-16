@@ -32,7 +32,7 @@ const Post = ({ source, frontmatter, headings }) => {
   return (
     <>
       <Head>
-        <title>Blog | {frontmatter.title}</title>
+        <title>{frontmatter.title}</title>
       </Head>
       <Article>
         <Header>

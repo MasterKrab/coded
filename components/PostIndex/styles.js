@@ -33,6 +33,9 @@ export const Title = styled.h2`
 `
 
 export const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding-left: min(3rem, 10vw);
 
   @media screen and (min-width: 1300px) {
@@ -42,10 +45,13 @@ export const List = styled.ul`
 `
 
 export const Item = styled.li`
-  margin-left: ${({ type }) => (type === '###' ? '1rem' : '0')};
+  margin-left: ${({ typeHeading }) => (typeHeading === '###' ? '1rem' : '0')};
 `
 
 export const Link = styled.a`
+  width: min-content;
+  z-index: 10;
+
   @media screen and (min-width: 768px) {
     &:hover {
       text-decoration: underline;

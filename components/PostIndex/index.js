@@ -1,5 +1,6 @@
-import { nanoid as id } from 'nanoid'
+import { Fragment } from 'react'
 import { MDXRemote } from 'next-mdx-remote'
+import { nanoid as id } from 'nanoid'
 import { PostIndexContainer, Title, List, Item, Link } from './styles'
 import NotesIcon from '@icons/NotesIcon'
 
@@ -12,9 +13,9 @@ const PostIndex = ({ headings }) => (
     <nav>
       <List>
         {headings.map(({ source, link, type }) => (
-          <Item key={id()} type={type}>
+          <Item key={id()} typeHeading={type}>
             <Link href={link}>
-              <MDXRemote {...source} />
+              <MDXRemote {...source} components={{ p: Fragment }} />
             </Link>
           </Item>
         ))}

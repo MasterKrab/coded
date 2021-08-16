@@ -1,14 +1,33 @@
 import styled from 'styled-components'
+import addOpacityToColor from 'utils/addOpacityToColor'
 
 export const StyledHeader = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${({ theme }) => theme.backgroundColor};
   padding: 1rem;
-  transform: translateY(${({ isScrollUp }) => (isScrollUp ? '-100%' : '0')});
-  transition: transform 0.5s;
-  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 0 15px ${({ theme }) => theme.shadow};
+
+  @media screen and (max-width: 768px) {
+    align-items: flex-start;
+    height: ${({ isMenu }) => (isMenu ? '110px' : 'auto')};
+  }
+`
+
+export const MenuContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${({ theme }) => theme.backgroundColor};
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    display: ${({ isMenu }) => (isMenu ? 'block' : 'none')};
+    position: absolute;
+    top: 50px;
+    left: 0;
+    padding: 1rem;
+  }
 `
 
 export const StyledLink = styled.a`

@@ -15,13 +15,36 @@ const GlobalStyles = createGlobalStyle`
    
    body{
       font-family: 'Poppins', sans-serif;
+      background-color: ${({ theme }) => theme.backgroundColor};
       min-height: 100vh;
-      color: #222;
+      color:${({ theme }) => theme.textColor};
+      transition: background-color 0.2s;
+      
+      &::-webkit-scrollbar{
+         width: 0.5rem;
+      }
+      
+      &::-webkit-scrollbar-thumb{
+         background-color: ${({ theme }) => theme.textColor};
+         border-radius: 0.5rem;
+      }
    }
 
    a{
+      position: relative;
+  z-index: 100;
       color: inherit;
       text-decoration: none;
+
+      &:focus,
+      &:focus-visible{
+         outline: 3px dashed ${({ theme }) => theme.textColor};
+         outline-offset: 3px;
+      }
+
+      &:focus:not(:focus-visible){
+         outline: none;
+      }
    }
 
    img{
@@ -29,8 +52,16 @@ const GlobalStyles = createGlobalStyle`
    }
 
    code{
-      background-color: #eee;
+      background-color: ${({ theme }) => theme.codeColor};
    }
+   
+   button{
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+   }
+
 `
 
 export default GlobalStyles

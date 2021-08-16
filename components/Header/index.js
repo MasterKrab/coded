@@ -1,41 +1,35 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/Link'
-import { StyledHeader, StyledLink } from './styles'
-import HomeIcon from '@icons/HomeIcon'
+import scrollEvent from './scrollEvent'
+import { StyledHeader, MenuContainer, StyledLink } from './styles'
+import Logo from '@icons/Logo'
+import MenuButton from 'components/MenuButton'
+import Search from 'components/Search'
+import ThemeSelector from 'components/ThemeSelector'
 
 const Header = () => {
-  const [isScrollUp, setIsScrollUp] = useState(null)
+  // const [isScrollUp, setIsScrollUp] = useState(null)
+  const [isMenu, setIsMenu] = useState(false)
 
-  let lastScrollTop = 0
+  const handleClick = () => setIsMenu(!isMenu)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = document.documentElement.scrollTop
-
-      if (scrollTop <= 35 || scrollTop > lastScrollTop) {
-        setIsScrollUp(false)
-      } else {
-        setIsScrollUp(true)
-      }
-
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  // useEffect(() => scrollEvent(setIsScrollUp), [])
 
   return (
-    <StyledHeader isScrollUp={isScrollUp}>
-      <nav>
-        <Link href="/" passHref>
-          <StyledLink>
-            <HomeIcon aria-hidden="true" />
-            Inicio
-          </StyledLink>
-        </Link>
-      </nav>
+    <StyledHeader isMenu={isMenu}>
+      <MenuButton handleClick={handleClick} isMenu={isMenu} />
+      <MenuContainer isMenu={isMenu}>
+        <nav>
+          <Link href="/" passHref>
+            <StyledLink>
+              <Logo aria-hidden="true" width={35} height={35} />
+              Inicio
+            </StyledLink>
+          </Link>
+        </nav>
+        <Search isMenu={isMenu} />
+      </MenuContainer>
+      <ThemeSelector />
     </StyledHeader>
   )
 }

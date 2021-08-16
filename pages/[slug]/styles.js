@@ -1,12 +1,9 @@
-import styled, { css } from 'styled-components'
-
-const centerIcon = css`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`
+import styled from 'styled-components'
+import centerIcon from 'utils/centerIcon'
+import addOpacityToColor from 'utils/addOpacityToColor'
 
 export const Article = styled.article`
+  position: relative;
   max-width: 800px;
   margin-top: 1rem;
   margin-left: auto;
@@ -15,13 +12,13 @@ export const Article = styled.article`
   --padding: min(1.5rem, 2.5vw);
 
   @media screen and (min-width: 768px) {
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 30px ${({ theme }) => theme.shadow};
   }
 `
 
 export const Header = styled.header`
   padding-bottom: 1.5rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid ${({ theme }) => theme.textColor};
 `
 
 export const Image = styled.img`
@@ -40,6 +37,12 @@ export const Text = styled.p`
   justify-content: space-between;
   padding-left: var(--padding);
   padding-right: var(--padding);
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 `
 
 export const Time = styled.time`
@@ -48,6 +51,11 @@ export const Time = styled.time`
 
 export const ReadTime = styled.span`
   ${centerIcon}
+
+  @media screen and (max-width: 500px) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
 `
 
 export const Content = styled.div`

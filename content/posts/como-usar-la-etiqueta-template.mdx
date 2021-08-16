@@ -1,17 +1,17 @@
 ---
-  title: 'Como usar la etiqueta template'
+  title: 'Como usar la etiqueta template 💻'
   date: '14-8-2021'
   tags:
   - javascript
 ---
 
-## ¿Qué es?
+## ¿Qué es? 
 
-La etiqueta html `<template>` es una manera de conservar html sin que se muestre para usarlo más adelante mediante Javascript.
+La etiqueta html `<template>` es una manera de conservar html sin que se muestre al usuario para usarlo más adelante mediante Javascript.
 
 ## Como usarla
 
-Se debe colocar el contenido que será usado dentro del elemento `template` y localizar el `content` con Javascript.
+Se debe colocar el contenido que será usado dentro del elemento `template` y localizar el `content` con Javascript. En este caso lo usaremos para colocar items dentro de la lista.
 
 ```html
 <ul id="list"></ul>
@@ -26,12 +26,14 @@ Se debe colocar el contenido que será usado dentro del elemento `template` y lo
 </template>
 ```
 
+Debemos especificar la propiedad `content` para usar el contenido que esta dentro de la etiqueta que es el que nos interesa, no la etiqueta en si misma.
+
 ```javascript
 const list = document.getElementById('list')
 const item = document.getElementById('item').content
 ```
 
-Luego el contenido del elemento `template` se tiene que clonar.
+Luego el contenido del elemento `template` se tiene que clonar, se pueden usar estas 2 formas y obtendríamos el mismo resultado.
 
 Con cloneNode:
 
@@ -56,6 +58,7 @@ title.textContent = 'Title 1'
 const text = clone.querySelector('.text')
 text.textContent = 'Lorem ipsum dolor sit amet'
 
+// Agregar a la lista
 list.appendChild(clone)
 ```
 
@@ -84,18 +87,16 @@ const items = [
   { title: 'Title 2', text: 'Lorem ipsum dolor sit amet' },
 ]
 
-document.addEventListener('DOMContentLoaded', () => {
-  items.forEach((item) => {
-    const clone = itemTemplate.cloneNode(true)
+items.forEach((item) => {
+  const clone = itemTemplate.cloneNode(true)
 
-    const title = clone.querySelector('.card__title')
-    title.textContent = item.title
+  const title = clone.querySelector('.card__title')
+  title.textContent = item.title
 
-    const text = clone.querySelector('.card__text')
-    text.textContent = item.text
+  const text = clone.querySelector('.card__text')
+  text.textContent = item.text
 
-    fragment.appendChild(clone)
-  })
+  fragment.appendChild(clone)
 
   list.appendChild(fragment)
 })

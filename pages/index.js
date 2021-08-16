@@ -9,7 +9,7 @@ const Home = ({ posts }) => (
       <meta name="description" content="My personal blog" />
     </Head>
 
-    <Posts posts={posts} />
+    <Posts posts={posts} title="Últimos articulos" />
   </>
 )
 

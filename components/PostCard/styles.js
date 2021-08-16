@@ -3,17 +3,18 @@ import styled from 'styled-components'
 export const Card = styled.article`
   display: flex;
   flex-direction: column;
-  border-radius: 0.25rem;
-  font-size: min(1.15rem, 3.25vw);
+  position: relative;
+  z-index: 1;
+  border-radius: 0.5rem;
+  font-size: min(1.15rem, 5vw);
   padding: 1rem;
-  box-shadow: 5px 5px 15px var(--color, rgba(0, 0, 0, 0.15));
-  cursor: pointer;
+  border: 2px solid var(--color, ${({ theme }) => theme.shadow});
 
   @media screen and (min-width: 768px) {
-    transition: box-shadow 0.2s;
+    transition: border-color 0.2s;
 
     &:hover {
-      --color: royalblue;
+      --color: ${({ theme }) => theme.active};
     }
   }
 `
@@ -21,7 +22,7 @@ export const Card = styled.article`
 export const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0.5rem;
-  color: var(--color, #333);
+  color: var(--color, ${({ theme }) => theme.titleColor});
 
   &::before {
     content: '#';
@@ -36,15 +37,32 @@ export const Title = styled.h2`
 export const Footer = styled.footer`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
 `
 
-export const Text = styled.time`
+export const Data = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 0.25rem;
 `
 
+export const Text = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
+`
+
 export const Time = styled.time`
-  margin-left: 1rem;
+  margin-left: 0.25rem;
+
+  @media screen and (min-width: 530px) {
+    margin-left: 0;
+
+    &::before {
+      content: '•';
+      margin-right: 0.75rem;
+    }
+  }
 `
 
 export const List = styled.ul`
@@ -60,7 +78,7 @@ export const Item = styled.li`
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  background-color: #eee;
+  background-color: ${({ theme }) => theme.backgroundColor};
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 `
