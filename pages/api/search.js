@@ -1,20 +1,19 @@
-import Fuse from 'fuse.js'
-import { getAllFilesMetadata } from 'lib/mdx'
+import algoliasearch from 'algoliasearch/lite.js'
 
 export default (req, res) => {
   const { search, limit } = req.query
 
-  const posts = getAllFilesMetadata()
+  const client = algoliasearch(
+    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+    process.env.ALGOLIA_SEARCH_ADMIN_KEY
+  )
 
-  const fuse = new Fuse(posts, {
-    keys: ['title', 'description', 'tags'],
-    threshold: 0.5,
+  const index = client.initIndex('posts')
+
+  index.search(search).then(({ hits }) => {
+    const normalizedHits = limit ? hits.slice(0, limit) : hits
+
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify(normalizedHits))
   })
-
-  const results = fuse.search(search, { limit: parseInt(limit) })
-
-  const normalizedResults = results.map(({ item }) => item)
-
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify(normalizedResults))
 }

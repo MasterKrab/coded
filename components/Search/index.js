@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Container, Results, Form, Input, Button } from './styles'
+import {
+  Container,
+  ResultsContainer,
+  Spinner,
+  Results,
+  Image,
+  Form,
+  Input,
+  Button,
+} from './styles'
 import SearchIcon from '@icons/SearchIcon'
 import Result from 'components/Result'
 
@@ -30,7 +39,7 @@ const Search = ({ isMenu }) => {
     if (search.trim()) {
       fetch(`http://localhost:3000/api/search?search=${search}&limit=5`)
         .then((res) => res.json())
-        .then((results) => setResults(results))
+        .then(setResults)
         .catch((error) => console.error(error))
     }
   }, [search])
@@ -58,16 +67,24 @@ const Search = ({ isMenu }) => {
         </Button>
       </Form>
       {search.trim() && results.length ? (
-        <Results aria-live="polite">
-          {results.map(({ slug, title, description }) => (
-            <Result
-              key={`result-${slug}`}
-              slug={slug}
-              title={title}
-              description={description}
+        <ResultsContainer>
+          <Results aria-live="polite">
+            {results.map(({ slug, _highlightResult }) => (
+              <Result
+                key={`result-${slug}`}
+                slug={slug}
+                title={_highlightResult.title.value}
+                description={_highlightResult.description.value}
+              />
+            ))}
+          </Results>
+          <a href="https://www.algolia.com/" target="_blank" rel="noopener">
+            <Image
+              src="/assets/icons/search-by-algolia-light-background.svg"
+              alt="Search by algolia"
             />
-          ))}
-        </Results>
+          </a>
+        </ResultsContainer>
       ) : null}
     </Container>
   )
