@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/Link'
 import { useRouter } from 'next/router'
-import { StyledHeader, MenuContainer, StyledLink } from './styles'
-import Logo from '@icons/Logo'
+import { Container, StyledHeader, MenuContainer, StyledLink } from './styles'
+import LogoComplete from '@icons/LogoComplete'
 import MenuButton from 'components/MenuButton'
 import Search from 'components/Search'
 import ThemeSelector from 'components/ThemeSelector'
@@ -16,21 +16,22 @@ const Header = () => {
   useEffect(() => setIsMenu(false), [router.query.search])
 
   return (
-    <StyledHeader isMenu={isMenu}>
-      <MenuButton handleClick={handleClick} isMenu={isMenu} />
-      <MenuContainer isMenu={isMenu}>
-        <nav>
-          <Link href="/" passHref>
-            <StyledLink>
-              <Logo aria-hidden="true" width={35} height={35} />
-              Inicio
-            </StyledLink>
-          </Link>
-        </nav>
-        <Search isMenu={isMenu} />
-      </MenuContainer>
-      <ThemeSelector />
-    </StyledHeader>
+    <Container>
+      <StyledHeader isMenu={isMenu}>
+        <MenuButton handleClick={handleClick} isMenu={isMenu} />
+        <MenuContainer isMenu={isMenu}>
+          <nav>
+            <Link href="/" passHref>
+              <StyledLink>
+                <LogoComplete aria-hidden="true" width={80} height="auto" />
+              </StyledLink>
+            </Link>
+          </nav>
+          <Search isMenu={isMenu} />
+        </MenuContainer>
+        <ThemeSelector />
+      </StyledHeader>
+    </Container>
   )
 }
 

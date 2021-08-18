@@ -12,11 +12,15 @@ const GlobalStyles = createGlobalStyle`
    *::after{
       box-sizing: inherit;
    }
+
+   #__next,
+   body{
+      min-height: 100vh;
+   }
    
    body{
       font-family: 'Poppins', sans-serif;
       background-color: ${({ theme }) => theme.backgroundColor};
-      min-height: 100vh;
       color:${({ theme }) => theme.textColor};
       transition: background-color 0.2s;
       
@@ -28,6 +32,11 @@ const GlobalStyles = createGlobalStyle`
          background-color: ${({ theme }) => theme.textColor};
          border-radius: 0.5rem;
       }
+   }
+
+   #__next{
+      display: flex;
+      flex-direction: column;
    }
 
    a{
