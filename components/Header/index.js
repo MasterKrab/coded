@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/Link'
+import { useRouter } from 'next/router'
 import { StyledHeader, MenuContainer, StyledLink } from './styles'
 import Logo from '@icons/Logo'
 import MenuButton from 'components/MenuButton'
@@ -8,8 +9,11 @@ import ThemeSelector from 'components/ThemeSelector'
 
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false)
+  const router = useRouter()
 
   const handleClick = () => setIsMenu(!isMenu)
+
+  useEffect(() => setIsMenu(false), [router.query.search])
 
   return (
     <StyledHeader isMenu={isMenu}>

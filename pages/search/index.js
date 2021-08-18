@@ -1,5 +1,5 @@
-import Head from 'next/head'
 import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Posts from 'components/Posts'
 import { ErrorContainer, Title, Image } from 'components/Error'
