@@ -7,7 +7,7 @@ export const PostIndexContainer = styled.section`
 
   @media screen and (min-width: 1300px) {
     position: fixed;
-    top: 65px;
+    top: 75px;
     right: 15px;
     font-size: 0.9rem;
     padding: 1rem;
