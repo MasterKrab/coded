@@ -17,7 +17,8 @@ export const Form = styled.form`
   background-color: ${({ theme }) => theme.backgroundColor};
   height: 30px;
   padding-right: 0.25rem;
-  border: 1px solid ${({ theme }) => theme.searchBar};
+  border: 1px solid
+    ${({ isFocus, theme }) => (isFocus ? theme.active : theme.searchBar)};
   border-radius: 0.5rem;
 
   @media screen and (max-width: 768px) {
@@ -32,9 +33,35 @@ export const Input = styled.input`
   height: 100%;
   border: none;
   color: ${({ theme }) => theme.textColor};
+  z-index: 100000;
 
   &:focus {
     outline: none;
+  }
+
+  &::-webkit-search-cancel-button {
+    position: absolute;
+    right: 0;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: ${({ theme }) => theme.active};
+    clip-path: polygon(
+      20% 4%,
+      5% 14%,
+      35% 46%,
+      1% 76%,
+      16% 91%,
+      50% 60%,
+      81% 91%,
+      96% 81%,
+      61% 48%,
+      90% 13%,
+      76% 3%,
+      49% 35%
+    );
+    margin-right: 0.5rem;
+    cursor: pointer;
   }
 
   @media screen and (min-width: 768px) {
@@ -48,7 +75,7 @@ export const Button = styled.button`
   width: 35px;
   height: 100%;
   margin-right: auto;
-  color: ${({ theme }) => theme.searchBar};
+  color: ${({ isFocus, theme }) => (isFocus ? theme.active : theme.searchBar)};
 `
 
 export const Results = styled.ul`
@@ -67,14 +94,5 @@ export const Results = styled.ul`
 
   @media screen and (min-width: 768px) {
     max-width: 350px;
-  }
-`
-
-export const Result = styled.li`
-  padding-top: 1rem;
-  border-top: 1px solid ${({ theme }) => theme.textColor};
-
-  &:first-child {
-    border-top: none;
   }
 `

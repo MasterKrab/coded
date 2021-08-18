@@ -5,10 +5,11 @@ export const Card = styled.article`
   flex-direction: column;
   position: relative;
   z-index: 1;
-  border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.backgroundColor};
   font-size: min(1.15rem, 5vw);
   padding: 1rem;
   border: 2px solid var(--color, ${({ theme }) => theme.shadow});
+  border-radius: 0.5rem;
 
   @media screen and (min-width: 768px) {
     transition: border-color 0.2s;
@@ -19,7 +20,7 @@ export const Card = styled.article`
   }
 `
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   margin-top: 0;
   margin-bottom: 0.5rem;
   color: var(--color, ${({ theme }) => theme.titleColor});

@@ -6,7 +6,10 @@ export default (req, res) => {
 
   const posts = getAllFilesMetadata()
 
-  const fuse = new Fuse(posts, { keys: ['title', 'tags'] })
+  const fuse = new Fuse(posts, {
+    keys: ['title', 'description', 'tags'],
+    threshold: 0.5,
+  })
 
   const results = fuse.search(search, { limit: parseInt(limit) })
 

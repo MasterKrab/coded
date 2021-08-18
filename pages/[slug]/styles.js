@@ -4,6 +4,7 @@ import addOpacityToColor from 'utils/addOpacityToColor'
 
 export const Article = styled.article`
   position: relative;
+  background-color: ${({ theme }) => theme.backgroundColor};
   max-width: 800px;
   margin-top: 1rem;
   margin-left: auto;
@@ -12,7 +13,7 @@ export const Article = styled.article`
   --padding: min(1.5rem, 2.5vw);
 
   @media screen and (min-width: 768px) {
-    box-shadow: 0 0 30px ${({ theme }) => theme.shadow};
+    box-shadow: 0 0 5px ${({ theme }) => theme.shadow};
   }
 `
 

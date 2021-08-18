@@ -1,3 +1,3 @@
-const tags = ['javascript']
+const tags = ['javascript', 'css']
 
 export default tags

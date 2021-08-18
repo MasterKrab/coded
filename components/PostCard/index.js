@@ -12,7 +12,9 @@ const PostCard = ({ title, slug, date, readTime, tags }) => (
       </Link>
     </Title>
     <Footer>
-      <Text>{readTime} minutos de lectura</Text>
+      <Text>
+        {readTime} {readTime === 1 ? 'minuto' : 'minutos'} de lectura
+      </Text>
       <Time dateTime={date}>{formatDate(date)}</Time>
       <List>
         {tags?.map((tag) => (

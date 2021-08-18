@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/Link'
-import { Container, Results, Result, Form, Input, Button } from './styles'
+import { Container, Results, Form, Input, Button } from './styles'
 import SearchIcon from '@icons/SearchIcon'
+import Result from 'components/Result'
 
 const Search = ({ isMenu }) => {
   const [search, setSearch] = useState('')
+  const [isFocus, setIsFocus] = useState(false)
   const [results, setResults] = useState([])
 
   const router = useRouter()
@@ -23,6 +24,8 @@ const Search = ({ isMenu }) => {
 
   const handleChange = (e) => setSearch(e.target.value)
 
+  const handleToggleFocus = (e) => setIsFocus(!isFocus)
+
   useEffect(() => {
     if (search.trim()) {
       fetch(`http://localhost:3000/api/search?search=${search}&limit=5`)
@@ -34,26 +37,35 @@ const Search = ({ isMenu }) => {
 
   return (
     <Container aria-label="search" isMenu={isMenu}>
-      <Form onSubmit={handleSubmit} role="search">
+      <Form onSubmit={handleSubmit} role="search" isFocus={isFocus}>
         <Input
           onChange={handleChange}
+          onFocus={handleToggleFocus}
+          onBlur={handleToggleFocus}
           type="search"
           aria-label="Buscar articulo"
           placeholder="Buscar..."
+          maxlength="250"
           value={search}
         />
-        <Button aria-label="Buscar">
-          <SearchIcon aria-hidden="true" />
+        <Button aria-label="Buscar" isFocus={isFocus}>
+          <SearchIcon
+            aria-hidden="true"
+            width={20}
+            height={20}
+            fill="currentColor"
+          />
         </Button>
       </Form>
       {search.trim() && results.length ? (
         <Results aria-live="polite">
-          {results.map(({ slug, title }) => (
-            <Result key={`result-${slug}`}>
-              <Link href={`/${slug}`}>
-                <a>{title}</a>
-              </Link>
-            </Result>
+          {results.map(({ slug, title, description }) => (
+            <Result
+              key={`result-${slug}`}
+              slug={slug}
+              title={title}
+              description={description}
+            />
           ))}
         </Results>
       ) : null}

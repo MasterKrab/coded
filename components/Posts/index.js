@@ -1,19 +1,17 @@
-import { useState, Fragment } from 'react'
+import { useState } from 'react'
+import usePagination from 'hooks/usePagination'
+import ChangePosts from 'components/ChangePosts'
 import PostCard from 'components/PostCard'
-import {
-  Container,
-  Section,
-  ContainerPosts,
-  Filter,
-  Legend,
-  Tags,
-} from './styles'
-import TagsIcon from '@icons/TagsIcon'
-import Tag from 'components/Tag'
-import tags from 'utils/tags'
+import { Container, Section, ContainerPosts } from './styles'
+import Filter from 'components/Filter'
 
-const Posts = ({ posts, title }) => {
+const Posts = ({ posts, title, tags }) => {
   const [selectedTag, setSelectedTag] = useState('all')
+  const [currentPage, setCurrentPage] = useState(0)
+  const { paginatedPosts, isFirstPage, isLastPage } = usePagination(
+    posts,
+    currentPage
+  )
 
   const handleChange = (e) => setSelectedTag(e.target.value)
 
@@ -25,7 +23,7 @@ const Posts = ({ posts, title }) => {
       <Section>
         <h1>{title}</h1>
         <ContainerPosts aria-live="polite">
-          {posts?.map(
+          {paginatedPosts?.map(
             ({ title, slug, date, readTime, tags }) =>
               checkTags(tags) && (
                 <PostCard
@@ -39,22 +37,16 @@ const Posts = ({ posts, title }) => {
               )
           )}
         </ContainerPosts>
+        {paginatedPosts.length && (
+          <ChangePosts
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            isFirstPage={isFirstPage}
+            isLastPage={isLastPage}
+          />
+        )}
       </Section>
-      {tags.length && (
-        <Filter>
-          <Legend>
-            <TagsIcon aria-hidden="true" width={30} height={30} />
-            Filtrar por etiqueta
-          </Legend>
-
-          <Tags>
-            <Tag handleChange={handleChange} tag="all" />
-            {tags.map((tag) => (
-              <Tag key={tag} handleChange={handleChange} tag={tag} />
-            ))}
-          </Tags>
-        </Filter>
-      )}
+      {tags.length && <Filter tags={tags} handleChange={handleChange} />}
     </Container>
   )
 }

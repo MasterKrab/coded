@@ -1,17 +1,21 @@
 ---
   title: 'Como usar la etiqueta template 💻'
+  description: 'Aprende a usar la etiqueta template de html usando javascript'
   date: '14-8-2021'
   tags:
   - javascript
 ---
 
+Crear elementos desde javascript dinámicamente con `createElement` y `appendChild` y luego insertarlos al documento puede hacernos escribir mucho código, o usar `innerHtml` nos puede dar problemas de seguridad en nuestra web. Pero afortunadamente existe la etiqueta template que nos ahorrara estos problemas.
+
 ## ¿Qué es? 
 
-La etiqueta html `<template>` es una manera de conservar html sin que se muestre al usuario para usarlo más adelante mediante Javascript.
+La etiqueta html `<template>` es una manera de conservar html sin que se muestre al usuario para usarlo cuántas veces queramos dinámicamente desde javascript.
+
 
 ## Como usarla
 
-Se debe colocar el contenido que será usado dentro del elemento `template` y localizar el `content` con Javascript. En este caso lo usaremos para colocar items dentro de la lista.
+Se debe colocar el contenido que será usado dentro del elemento `template` y localizar el contenido de el con javascript. En este caso lo usaremos para colocar elementos dentro de la lista.
 
 ```html
 <ul id="list"></ul>
@@ -26,7 +30,7 @@ Se debe colocar el contenido que será usado dentro del elemento `template` y lo
 </template>
 ```
 
-Debemos especificar la propiedad `content` para usar el contenido que esta dentro de la etiqueta que es el que nos interesa, no la etiqueta en si misma.
+Debemos especificar la propiedad `content` para usar el contenido que esta dentro de el elemento template que es el que nos interesa, **no el elemento en si mismo.**
 
 ```javascript
 const list = document.getElementById('list')
@@ -47,7 +51,7 @@ Con importNode:
 const clone = document.importNode(item, true)
 ```
 
-Y así podemos modificar los elementos localizandolos y posteriormente insertandolos al documento, esto con el fin de agregar la información que queramos, articulos, listas, datos de clientes, etc.
+Y así podemos modificar los elementos localizandolos y posteriormente insertandolos al documento, esto con el fin de agregar la información que queramos, articulos, listas, datos de clientes, etc. De esta forma logramos agregar información dinámicamente con mucho menos código a comparación de crear los elementos desde javascript.
 
 ```javascript
 // Etiqueta h2
@@ -63,6 +67,8 @@ list.appendChild(clone)
 ```
 
 ## Código de ejemplo usando `fragment`
+
+También podemos usar el elemento template en conjunto de fragmentos y obtener un mejor rendimiento.
 
 ```html
 <ul id="list"></ul>
@@ -80,6 +86,8 @@ list.appendChild(clone)
 ```javascript
 const list = document.getElementById('list')
 const itemTemplate = document.getElementById('item').content
+
+// Se crea un fragmento
 const fragment = document.createDocumentFragment()
 
 const items = [
@@ -87,7 +95,9 @@ const items = [
   { title: 'Title 2', text: 'Lorem ipsum dolor sit amet' },
 ]
 
+// Itera el array de objectos
 items.forEach((item) => {
+  // Clona el contenido del template
   const clone = itemTemplate.cloneNode(true)
 
   const title = clone.querySelector('.card__title')
@@ -96,8 +106,10 @@ items.forEach((item) => {
   const text = clone.querySelector('.card__text')
   text.textContent = item.text
 
+  // Agrega el elemento al fragmento
   fragment.appendChild(clone)
-
-  list.appendChild(fragment)
 })
+
+// Luego que agregar todos los elementos al fragmento, se agrega este a la lista
+list.appendChild(fragment)
 ```

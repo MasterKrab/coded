@@ -11,7 +11,6 @@ export const StyledHeader = styled.header`
 
   @media screen and (max-width: 768px) {
     align-items: flex-start;
-    height: ${({ isMenu }) => (isMenu ? '110px' : 'auto')};
   }
 `
 

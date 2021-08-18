@@ -2,11 +2,11 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
    html{
-      box-sizing: border-box;
       scroll-behavior: smooth;
       scroll-padding-top: 5rem;
+      box-sizing: border-box;
    }
-
+   
    *,
    *::before,
    *::after{
@@ -60,6 +60,16 @@ const GlobalStyles = createGlobalStyle`
       background: none;
       padding: 0;
       cursor: pointer;
+
+      &:focus,
+      &:focus-visible{
+         outline: 3px dashed ${({ theme }) => theme.textColor};
+         outline-offset: 3px;
+      }
+
+      &:focus:not(:focus-visible){
+         outline: none;
+      }
    }
 
 `

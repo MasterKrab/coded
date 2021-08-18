@@ -24,6 +24,7 @@ export const StyledTag = styled.input`
 export const TagLabel = styled.label`
   ${centerIcon};
   gap: 0.25rem;
+  background-color: ${({ theme }) => theme.backgroundColor};
   padding: 0.5rem 1rem 0.5rem 0.75rem;
   border: 1px solid ${({ theme }) => theme.textColor};
   border-radius: 0.25rem;

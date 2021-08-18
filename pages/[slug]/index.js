@@ -19,6 +19,7 @@ import BookIcon from '@icons/BookIcon'
 import formatDate from 'utils/formatDate'
 
 const Post = ({ source, frontmatter, headings }) => {
+  const { title, description, date, readTime, image, alt } = frontmatter
   const contentNode = useRef(null)
 
   useEffect(() => {
@@ -32,23 +33,24 @@ const Post = ({ source, frontmatter, headings }) => {
   return (
     <>
       <Head>
-        <title>{frontmatter.title}</title>
+        <title>{title}</title>
+        <meta name="description" content={description} />
       </Head>
       <Article>
         <Header>
-          <Title>{frontmatter.title}</Title>
+          <Title>{title}</Title>
           <Text>
-            <Time dateTime={frontmatter.date}>
-              <Calendar aria-hidden="true" />
-              {formatDate(frontmatter.date)}
+            <Time dateTime={date}>
+              <Calendar aria-hidden="true" width={21} height={21} />
+              {formatDate(date)}
             </Time>
             <ReadTime>
-              {frontmatter.readTime} minutos de lectura
-              <BookIcon aria-hidden="true" />
+              {readTime} {readTime === 1 ? 'minuto' : 'minutos'} de lectura
+              <BookIcon aria-hidden="true" width={21} height={21} />
             </ReadTime>
           </Text>
         </Header>
-        <Image src={frontmatter.image} alt={frontmatter.alt || ''} />
+        <Image src={image} alt={alt || ''} />
         {headings.length && <PostIndex headings={headings} />}
         <Content ref={contentNode}>
           <MDXRemote {...source} components={MDXComponents} />

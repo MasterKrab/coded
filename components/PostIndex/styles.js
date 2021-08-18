@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const PostIndexContainer = styled.section`
+  background-color: ${({ theme }) => theme.backgroundColor};
   font-size: min(1.25rem, 4vw);
   padding: var(--padding);
 
@@ -20,8 +21,8 @@ export const Title = styled.h2`
   gap: 0.25rem;
 
   & > svg {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
 
   @media screen and (min-width: 1300px) {
