@@ -42,7 +42,6 @@ const Search = ({ isMenu }) => {
         .then(setResults)
         .catch((error) => console.error(error))
     }
-    console.log(results)
   }, [search])
 
   return (
