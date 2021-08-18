@@ -15,7 +15,7 @@ const usePagination = (posts, currentPage) => {
     const paginatedPosts = posts.slice(initialIndex, limitIndex)
 
     setPaginatedPosts(paginatedPosts)
-  }, [currentPage])
+  }, [currentPage, posts])
 
   return { paginatedPosts, isFirstPage, isLastPage }
 }

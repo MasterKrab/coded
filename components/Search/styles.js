@@ -78,21 +78,29 @@ export const Button = styled.button`
   color: ${({ isFocus, theme }) => (isFocus ? theme.active : theme.searchBar)};
 `
 
+export const ResultsContainer = styled.div`
+  position: absolute;
+  top: 35px;
+  z-index: 10000000;
+  background-color: ${({ theme }) => theme.backgroundColor};
+  max-width: 500px;
+  padding: 0 1rem 1rem;
+  box-shadow: 0 0 0 1px ${({ theme }) => theme.shadow};
+`
+
 export const Results = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  position: absolute;
-  top: 20px;
-  z-index: 10000000;
-  background-color: ${({ theme }) => theme.backgroundColor};
   width: 89vw;
-  max-width: 500px;
-  padding: 0 1rem 1rem;
+  padding-left: 0;
   list-style: none;
-  box-shadow: 0 0 0 1px ${({ theme }) => theme.shadow};
 
   @media screen and (min-width: 768px) {
     max-width: 350px;
   }
+`
+
+export const Image = styled.img`
+  margin-left: auto;
 `

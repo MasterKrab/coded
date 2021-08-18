@@ -13,7 +13,7 @@ import {
   Time,
   ReadTime,
   Content,
-} from './styles'
+} from 'styles/[slug].styles'
 import Calendar from '@icons/CalendarIcon'
 import BookIcon from '@icons/BookIcon'
 import formatDate from 'utils/formatDate'

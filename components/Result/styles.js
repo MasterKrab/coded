@@ -7,6 +7,16 @@ export const ResultItem = styled.li`
   &:first-child {
     border-top: none;
   }
+
+  &:last-child {
+    border-bottom: 1px solid ${({ theme }) => theme.textColor};
+    padding-bottom: 1em;
+  }
+
+  & em {
+    font-style: normal;
+    background-color: #d0ecff;
+  }
 `
 
 export const StyledLink = styled.a`
@@ -22,6 +32,7 @@ export const StyledLink = styled.a`
 export const Title = styled.span`
   display: block;
   font-size: 1rem;
+  margin-bottom: 0.5rem;
   color: var(--color, ${({ theme }) => theme.textColor});
 
   @media screen and (min-width: 768px) {
@@ -30,5 +41,5 @@ export const Title = styled.span`
 `
 
 export const Description = styled.span`
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 `

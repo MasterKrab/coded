@@ -3,23 +3,25 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Posts from 'components/Posts'
 import { ErrorContainer, Title, Image } from 'components/Error'
-import { getTags } from 'lib/mdx'
 
-const Search = ({ tags }) => {
+const Search = () => {
   const [results, setResults] = useState([])
   const [apiEnd, setApiEnd] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
     if (router.query.search) {
+      setIsLoading(true)
+
       fetch(`http://localhost:3000/api/search?search=${router.query.search}`)
         .then((res) => res.json())
         .then((results) => {
           setResults(results)
-          console.log(results)
           setApiEnd(true)
         })
         .catch((error) => console.error(error))
+        .finally(() => setIsLoading(false))
     }
   }, [router.query.search])
 
@@ -31,8 +33,8 @@ const Search = ({ tags }) => {
       {results.length ? (
         <Posts
           posts={results}
-          tags={tags}
           title={`Resultados para: ${router.query.search}`}
+          isSearch
         />
       ) : (
         apiEnd && (
@@ -47,11 +49,3 @@ const Search = ({ tags }) => {
 }
 
 export default Search
-
-export const getStaticProps = async () => {
-  const tags = getTags()
-
-  return {
-    props: { tags },
-  }
-}
