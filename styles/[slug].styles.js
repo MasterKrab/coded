@@ -10,7 +10,7 @@ export const Article = styled.article`
   margin-left: auto;
   margin-right: auto;
   padding: 1rem;
-  --padding: min(1.5rem, 2.5vw);
+  --separation: min(1.5rem, 2.5vw);
 
   @media screen and (min-width: 768px) {
     box-shadow: 0 0 5px ${({ theme }) => theme.shadow};
@@ -23,21 +23,24 @@ export const Header = styled.header`
 `
 
 export const Image = styled.img`
+  width: calc(97% - var(--separation));
   margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 0.25rem;
 `
 
 export const Title = styled.h1`
   font-size: min(3rem, 7.25vw);
   margin-bottom: 0.5rem;
-  padding-left: var(--padding);
+  padding-left: var(--separation);
 `
 
 export const Text = styled.p`
   display: flex;
   justify-content: space-between;
-  padding-left: var(--padding);
-  padding-right: var(--padding);
+  padding-left: var(--separation);
+  padding-right: var(--separation);
 
   @media screen and (max-width: 500px) {
     flex-direction: column;
@@ -61,5 +64,5 @@ export const ReadTime = styled.span`
 
 export const Content = styled.div`
   font-size: min(1.25rem, 5vw);
-  padding: 0.25rem var(--padding);
+  padding: 0.25rem var(--separation);
 `

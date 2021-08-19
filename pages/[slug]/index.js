@@ -50,7 +50,7 @@ const Post = ({ source, frontmatter, headings }) => {
             </ReadTime>
           </Text>
         </Header>
-        <Image src={image} alt={alt || ''} />
+        {image && <Image src={image} alt={alt || ''} />}
         {headings.length && <PostIndex headings={headings} />}
         <Content ref={contentNode}>
           <MDXRemote {...source} components={MDXComponents} />
