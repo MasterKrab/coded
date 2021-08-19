@@ -1,0 +1,130 @@
+---
+  title: '¿Qué es una IIFE?'
+  description: 'En este articulo veremos que es una IIFE o Immediately Invoked Function Expression, cual es su sintaxis y como se usa.'
+  date: '18-8-2021'
+  image: '/assets/posts/iife.png'
+  tags:
+  - javascript
+---
+
+Una IIFE o Immediately Invoked Function Expression es una función que se ejecuta inmediatamente y se le pueden pasar parámetros.
+
+En comparación a una función normal obtendríamos el mismo resultado, pero no tiene sentido guardar una función que realmente no usaremos otra vez.
+
+```javascript
+// Función normal
+
+const foo = () => {
+
+  // Código
+
+}
+
+foo()
+
+
+```
+
+Por tanto, una IIFE nos permite tener una solución más limpia y elegante. La sintaxis de una IIFE es la siguiente:
+
+```javascript
+// Usando funciones de flecha
+
+(() => {
+
+   // Código
+
+})()
+
+
+// Usando funciones expresadas
+
+(function() {
+
+	// Código
+
+})()
+```
+
+## Scope
+
+Una IIFE puede sernos útil cuando necesitamos usar variables que solo estén disponibles en un scope en concreto.
+
+```javascript
+// Scope global
+const number = 5;
+
+(() => {
+
+  // Solo disponible dentro de la IIFE
+  const day = 'Lunes';
+
+  console.log(day); // Lunes ✅
+
+})();
+
+console.log(number); // 5
+
+console.log(day); // undefined ❌
+
+```
+
+## Parámetros
+
+También podemos pasarle parámetros.
+
+```javascript
+const number = 5;
+
+((num) => {
+
+  const double = num * 2;
+
+  console.log(double); // 10
+
+})(number);
+
+```
+
+## Async await
+
+Podemos usarla en caso que necesitemos usar async await y no podamos hacerlo en el nivel superior.
+
+```javascript
+(async () => {
+
+  const response = await fetch('...');
+
+  // Código
+
+})();
+```
+
+Asimismo es útil en casos como al usar `useEffect` en **React** donde no podemos modificar lo que retorne la función.
+
+```javascript
+// Nos da un error ❌
+
+useEffect(async () => {
+
+  const response = await fetch('...');
+  
+  // Código
+
+}, []);
+
+
+// Funciona ✅
+
+useEffect(() => {
+
+  (async () => {
+    
+    const response = await fetch('...');
+
+    // Código
+
+  })();
+
+}, []);
+```
