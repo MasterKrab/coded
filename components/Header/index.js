@@ -13,7 +13,7 @@ const Header = () => {
 
   const handleClick = () => setIsMenu(!isMenu)
 
-  useEffect(() => setIsMenu(false), [router.query.search])
+  useEffect(() => setIsMenu(false), [router.query])
 
   return (
     <Container>

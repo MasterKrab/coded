@@ -92,7 +92,7 @@ export const Results = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 89vw;
+  width: 85vw;
   padding-left: 0;
   list-style: none;
 
