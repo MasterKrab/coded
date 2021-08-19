@@ -64,6 +64,11 @@ const GlobalStyles = createGlobalStyle`
    code{
       background-color: ${({ theme }) => theme.codeColor};
    }
+
+   button,
+   label{
+      -webkit-tap-highlight-color: transparent;
+   }
    
    button{
       border: none;

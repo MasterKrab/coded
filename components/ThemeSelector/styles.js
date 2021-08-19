@@ -22,6 +22,7 @@ export const Fieldset = styled.fieldset`
     position: absolute;
     top: 35px;
     left: 0;
+    z-index: 100;
     background-color: ${({ theme }) => theme.active};
     width: 30px;
     height: 2px;
