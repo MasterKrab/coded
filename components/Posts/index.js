@@ -53,7 +53,7 @@ const Posts = ({ posts, title, isSearch }) => {
           />
         )}
         {isSearch && (
-          <a href="https://www.algolia.com/" target="_blank" rel="noopener">
+          <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
             <Image
               src="/assets/icons/search-by-algolia-light-background.svg"
               alt="Search by algolia"

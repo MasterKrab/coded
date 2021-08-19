@@ -7,13 +7,10 @@ import { ErrorContainer, Title, Image } from 'components/Error'
 const Search = () => {
   const [results, setResults] = useState([])
   const [apiEnd, setApiEnd] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
     if (router.query.search) {
-      setIsLoading(true)
-
       fetch(`http://localhost:3000/api/search?search=${router.query.search}`)
         .then((res) => res.json())
         .then((results) => {
@@ -21,7 +18,6 @@ const Search = () => {
           setApiEnd(true)
         })
         .catch((error) => console.error(error))
-        .finally(() => setIsLoading(false))
     }
   }, [router.query.search])
 

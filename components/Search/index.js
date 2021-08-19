@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import {
   Container,
   ResultsContainer,
-  Spinner,
   Results,
   Image,
   Form,
@@ -78,7 +77,7 @@ const Search = ({ isMenu }) => {
               />
             ))}
           </Results>
-          <a href="https://www.algolia.com/" target="_blank" rel="noopener">
+          <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
             <Image
               src="/assets/icons/search-by-algolia-light-background.svg"
               alt="Search by algolia"
