@@ -11,7 +11,9 @@ const Search = () => {
 
   useEffect(() => {
     if (router.query.search) {
-      fetch(`http://localhost:3000/api/search?search=${router.query.search}`)
+      fetch(
+        `https://coded-blog.vercel.app/api/search?search=${router.query.search}`
+      )
         .then((res) => res.json())
         .then((results) => {
           setResults(results)

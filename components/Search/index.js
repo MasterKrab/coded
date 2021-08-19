@@ -36,7 +36,7 @@ const Search = ({ isMenu }) => {
 
   useEffect(() => {
     if (search.trim()) {
-      fetch(`http://localhost:3000/api/search?search=${search}&limit=5`)
+      fetch(`https://coded-blog.vercel.app/api/search?search=${search}&limit=5`)
         .then((res) => res.json())
         .then(setResults)
         .catch((error) => console.error(error))
