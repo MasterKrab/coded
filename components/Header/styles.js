@@ -31,6 +31,7 @@ export const MenuContainer = styled.div`
     position: absolute;
     top: 50px;
     left: 0;
+    z-index: 100;
     padding: 1rem;
   }
 `
