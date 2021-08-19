@@ -1,4 +1,4 @@
-import Link from 'next/Link'
+import Link from 'next/link'
 import { ErrorContainer, Image } from 'components/Error'
 import { Title, StyledLink } from 'styles/404.styles'
 import getRandomUntil from 'utils/getRandomUntil'

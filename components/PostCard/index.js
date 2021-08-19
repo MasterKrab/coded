@@ -1,4 +1,4 @@
-import Link from 'next/Link'
+import Link from 'next/link'
 import { nanoid as id } from 'nanoid'
 import { Card, Title, Footer, Text, Time, List, Item } from './styles'
 import TagIcon from '@icons/TagIcon'

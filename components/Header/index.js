@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Link from 'next/Link'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Container, StyledHeader, MenuContainer, StyledLink } from './styles'
 import LogoComplete from '@icons/LogoComplete'
