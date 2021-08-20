@@ -21,7 +21,7 @@ export const ButtonBar = styled.span`
     width: 25px;
     height: 2px;
     background-color: ${({ theme }) => theme.textColor};
-    transition: transform 0.5s, background-color 0.5s;
+    transition: transform 0.35s, background-color 0.25s;
   }
 
   &::before,
@@ -38,7 +38,7 @@ export const ButtonBar = styled.span`
 
   &::after {
     top: -6px;
-    transition: opacity 0.5s, transform 0.5s, background-color 0.2s;
+    transition: opacity 0.25s, transform 0.25s, background-color 0.25s;
     opacity: ${({ isMenu }) => (isMenu ? '0' : '1')};
   }
 `

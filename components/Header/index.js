@@ -23,7 +23,7 @@ const Header = () => {
           <nav>
             <Link href="/" passHref>
               <StyledLink>
-                <LogoComplete aria-hidden="true" width={80} height="auto" />
+                <LogoComplete aria-hidden="true" width={80} height={30} />
               </StyledLink>
             </Link>
           </nav>

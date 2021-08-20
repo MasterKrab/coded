@@ -4,6 +4,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor};
   width: 100%;
   box-shadow: 5px 0 15px ${({ theme }) => theme.shadow};
+  transition: box-shadow 0.2s;
 `
 
 export const StyledHeader = styled.header`
@@ -27,12 +28,15 @@ export const MenuContainer = styled.div`
   width: 100%;
 
   @media screen and (max-width: 768px) {
-    display: ${({ isMenu }) => (isMenu ? 'block' : 'none')};
+    display: block;
     position: absolute;
     top: 50px;
     left: 0;
     z-index: 100;
     padding: 1rem;
+    visibility: ${({ isMenu }) => (isMenu ? 'visible' : 'hidden')};
+    opacity: ${({ isMenu }) => (isMenu ? '1' : '0')};
+    transition: visibility 0.35s, opacity 0.35s;
   }
 `
 

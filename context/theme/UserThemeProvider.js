@@ -4,7 +4,8 @@ import THEME_STATES from './states'
 import checkMediaQueriesSupport from 'utils/checkMediaQueriesSupport'
 
 const UserThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(THEME_STATES.LIGHT)
+  const [theme, setTheme] = useState(THEME_STATES.NONE)
+  const [themeDevice, setThemeDevice] = useState(THEME_STATES.LIGHT)
 
   const getThemeDevice = () => {
     if (!checkMediaQueriesSupport) return THEME_STATES.LIGHT
@@ -17,11 +18,21 @@ const UserThemeProvider = ({ children }) => {
   const changeTheme = (newTheme) => setTheme(newTheme)
 
   useEffect(() => {
-    localStorage.setItem('theme', theme)
+    if (theme === THEME_STATES.NONE) {
+      const savedTheme = localStorage.getItem('theme') || THEME_STATES.LIGHT
+      setTheme(savedTheme)
+    } else {
+      localStorage.setItem('theme', theme)
+    }
+
+    if (theme === THEME_STATES.DEVICE) {
+      const themeDevice = getThemeDevice()
+      setThemeDevice(themeDevice)
+    }
   }, [theme])
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme, getThemeDevice }}>
+    <ThemeContext.Provider value={{ theme, changeTheme, themeDevice }}>
       {children}
     </ThemeContext.Provider>
   )
