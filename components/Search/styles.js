@@ -103,4 +103,12 @@ export const Results = styled.ul`
 
 export const Image = styled.img`
   margin-left: auto;
+
+  @media screen and (min-width: 768px) {
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 `

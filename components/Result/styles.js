@@ -15,7 +15,8 @@ export const ResultItem = styled.li`
 
   & em {
     font-style: normal;
-    background-color: #d0ecff;
+    background-color: ${({ theme }) => theme.resultMatch};
+    color: ${({ theme }) => theme.resultMatchText};
   }
 `
 

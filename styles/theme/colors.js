@@ -9,6 +9,8 @@ const colors = {
     active: '#4169e1',
     searchBar: '#6c6c70',
     footer: '#eeee',
+    resultMatch: '#d0ecff',
+    resultMatchText: '#222222',
   },
   dark: {
     backgroundColor: '#222222',
@@ -20,6 +22,8 @@ const colors = {
     active: '#64C9CF',
     searchBar: 'rgba(231, 230, 230, 0.5)',
     footer: '#333333',
+    resultMatch: '#d0ecff',
+    resultMatchText: '#000000',
   },
 }
 

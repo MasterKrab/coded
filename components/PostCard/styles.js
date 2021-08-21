@@ -10,6 +10,7 @@ export const Card = styled.article`
   padding: 1rem;
   border: 2px solid var(--color, ${({ theme }) => theme.shadow});
   border-radius: 0.5rem;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     transition: border-color 0.2s;
