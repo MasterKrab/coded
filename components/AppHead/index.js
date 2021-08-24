@@ -15,6 +15,7 @@ const AppHead = () => (
       content="https://www.coded.tech/thumbnail.png}"
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#000000" />
   </Head>
 )
 
