@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
-import Head from 'next/head'
 import { MDXRemote } from 'next-mdx-remote'
 import { getFileBySlug, getFiles } from 'lib/mdx'
+import PostMeta from 'components/PostMeta'
 import MDXComponents from 'components/MDXComponents'
 import PostIndex from 'components/PostIndex'
 import {
@@ -19,7 +19,7 @@ import BookIcon from '@icons/BookIcon'
 import formatDate from 'utils/formatDate'
 
 const Post = ({ source, frontmatter, headings }) => {
-  const { title, description, date, readTime, image, alt } = frontmatter
+  const { title, description, date, readTime, image, alt, slug } = frontmatter
   const contentNode = useRef(null)
 
   useEffect(() => {
@@ -32,10 +32,12 @@ const Post = ({ source, frontmatter, headings }) => {
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Head>
+      <PostMeta
+        title={title}
+        description={description}
+        image={image}
+        slug={slug}
+      />
       <Article>
         <Header>
           <Title>{title}</Title>
