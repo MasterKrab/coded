@@ -9,6 +9,7 @@ const AppHead = () => (
       rel="stylesheet"
     />
     <link rel="icon" href="https://www.coded.tech/assets/logo.svg" />
+    <meta property="og:type" content="website"></meta>
     <meta property="og:image" content="https://www.coded.tech/thumbnail.png}" />
     <meta
       name="twitter:image"
