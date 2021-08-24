@@ -10,10 +10,13 @@ const AppHead = () => (
     />
     <link rel="icon" href="https://www.coded.tech/assets/logo.svg" />
     <meta property="og:type" content="website"></meta>
-    <meta property="og:image" content="https://www.coded.tech/thumbnail.png}" />
+    <meta
+      property="og:image"
+      content="https://www.coded.tech/assets/thumbnail.png"
+    />
     <meta
       name="twitter:image"
-      content="https://www.coded.tech/thumbnail.png}"
+      content="https://www.coded.tech/assets/thumbnail.png"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#000000" />
