@@ -1,4 +1,14 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const opacity = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
 
 export const Card = styled.article`
   display: flex;
@@ -10,6 +20,7 @@ export const Card = styled.article`
   padding: 1rem;
   border: 2px solid var(--color, ${({ theme }) => theme.shadow});
   border-radius: 0.5rem;
+  animation: ${opacity} 0.2s 1;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
