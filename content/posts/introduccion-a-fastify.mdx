@@ -267,7 +267,7 @@ const getTask = (req, res) => {
   const { id } = req.params;
 
   // Aplicaremos el método findById, a este debemos pasarle el id
-  Note.findById(id)
+  Task.findById(id)
     .then((result) => {
       // Revisamos si encontró el documento
       result
@@ -343,10 +343,10 @@ app.delete('/tasks/:id', deleteTask)
 Emplearemos el método `findByIdAndDelete`, este buscará la tarea y si la encuentra la borrar y nos devolverá el documento de la tarea
 
 ```javascript
-const deleteTasks = (req, res) => {
+const deleteTask = (req, res) => {
   const { id } = req.params
 
-  Tasks.findByIdAndDelete(id)
+  Task.findByIdAndDelete(id)
     .then((result) =>
       result
         ? res.send({
