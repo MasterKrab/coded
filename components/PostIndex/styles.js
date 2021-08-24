@@ -9,11 +9,15 @@ export const PostIndexContainer = styled.section`
     position: fixed;
     top: 75px;
     right: 15px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 1rem;
     width: 17.5vw;
     max-height: 90vh;
     overflow-y: auto;
+
+    &:hover {
+      z-index: 10000;
+    }
 
     &::-webkit-scrollbar {
       width: 0.25rem;
