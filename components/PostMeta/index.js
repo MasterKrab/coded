@@ -5,7 +5,10 @@ const PostMeta = ({ title, description, image, slug }) => (
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta
+      property="og:description"
+      content={`https://www.coded.tech/${image}`}
+    />
     {image && <meta property="og:image" content={image} />}
     <meta property="og:url" content={`https://www.coded.tech/${slug}`}></meta>
     <meta name="twitter:title" content={title} />
