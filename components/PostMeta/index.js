@@ -8,10 +8,15 @@ const PostMeta = ({ title, description, image, slug }) => (
     <meta property="og:description" content={description} />
     {image && (
       <>
-        <meta property="og:image" content={`https://www.coded.tech/${image}`} />
+        <meta
+          property="og:image"
+          content={`https://www.coded.tech/${image}`}
+          key="og-image"
+        />
         <meta
           name="twitter:image"
           content={`https://www.coded.tech/${image}`}
+          key="twitter-image"
         />
       </>
     )}
