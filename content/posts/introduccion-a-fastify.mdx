@@ -1,0 +1,429 @@
+---
+  title: 'Introducción a fastify'
+  description: 'Como hacer un crud de tareas y conectarlo a mongodb con fastify, framework de NodeJS'
+  date: '23-8-2021'
+  image: '/assets/posts/fastify.png'
+  tags:
+  - javascript
+  - mongodb
+---
+
+
+[Fastify](https://www.fastify.io) es un framework para NodeJS donde su mayor característica es su rapidez, también es de poca carga, tiene más de 20 mil estrellas en [github](https://github.com/fastify/fastify) y es [casi 4 veces más rápido que express](https://www.fastify.io/benchmarks) 
+
+Explicaremos como hacer un crud de tareas y conectarlo a mongodb usando esta tecnología.
+
+## Instalación
+
+Para instalarlo debemos ejecutar el siguiente comando en la terminal de nuestro proyecto.
+
+Con npm:
+
+```bash
+$ npm install fastify
+```
+
+Con yarn: 
+```bash
+$ yarn add fastify
+```
+
+Luego crearemos una carpeta `src` y dentro un archivo `index.js`, aquí es donde estará el código de nuestro backend.
+
+## Crear un servidor
+
+Luego de instalarlo debemos importarlo y ejecutarlo, luego lo ponemos en escucha y lo probamos con una ruta.
+
+```js
+// Importamos fastify
+const app = require('fastify')({ logger: true });
+
+// Colocamos una ruta
+app.get('/', (req, res) => {
+  res.send("Hello World")
+})
+
+// Colocamos el puerto para el servidor
+const port = process.env.PORT || 3000
+
+// Ponemos en escucha el servidor
+app
+  .listen(port)
+  // Nos mostrara en consola la dirección en la cual está escuchando nuestro servidor
+  .then((adress) => console.log(`Server listening at ${adress}`))
+  .catch((error) => {
+    app.log.error(error);
+    process.exit(1);
+  });
+```
+
+Luego podemos iniciar el servidor con el siguiente comando en la terminal
+
+```bash
+$ node src/index
+```
+
+Y podremos ver que el servidor se ha iniciado en la dirección `http://127.0.0.1:3000`, si realizamos una petición `GET` a esa dirección tendremos como resultado el string de "Hello world".
+
+
+## Instalar Nodemon
+
+En caso que hagamos un cambio en el código tendremos que volver a ejecutar el comando para iniciar el servidor, pero existe nodemon que nos soluciona este problema.
+
+Para instalarlo debemos ejecutar el siguiente comando en nuestro proyecto.
+
+Con npm:
+
+```bash
+$ npm install nodemon --save-dev
+```
+
+Con yarn:
+
+```bash
+$ yarn add --dev nodemon
+```
+
+Y añadimos los siguientes scripts en nuestro archivo **package.json**
+
+```javascript
+"scripts": {
+  "start": "node src/index",
+  "dev": "nodemon src/index"
+}
+```
+
+De esta manera usamos el comando `npm run dev` y cada cambio que se realice en el código se actualizara sin necesidad de volver a ejecutarlo.
+
+## Conectarlo a mongodb con mongoose
+
+En nuestro caso para hacer una conexión con mongodb usaremos mongoose que nos facilita gran parte del trabajo y dotenv para proteger nuestras claves con variables de entorno.
+
+Para instalarlos debemos ejecutar el siguiente comando en nuestro proyecto.
+
+Con npm:
+
+```bash
+$ npm install mongoose dotenv
+```
+
+Con yarn: 
+```bash
+$ yarn add fastify dotenv
+```
+
+Crearemos un archivo `.env` en la raíz de nuestro proyecto y allí colocaremos nuestra uri de mongodb.
+
+```
+MONGODB_URI={Nuestra uri de mongodb}
+```
+
+También creamos un archivo `.gitignore` para que `node_modules` y nuestro archivo con las variables de entorno no se guarden en git.
+
+```
+node_modules
+.env
+```
+
+Crearemos otro archivo llamado `mongo.js` para conectar la base de datos y haremos lo siguiente
+
+```js
+// Importamos connect de mongoose
+const { connect } = require('mongoose');
+
+// Importamos dotenv para habilitar las variables de entorno
+require('dotenv').config();
+
+// Colocaremos esta configuración
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+};
+
+// Y realizamos la conexión
+connect(process.env.MONGODB_URI, options)
+  // Si la conexión es exitosa se nos mostrará en 
+  // consola el mensaje de 'Database connected'
+  .then(() => console.log('Database connected'))
+  // En caso contrario nos mostrara en consola un error
+  .catch((error) => console.error(error));
+```
+
+Luego este archivo podemos importarlo colocando `require('./mongo')` en nuestro archivo de `index.js`.
+
+## Rutas
+
+Podemos modularizar nuestras rutas y tener mucho más ordenado el código haciéndolo de esta manera.
+
+```javascript
+// Nos da los parámetros de app, options y el done.
+const tasks = (app, options, done) => {
+
+  // Y podremos añadir las rutas que queramos
+  app.get('/tasks', (req, res) => {
+    res.send('Hello World')
+  })
+
+  // Debemos ponerlo para declarar el fin de las diferentes rutas
+  done()
+}
+
+module.exports = tasks
+```
+
+Este código lo dejaremos en un archivo para luego registrarlo, en este caso en una nueva carpeta `routes` y un archivo llamado `tasks.js`.
+
+Para importar y registrar las rutas lo haremos de la siguiente manera en nuestro archivo `index.js`.
+
+```javascript
+app.register(require('./routes/tasks'))
+```
+
+## Añadir esquemas con mongoose
+
+Para definir la estructura de los documentos podemos usar los esquemas de mongoose, estos los tendremos en una carpeta `models` y cada uno tendrá su archivo propio. 
+
+```javascript
+// Importamos Schema y model de mongoose
+const { Schema, model } = require('mongoose')
+
+// Creamos el esquema que definirá la estructura de cada tarea
+const taskSchema = new Schema({
+  // Este será el contenido de cada tarea, el cual debe ser tipo string 
+  // y ser necesario para la creación de una tarea
+  content: {
+    type: 'string',
+    required: true,
+  },
+  // Boleano que indicará si la tarea en cuestión se ha completado o no
+  done: Boolean,
+})
+
+// Creamos el modelo y lo exportamos
+const Task = model('task', taskSchema)
+
+module.exports = Task
+```
+
+## Controladores y crear el crud
+
+Los controladores que pasaremos a cada ruta los añadiremos en una carpeta `controllers` y en un archivo llamado `tasks.js`. También importaremos el esquema que usaremos repetidas veces.
+
+```javascript
+const Task = require('../models/task');
+
+const getTasks = (req, res) => {
+  res.send('Hello World')
+}
+
+module.exports = { getTasks }
+```
+
+Y los importamos en nuestro archivo de rutas.
+
+```javascript
+const { getTasks } = require('../controllers/tasks')
+
+const tasks = (app, options, done) => {
+  app.get('/tasks', getTasks)
+
+  done()
+}
+
+module.exports = tasks
+```
+
+Luego de hacer todo esto ya tenemos todo listo para crear el crud.
+
+### Obtener todas las tareas
+
+Usaremos el método `find` para obtener todos los documentos que tengan el esquema que definimos.
+
+```javascript
+const getTasks = (req, res) => {
+  Task.find()
+    // Si la operación fue exitosa, nos manda 
+    // como respuesta todas las tareas
+    .then((results) => res.send(results))
+    // En su defecto nos muestra por consola el error
+    .catch((error) => console.error(error))
+}
+```
+
+### Obtener una tarea por su identificador
+
+Para esta ruta debemos usar el id que nos llega de los parámetros de la solicitud.
+
+```javascript
+// Colocamos el parámetro de id en la ruta
+app.get('/tasks/:id', getTask);
+```
+
+```javascript
+const getTask = (req, res) => {
+  // Obtenemos el id de los parámetros de la solicitud
+  const { id } = req.params;
+
+  // Aplicaremos el método findById, a este debemos pasarle el id
+  Note.findById(id)
+    .then((result) => {
+      // Revisamos si encontró el documento
+      result
+        // Si fue encontramos lo enviamos como respuesta
+        ? res.send(result)
+        // Si no fue encontrado enviamos un error 404
+        : res.code(404).send({
+            statusCode: 404,
+            error: 'Not Found',
+            message: 'Task not found with given id',
+          });
+    })
+    .catch((error) => {
+      console.error(error);
+
+      res.code(400).send({
+        statusCode: 400,
+        error: 'Bad request',
+      });
+    });
+}
+```
+
+### Añadir una tarea
+
+Para añadir una tarea en muy importante especificar el método `POST` en la ruta.
+
+```javascript
+app.post('/tasks', addTask)
+```
+
+Luego de hacer eso, podemos hacer nuestro controlador.
+
+```javascript
+const addTask = (req, res) => {
+  // Extraemos el contenido y si la tarea fue completada del cuerpo de la solicitud
+  const { content, done } = req.body
+
+  // Creamos un objeto con esa información
+  const newTask = { content, done }
+
+  // Dispondremos del método create para insertar una nueva tarea 
+  // a la base de datos, debemos pasarle el objeto recién creado
+  Task.create(newTask)
+    // Si fue creado exitosamente mandamos una respuesta con el 
+    // código 201 y el mensaje de creado
+    .then(() => {
+      res.code(201).send({
+        statusCode: 201,
+        message: 'Created',
+      })
+    })
+    .catch((error) => {
+      console.error(error)
+
+      res.code(400).send({
+        statusCode: 400,
+        error: 'Bad request',
+      })
+    })
+}
+```
+
+### Eliminar tarea
+
+El proceso será similar al de obtener una tarea con su id pero especificando los métodos para borrar.
+
+En la ruta debemos usar el método `delete`.
+
+```javascript
+app.delete('/tasks/:id', deleteTask)
+```
+Emplearemos el método `findByIdAndDelete`, este buscará la tarea y si la encuentra la borrar y nos devolverá el documento de la tarea
+
+```javascript
+const deleteTasks = (req, res) => {
+  const { id } = req.params
+
+  Tasks.findByIdAndDelete(id)
+    .then((result) =>
+      result
+        ? res.send({
+            statusCode: 200,
+            message: 'Deleted',
+          })
+        : res.code(404).send({
+            statusCode: 404,
+            error: 'Not Found',
+            message: 'Task not found',
+          })
+    )
+    .catch((error) => {
+      console.error(error)
+
+      res.code(400).send({
+        statusCode: 400,
+        error: 'Bad request',
+      })
+    })
+}
+```
+### Editar tarea
+
+Y como último editar, aquí tendremos que extraer el id de los parámetros  como los datos que lleguen del cuerpo de la solicitud, usaremos el metodo `PUT`.
+
+```javascript
+app.put('/tasks/:id', editTask)
+```
+
+```javascript
+const editTask = (req, res) => {
+  // Extraemos el id, el content y el done de la solicitud
+  const { id } = req.params
+  const { content, done } = req.body
+
+  // Creamos el objeto con los datos editados
+  const editedTask = { content, done }
+
+  // Le pasamos el id y el objeto con los nuevos datos
+  Task.findByIdAndUpdate(id, editedTask)
+    .then((result) => {
+      result
+        ? res.send({
+            statusCode: 200,
+            message: 'Edited',
+          })
+        : res.code(404).send({
+            statusCode: 404,
+            error: 'Not Found',
+            message: 'Task not found with given id',
+          })
+    })
+    .catch((error) => {
+      console.error(error)
+
+      res.code(400).send({
+        statusCode: 400,
+        error: 'Bad request',
+      })
+    })
+}
+```
+
+## Establecer un error 404 modificado
+
+Para añadir un error 404 debemos usar setNotFoundHandler y configurar la respuesta que queramos.
+
+```javascript
+app.setNotFoundHandler((req, res) => {
+  res.code(404).send({
+    statusCode: 404,
+    error: 'Not Found',
+  });
+});
+```
+
+## Fin
+
+Hemos llegado al final, con esto podemos hacer un crud conectado a mongodb con fastify, es un framework sencillo de usar y con gran cantidad de características.

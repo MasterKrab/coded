@@ -1,13 +1,9 @@
-import styled from 'styled-components'
+import StyledLink from './styles'
 
-const Link = styled.a`
-  color: royalblue;
-
-  @media screen and (min-width: 768px) {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`
+const Link = ({ href, children }) => (
+  <StyledLink href={href} target="_blank" rel="noreferrer noopener">
+    {children}
+  </StyledLink>
+)
 
 export default Link

@@ -12,6 +12,21 @@ export const PostIndexContainer = styled.section`
     font-size: 0.9rem;
     padding: 1rem;
     width: 17.5vw;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 0.5rem;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.textColor};
+    }
   }
 `
 

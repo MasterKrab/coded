@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
       }
       
       &::-webkit-scrollbar-thumb{
-         background-color: ${({ theme }) => theme.textColor};
+         background-color: ${({ theme }) => theme.shadow};
          border-radius: 0.5rem;
       }
    }

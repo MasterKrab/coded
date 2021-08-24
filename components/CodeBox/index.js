@@ -2,7 +2,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import palenight from 'prism-react-renderer/themes/palenight'
 import { Pre, LineIndex } from './styles'
 
-const CodeBox = ({ children, className }) => {
+const CodeBox = ({ children, className = '' }) => {
   const language = className.replace(/language-/, '')
 
   return (
@@ -18,7 +18,7 @@ const CodeBox = ({ children, className }) => {
             (line, i) =>
               i + 1 < tokens.length && (
                 <div key={i} {...getLineProps({ line, key: i })}>
-                  <LineIndex>{i + 1}</LineIndex>
+                  {language !== 'bash' && <LineIndex>{i + 1}</LineIndex>}
 
                   {line.map((token, key) => (
                     <span key={key} {...getTokenProps({ token, key })} />
