@@ -32,7 +32,7 @@ export const Card = styled.article`
   }
 `
 
-export const Title = styled.h3`
+export const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0.5rem;
   color: var(--color, ${({ theme }) => theme.titleColor});
