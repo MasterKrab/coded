@@ -33,13 +33,8 @@ export const Card = styled.article`
 `
 
 export const Title = styled.h2`
-<<<<<<< Updated upstream
-=======
   font-size: 1em;
->>>>>>> Stashed changes
-  margin-top: 0;
   margin-bottom: 0.5rem;
-  color: var(--color, ${({ theme }) => theme.titleColor});
 
   &::before {
     content: '#';
