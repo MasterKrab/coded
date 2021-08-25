@@ -15,10 +15,6 @@ export const PostIndexContainer = styled.section`
     max-height: 90vh;
     overflow-y: auto;
 
-    &:hover {
-      z-index: 10000;
-    }
-
     &::-webkit-scrollbar {
       width: 0.25rem;
     }
@@ -61,20 +57,5 @@ export const List = styled.ul`
   @media screen and (min-width: 1300px) {
     padding-left: 0;
     list-style: none;
-  }
-`
-
-export const Item = styled.li`
-  margin-left: ${({ typeHeading }) => (typeHeading === '###' ? '1rem' : '0')};
-`
-
-export const Link = styled.a`
-  width: min-content;
-  z-index: 10;
-
-  @media screen and (min-width: 768px) {
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `

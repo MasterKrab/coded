@@ -25,10 +25,10 @@ const Post = ({ source, frontmatter, headings }) => {
   useEffect(() => {
     const headingsElements = contentNode.current.querySelectorAll('h2, h3')
 
-    headingsElements.forEach((element, index) => {
-      element.id = headings[index].link.replace('#', '')
-    })
-  }, [])
+    for (let i = 0; i < headings.length; i++) {
+      headingsElements[i].id = headings[i].link.replace('#', '')
+    }
+  }, [contentNode])
 
   return (
     <>
