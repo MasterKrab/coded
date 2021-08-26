@@ -36,6 +36,7 @@ export const Title = styled.h2`
   font-size: 1.15em;
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
+  color: var(--color);
 
   &::before {
     content: '#';
