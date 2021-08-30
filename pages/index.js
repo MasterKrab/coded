@@ -5,8 +5,11 @@ import Posts from 'components/Posts'
 const Home = ({ posts }) => (
   <>
     <Head>
-      <title>Coded</title>
-      <meta name="description" content="Blog de programación" />
+      <title>Coded | Blog FullStack</title>
+      <meta
+        name="description"
+        content="Artículos y tutoriales de JavaScript, NodeJS, MongoDB, etc"
+      />
     </Head>
 
     <Posts posts={posts} title="Últimos articulos" />
