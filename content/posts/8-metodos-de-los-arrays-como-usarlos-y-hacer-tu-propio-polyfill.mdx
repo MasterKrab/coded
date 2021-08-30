@@ -1,0 +1,268 @@
+---
+  title: '8 métodos de los arrays, como usarlos y hacer tu propio polyfill'
+  description: 'Aprende a usar 8 métodos los arrays y crear tu propio polyfill de cada uno de ellos'
+  date: '28-8-2021'
+  image: 'assets/posts/array-methods.png'
+  tags:
+  - javascript
+---
+
+Los arrays tienes una buena cantidad de métodos que nos facilitan ciertos procedimientos y nos permiten tener un código más limpio. Explicaremos como funcionan y como hacer nuestros propios polyfills.
+
+## Crear tus propios métodos
+
+Los métodos están en el `prototype` del objeto global `Array`, podemos modificar este y añadir nuestros propios métodos para luego usarlos en cualquier array.
+
+Debemos usar una función expresada y usar `this`, que será el array al cual estamos ejecutando el método.
+
+```javascript
+Array.prototype.awesomeMethod = function() {
+  // Imprime el array en el que ejecutamos el método
+  console.log(this)
+}
+
+const numbers = [1, 2, 3]
+
+numbers.awesomeMethod() // [1, 2, 3]
+```
+
+Y así podemos crear nuestros propios métodos. Luego de saber esto, seguiremos con los métodos propios del lenguaje.
+
+## forEach
+
+El `forEach` itera el array y ejecuta el `callback` que le pasemos.
+
+El callback recibe el elemento actual (obligatorio), el índice y el array entero.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5]
+
+numbers.forEach((number) => console.log(number)) // 1, 2, 3, 4, 5
+```
+
+Para hacer el polyfill simplemente tenemos que hacer un bucle `for` y  ejecutar el `callback`.
+
+```javascript
+Array.prototype.forEach = function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    // Ejecutamos el callback y le pasamos los parámetros
+    callback(this[i], i, this)
+  }
+}
+```
+
+## map
+
+El `map` nos crea un nuevo array con los elementos transformados de acuerdo al `callback` que recibe y nos lo retorna. 
+
+El callback recibe el elemento actual (obligatorio), el índice y el array entero.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5]
+
+const transformedNumbers = numbers.map((number) => number * 2)
+
+console.log(transformedNumbers) // [2, 4, 6, 8, 10]
+```
+
+Para hacer el polyfill tenemos que crear un nuevo array, iterar el array original y por cada elemento ejecutar el `callback`, el elemento transformado que nos retorne el `callback`, lo añadiremos al array que creamos para finalmente retornarlo.
+
+```javascript
+Array.prototype.map = function(callback) {
+  const storage = []
+  
+  for(let i = 0; i < this.length; i++){
+    // Guardamos el elemento que nos retorne el callback
+    const transformedElement = callback(this[i], i, this)
+    // Lo añadimos al array
+    storage.push(transformedElement)
+  }
+  
+  return storage
+}
+```
+
+## filter
+
+El `filter` crea un nuevo array con los elementos que cumplan la condición que establece el `callback` y nos lo retorna.
+
+El callback recibe el elemento actual (obligatorio), el índice y el array entero.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+// Filtra los números pares
+const evens = numbers.filter((number) => number % 2 === 0)
+
+console.log(evens) // [2, 4, 6, 8, 10]
+```
+
+Para hacer el polyfill tenemos que crear un nuevo array, iterar el array original y ejecutar el `callback`, si nos retorna `truthy`, añadiremos el elemento al array que creamos para finalmente retornar el array creado.
+
+```javascript
+Array.prototype.filter = function(callback) {
+  const storage = []
+  
+  for(let i = 0; i < this.length; i++){
+    // Guardamos el elemento actual
+    const currentElement = this[i]
+    
+    // Ejecutamos el callback y si es truthy añadimos el elemento
+    if(callback(currentElement, i, this)) {
+      storage.push(currentElement)
+    }
+  }
+  
+  return storage
+}
+```
+
+## reduce
+
+El `reduce` itera el array original, acumula el valor que retornemos con el `callback` que le pasemos y nos retorna el acumulador. El método como segundo parámetro recibe el valor inicial del acumulador, en caso de no especificarse el valor será el elemento de la primera posición del array.
+
+El callback recibe el acumulador y el elemento actual.
+
+```javascript
+// Array con los gastos
+const expenses = [150, 200, 700, 10, 600]
+
+// Nos calcula el total de todos los gastos
+const total = expenses.reduce((accumulator, number) => accumulator + number)
+
+console.log(total) // 1660 ✅
+```
+
+Para hacer el polyfill tenemos que revisar si el método recibio un valor inicial, si lo recibió el valor del primer índice que usaremos para iterar el array, será de 0, si no lo recibió el valor será de 1 y valor del accumulator será el del primer elemento del array, luego debemos iterar el array, asignar el valor que retorne el callback al acumulador y al final retornarlo.
+
+```javascript
+Array.prototype.reduce = function(callback, accumulator) {
+  const firstIndex = accumulator ? 0 : 1
+  
+  if(!accumulator) accumulator = this[0]
+  
+  for(let i = firstIndex; i < this.length; i++){
+    // Le asignamos al acumulador lo que nos retorne el callback
+    accumulator = callback(accumulator, this[i])
+  }
+  
+  return accumulator
+}
+```
+
+## find
+
+El `find` retorna el primer elemento que encuentre dentro del array que cumpla la condición que establece el `callback`, en caso que ningún elemento cumpla la condición, nos retorna `undefined`.
+
+```javascript
+const prices = [100, 500, 200, 800, 50, 600, 1200]
+
+const firstExpensivePrice = prices.find((price) => price > 650)
+
+console.log(firstExpensivePrice) // 800 ✅
+```
+
+Para hacer el polyfill tenemos que iterar el array original, ejecutar el callback y si nos retorna `truthy`, retornamos el elemento. En caso que no lo encuentre no es necesario retornar `undefined` al final puesto que es el valor por defecto cuando no retornamos nada.
+
+```javascript
+Array.prototype.find = function(callback) {
+  for(let i = 0; i < this.length; i++){
+    // Guardamos el elemento actual
+    const currentElement = this[i]
+    
+    // Ejecutamos el callback y si es truthy retornamos el elemento actual
+    if(callback(currentElement, i, this)){
+      return currentElement
+    }
+  }
+}
+```
+
+## every
+
+Este revisa que todos los elementos de un array cumplan una condición con una función y nos devuelve un booleano.
+
+```javascript
+const isEven = (number) => number % 2 === 0
+
+const numbers = [2, 4, 6, 8, 10, 12]
+
+console.log(numbers.every(isEven)) // true
+
+const numbers2 = [1, 2, 3, 4, 5 ,6]
+
+console.log(numbers2.every(isEven)) // false
+```
+
+Para hacer el polyfill tenemos que iterar el array original, ejecutar el callback con los parámetros y si nos retorna `falsy`, retornamos `false`, en caso que todos los elementos terminen retornando `truthy`, retornamos true.
+
+```javascript
+Array.prototype.every = function(callback) {
+  for(let i = 0; i < this.length; i++) {
+    // Ejecutamos el callback y si es falsy retornamos false
+    if(!callback(this[i], i, this)) return false
+  }
+
+  return true
+}
+
+```
+
+## some
+
+El `some` revisa si al menos un elemento del array, cumple la condición que establece el `callback` y nos devuelve un booleano.
+
+El callback recibe el elemento actual (obligatorio), el índice y el array entero.
+
+```javascript
+const numbers = [0, 12, 50, 8, 9, 15]
+
+// Revisa si un elemento es múltiplo de 5
+
+console.log(numbers.some((number) => number % 5 === 0)) // true
+
+
+// Revisa si un elemento es múltiplo de 7
+
+console.log(numbers.some((number) => number % 7 === 0)) // false
+```
+
+Para hacer el polyfill tenemos que iterar el array, ejecutar el callback y si retorna `truthy`, retornamos true, en caso que ningún elemento termine retornando `truthy`, retornamos false al final.
+
+```javascript
+Array.prototype.some = function(callback) {
+  for(let i = 0; i < this.length; i++){
+    // Ejecutamos el callback y es truthy retornamos true
+    if(callback(this[i], i, this)) return true
+  }
+
+  return false
+}
+```
+
+## findIndex
+
+El `findIndex` nos retorna el índice del primer elemento que cumpla la condición que establece el `callback`, si no encuentra ningún elemento nos retorna `-1`.
+
+```javascript
+const numbers = [1, 0, 3, 4, 10 ,6]
+
+console.log(numbers.findIndex((number) => number % 2 == 0)) // 3
+```
+
+Para hacer el polyfill tenemos que iterar el array, ejecutar el callback y si retorna `truthy`, retornamos el índice, en caso que ningún elemento termine retornando `truthy`, retornamos `-1` al final.
+
+```javascript
+Array.prototype.findIndex = function(callback) {
+  for(let i = 0; i < this.length; i){
+    // Ejecutamos el callback y es truthy retornamos el índice
+    if(callback(this[i]), i, this)) return i
+  }
+
+  return -1
+}
+```
+
+## Conclusión
+
+Como podemos ver son métodos bastantes útiles y prácticos de usar. Hacer nuestros polyfills nos ayudan a ver y entender mucho mejor la lógica detrás de cada método.
