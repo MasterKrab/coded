@@ -12,7 +12,7 @@ const Home = ({ posts }) => (
       />
     </Head>
 
-    <Posts posts={posts} title="Últimos articulos" />
+    <Posts posts={posts} title="Últimos artículos" />
   </>
 )
 
