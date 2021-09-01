@@ -10,6 +10,7 @@
     "postbuild": "node ./lib/read-files-and-send-to-algolia.mjs"
   },
   "dependencies": {
+    "@giscus/react": "^1.0.0",
     "algoliasearch": "^4.10.3",
     "babel-plugin-styled-components": "^1.13.2",
     "dotenv": "^10.0.0",
