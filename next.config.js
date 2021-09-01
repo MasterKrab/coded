@@ -11,4 +11,17 @@ module.exports = {
 
     return config
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Permissions-Policy',
+            value: 'interest-cohort=()',
+          },
+        ],
+      },
+    ]
+  },
 }

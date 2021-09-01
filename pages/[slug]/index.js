@@ -59,7 +59,7 @@ const Post = ({ source, frontmatter, headings }) => {
           <MDXRemote {...source} components={MDXComponents} />
         </Content>
       </Article>
-      <PostComments />
+      <PostComments title={title} />
     </>
   )
 }

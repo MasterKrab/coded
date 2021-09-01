@@ -4,7 +4,7 @@ import THEME_STATES from 'context/theme/states'
 import { Container } from './styles'
 import { Giscus } from '@giscus/react'
 
-const PostComments = () => {
+const PostComments = ({ title }) => {
   const { themeDevice } = useContext(ThemeContext)
 
   return (
@@ -14,10 +14,13 @@ const PostComments = () => {
         repoId="MDEwOlJlcG9zaXRvcnkzOTc3Mjc1NjM"
         category="Comments"
         categoryId="DIC_kwDOF7TXS84B-5Hs"
-        mapping="og:title"
+        mapping="specific"
+        term={title}
         reactionsEnabled="1"
-        emitMetadata="0"
-        theme={themeDevice === THEME_STATES.LIGHT ? 'light' : 'dark_dimmed'}
+        emitMetadata="1"
+        theme={
+          themeDevice === THEME_STATES.LIGHT ? 'light' : 'transparent_dark'
+        }
       />
     </Container>
   )
