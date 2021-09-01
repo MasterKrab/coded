@@ -4,6 +4,7 @@ import { getFileBySlug, getFiles } from 'lib/mdx'
 import PostMeta from 'components/PostMeta'
 import MDXComponents from 'components/MDXComponents'
 import PostIndex from 'components/PostIndex'
+import PostComments from 'components/PostComments'
 import {
   Article,
   Header,
@@ -58,6 +59,7 @@ const Post = ({ source, frontmatter, headings }) => {
           <MDXRemote {...source} components={MDXComponents} />
         </Content>
       </Article>
+      <PostComments />
     </>
   )
 }

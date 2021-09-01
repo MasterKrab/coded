@@ -28,6 +28,8 @@ const UserThemeProvider = ({ children }) => {
     if (theme === THEME_STATES.DEVICE) {
       const themeDevice = getThemeDevice()
       setThemeDevice(themeDevice)
+    } else {
+      setThemeDevice(theme)
     }
   }, [theme])
 
