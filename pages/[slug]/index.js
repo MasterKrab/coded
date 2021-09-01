@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
-import dynamic from 'next/dynamic'
 import { MDXRemote } from 'next-mdx-remote'
 import { getFileBySlug, getFiles } from 'lib/mdx'
 import PostMeta from 'components/PostMeta'
 import MDXComponents from 'components/MDXComponents'
 import PostIndex from 'components/PostIndex'
+import PostComments from 'components/PostComments'
 import {
   Article,
   Header,
@@ -18,10 +18,6 @@ import {
 import Calendar from '@icons/CalendarIcon'
 import BookIcon from '@icons/BookIcon'
 import formatDate from 'utils/formatDate'
-
-const PostComments = dynamic(() => import('components/PostComments'), {
-  ssr: false,
-})
 
 const Post = ({ source, frontmatter, headings }) => {
   const { title, description, date, readTime, image, alt, slug } = frontmatter
@@ -62,8 +58,8 @@ const Post = ({ source, frontmatter, headings }) => {
         <Content ref={contentNode}>
           <MDXRemote {...source} components={MDXComponents} />
         </Content>
-        <PostComments />
       </Article>
+      <PostComments />
     </>
   )
 }
