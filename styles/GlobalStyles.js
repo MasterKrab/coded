@@ -78,6 +78,8 @@ const GlobalStyles = createGlobalStyle`
 
       &:focus,
       &:focus-visible{
+         position: relative;
+         z-index: 10000000;
          outline: 3px dashed ${({ theme }) => theme.textColor};
          outline-offset: 3px;
       }

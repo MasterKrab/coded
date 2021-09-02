@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import centerIcon from 'utils/centerIcon'
 import visuallyHidden from 'utils/visuallyHidden'
+import scaleHover from 'utils/scaleHover'
 
 export const StyledTag = styled.input`
   ${visuallyHidden};
@@ -29,4 +30,5 @@ export const TagLabel = styled.label`
   border: 1px solid ${({ theme }) => theme.textColor};
   border-radius: 0.25rem;
   cursor: pointer;
+  ${scaleHover};
 `

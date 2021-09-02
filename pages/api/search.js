@@ -10,10 +10,16 @@ export default (req, res) => {
 
   const index = client.initIndex('posts')
 
-  index.search(search).then(({ hits }) => {
-    const normalizedHits = limit ? hits.slice(0, limit) : hits
+  index
+    .search(search)
+    .then(({ hits }) => {
+      const normalizedHits = limit ? hits.slice(0, limit) : hits
 
-    res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify(normalizedHits))
-  })
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(normalizedHits))
+    })
+    .catch((error) => {
+      res.status(500).end('Error 505')
+      console.error(error)
+    })
 }

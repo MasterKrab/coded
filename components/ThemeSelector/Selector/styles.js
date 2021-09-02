@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import visuallyHidden from 'utils/visuallyHidden'
 
 export const Input = styled.input`
-  ${visuallyHidden}
+  ${visuallyHidden};
 
   &:focus + span,
   &:focus-visible + span {

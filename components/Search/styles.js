@@ -83,22 +83,22 @@ export const ResultsContainer = styled.div`
   top: 35px;
   z-index: 10000000;
   background-color: ${({ theme }) => theme.backgroundColor};
+  width: 85vw;
   max-width: 500px;
   padding: 0 1rem 1rem;
   box-shadow: 0 0 0 1px ${({ theme }) => theme.shadow};
+
+  @media screen and (min-width: 768px) {
+    max-width: 350px;
+  }
 `
 
 export const Results = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 85vw;
   padding-left: 0;
   list-style: none;
-
-  @media screen and (min-width: 768px) {
-    max-width: 350px;
-  }
 `
 
 export const Image = styled.img`
