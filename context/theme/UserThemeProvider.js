@@ -6,6 +6,7 @@ import checkMediaQueriesSupport from 'utils/checkMediaQueriesSupport'
 const UserThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(THEME_STATES.NONE)
   const [themeDevice, setThemeDevice] = useState(THEME_STATES.LIGHT)
+  const [loadedTheme, setLoadedTheme] = useState(false)
 
   const getThemeDevice = () => {
     if (!checkMediaQueriesSupport) return THEME_STATES.LIGHT
@@ -21,6 +22,7 @@ const UserThemeProvider = ({ children }) => {
     if (theme === THEME_STATES.NONE) {
       const savedTheme = localStorage.getItem('theme') || THEME_STATES.LIGHT
       setTheme(savedTheme)
+      setLoadedTheme(true)
     } else {
       localStorage.setItem('theme', theme)
     }
@@ -34,7 +36,9 @@ const UserThemeProvider = ({ children }) => {
   }, [theme])
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme, themeDevice }}>
+    <ThemeContext.Provider
+      value={{ theme, changeTheme, themeDevice, loadedTheme }}
+    >
       {children}
     </ThemeContext.Provider>
   )

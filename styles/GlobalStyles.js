@@ -21,8 +21,8 @@ const GlobalStyles = createGlobalStyle`
    body{
       font-family: 'Poppins', sans-serif;
       background-color: ${({ theme }) => theme.backgroundColor};
-      color:${({ theme }) => theme.textColor};
-      transition: background-color 0.2s;
+      color: ${({ theme }) => theme.textColor};
+      transition: background-color 0.2s, color 0.2s;
       
       &::-webkit-scrollbar{
          width: 0.5rem;
