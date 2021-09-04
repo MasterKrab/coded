@@ -36,7 +36,7 @@ const Search = ({ isMenu }) => {
 
   useEffect(() => {
     if (search.trim()) {
-      fetch(`https://coded.tech/api/search?search=${search}&limit=5`)
+      fetch(`https://www.coded.tech/api/search?search=${search}&limit=5`)
         .then((res) => res.json())
         .then(setResults)
         .catch((error) => console.error(error))
