@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import { getAllFilesMetadata } from 'lib/mdx'
-import generateRSSFeed from 'utils/generateRSSFeed'
-import generateSiteMap from 'utils/generateSiteMap'
 import Posts from 'components/Posts'
+import { getAllFilesMetadata } from 'lib/mdx'
+import generateRSSFeed from 'lib/generateRSSFeed'
+import generateSiteMap from 'lib/generateSiteMap'
+import readPostsAndSendToAlgolia from 'lib/readPostsAndSendToAlgolia'
 
 const Home = ({ posts }) => (
   <>
@@ -25,6 +26,7 @@ export const getStaticProps = async () => {
 
   generateRSSFeed(posts)
   generateSiteMap(posts)
+  readPostsAndSendToAlgolia(posts)
 
   return {
     props: { posts },
