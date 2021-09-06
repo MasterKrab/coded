@@ -180,7 +180,7 @@ Array.prototype.find = function(callback) {
 
 ## every
 
-Este revisa que todos los elementos de un array cumplan una condición con una función y nos devuelve un booleano.
+Este revisa que todos los elementos de un array cumplan una condición que establece el `callback` y nos devuelve un booleano.
 
 ```javascript
 const isEven = (number) => number % 2 === 0
@@ -232,7 +232,7 @@ Para hacer el polyfill tenemos que iterar el array, ejecutar el callback y si re
 ```javascript
 Array.prototype.some = function(callback) {
   for(let i = 0; i < this.length; i++){
-    // Ejecutamos el callback y es truthy retornamos true
+    // Ejecutamos el callback y si es truthy retornamos true
     if(callback(this[i], i, this)) return true
   }
 
