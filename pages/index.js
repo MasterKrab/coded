@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { getAllFilesMetadata } from 'lib/mdx'
+import generateRSSFeed from 'utils/generateRSSFeed'
 import Posts from 'components/Posts'
 
 const Home = ({ posts }) => (
@@ -20,6 +21,8 @@ export default Home
 
 export const getStaticProps = async () => {
   const posts = getAllFilesMetadata()
+
+  generateRSSFeed(posts)
 
   return {
     props: { posts },

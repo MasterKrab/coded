@@ -5,7 +5,7 @@ const Sitemap = () => {}
 export default Sitemap
 
 export const getServerSideProps = async ({ res }) => {
-  const baseUrl = 'https://www.coded.tech/'
+  const baseUrl = 'https://www.coded.tech'
 
   const posts = await getAllFilesMetadata()
 
@@ -14,7 +14,7 @@ export const getServerSideProps = async ({ res }) => {
   posts.forEach(({ slug, date }) => {
     postsXML += `
          <url>
-            <loc>${`${baseUrl}${slug}`}</loc>
+            <loc>${`${baseUrl}/${slug}`}</loc>
             <lastmod>${date}</lastmod>
          </url>
       `
