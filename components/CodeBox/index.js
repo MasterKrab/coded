@@ -13,7 +13,7 @@ const CodeBox = ({ children, className = '' }) => {
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Pre className={className} style={{ ...style }}>
+        <Pre className={className} {...style}>
           {tokens.map(
             (line, i) =>
               i + 1 < tokens.length && (
