@@ -1,4 +1,5 @@
 import fs from 'fs'
+import prettier from 'prettier'
 
 const generateSiteMap = (posts) => {
   const baseUrl = 'https://www.coded.tech'
@@ -27,7 +28,9 @@ const generateSiteMap = (posts) => {
        </urlset>
     `
 
-  fs.writeFileSync('./public/sitemap.xml', sitemap, 'utf8')
+  const normalizedSitemap = prettier.format(sitemap, { parser: 'html' })
+
+  fs.writeFileSync('./public/sitemap.xml', normalizedSitemap, 'utf8')
 }
 
 export default generateSiteMap
