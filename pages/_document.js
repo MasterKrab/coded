@@ -1,6 +1,5 @@
 import Document, { Html, Main, Head, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import Fonts from 'components/Fonts'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -33,9 +32,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <Fonts />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
