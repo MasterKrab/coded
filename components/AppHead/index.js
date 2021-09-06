@@ -1,10 +1,8 @@
 import Head from 'next/head'
-import Fonts from './Fonts'
 import Favicons from './Favicons'
 
 const AppHead = () => (
   <Head>
-    <Fonts />
     <Favicons />
     <meta property="og:type" content="website"></meta>
     <meta
