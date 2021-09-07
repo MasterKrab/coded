@@ -8,6 +8,7 @@ const flex = css`
 
 export const StyledFooter = styled.footer`
   background-color: ${({ theme }) => theme.footer};
+  margin-top: auto;
   padding: 1rem 1.5rem;
   z-index: 1000;
 `
@@ -15,7 +16,6 @@ export const StyledFooter = styled.footer`
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: auto;
   margin-left: auto;
   margin-right: auto;
   max-width: 1440px;
