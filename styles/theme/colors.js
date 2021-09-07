@@ -8,7 +8,7 @@ const colors = {
     shadow: 'rgba(0, 0, 0, 0.15)',
     active: '#4169e1',
     searchBar: '#6c6c70',
-    footer: '#eeee',
+    footer: '#f6f8fa',
     resultMatch: '#d0ecff',
     resultMatchText: '#222222',
   },

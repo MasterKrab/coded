@@ -7,6 +7,7 @@ export const Container = styled.section`
 
   @media screen and (max-width: 768px) {
     display: ${({ isMenu }) => (isMenu ? 'block' : 'none')};
+    margin-right: 0.5rem;
   }
 `
 

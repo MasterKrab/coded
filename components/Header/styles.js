@@ -24,6 +24,7 @@ export const StyledHeader = styled.header`
 export const MenuContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
   background-color: ${({ theme }) => theme.backgroundColor};
   width: 100%;
 

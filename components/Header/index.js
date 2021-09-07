@@ -22,7 +22,7 @@ const Header = () => {
         <MenuContainer isMenu={isMenu}>
           <nav>
             <Link href="/" passHref>
-              <StyledLink>
+              <StyledLink aria-label="Home">
                 <LogoComplete aria-hidden="true" width={80} height={30} />
               </StyledLink>
             </Link>

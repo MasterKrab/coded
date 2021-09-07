@@ -5,4 +5,5 @@ export const Main = styled.main`
   max-width: 1440px;
   margin-right: auto;
   margin-left: auto;
+  padding-bottom: 1rem;
 `
