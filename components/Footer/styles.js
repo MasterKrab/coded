@@ -4,16 +4,21 @@ import visuallyHidden from 'utils/visuallyHidden'
 const flex = css`
   display: flex;
   align-items: center;
-  gap: 1rem;
 `
 
-export const Container = styled.footer`
-  display: flex;
-  justify-content: space-between;
+export const StyledFooter = styled.footer`
   background-color: ${({ theme }) => theme.footer};
-  margin-top: auto;
   padding: 1rem 1.5rem;
   z-index: 1000;
+`
+
+export const Container = styled.div`
+  ${flex};
+  justify-content: space-between;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1440px;
 
   @media screen and (max-width: 768px) {
     flex-direction: column-reverse;
@@ -34,6 +39,7 @@ export const Link = styled.a`
 
 export const Figure = styled.figure`
   ${flex};
+  gap: 1rem;
   margin: 0;
 `
 
