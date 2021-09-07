@@ -13,7 +13,7 @@ export const StyledFooter = styled.footer`
 `
 
 export const Container = styled.div`
-  ${flex};
+  display: flex;
   justify-content: space-between;
   margin-top: auto;
   margin-left: auto;
@@ -27,7 +27,7 @@ export const Container = styled.div`
 `
 
 export const Link = styled.a`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
 
