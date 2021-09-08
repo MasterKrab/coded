@@ -17,7 +17,7 @@ const Selector = ({ theme, Icon }) => {
         defaultChecked={selectedTheme === theme}
       />
       <IconContainer aria-label={theme}>
-        <Icon aria-hidden="true" width={30} height={30} />
+        <Icon aria-hidden="true" width={27.5} height={27.5} />
       </IconContainer>
     </label>
   )

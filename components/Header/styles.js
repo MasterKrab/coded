@@ -18,6 +18,7 @@ export const StyledHeader = styled.header`
 
   @media screen and (max-width: 768px) {
     align-items: flex-start;
+    gap: 1rem;
   }
 `
 
@@ -27,18 +28,6 @@ export const MenuContainer = styled.div`
   gap: 1rem;
   background-color: ${({ theme }) => theme.backgroundColor};
   width: 100%;
-
-  @media screen and (max-width: 768px) {
-    display: block;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    z-index: 100;
-    padding: 1rem;
-    visibility: ${({ isMenu }) => (isMenu ? 'visible' : 'hidden')};
-    opacity: ${({ isMenu }) => (isMenu ? '1' : '0')};
-    transition: visibility 0.35s, opacity 0.35s;
-  }
 `
 
 export const StyledLink = styled.a`
