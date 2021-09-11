@@ -4,7 +4,7 @@ import CopyIcon from '@icons/CopyIcon'
 import FullScreenIcon from '@icons/FullScreenIcon'
 import copyToClipboard from 'utils/copyToClipboard'
 
-const Buttons = ({ text, isHover, isFullScreen, toggleFullScreen }) => {
+const Buttons = ({ text, isFullScreen, toggleFullScreen }) => {
   const [isCopied, setIsCopied] = useState(false)
 
   const handleCopy = () => {
@@ -18,7 +18,6 @@ const Buttons = ({ text, isHover, isFullScreen, toggleFullScreen }) => {
     <Container isFullScreen={isFullScreen}>
       <Button
         isFullScreen={isFullScreen}
-        isHover={isHover}
         onClick={toggleFullScreen}
         aria-label={`${isFullScreen ? 'Quitar' : 'Poner en'} pantalla completa`}
       >
@@ -26,7 +25,6 @@ const Buttons = ({ text, isHover, isFullScreen, toggleFullScreen }) => {
       </Button>
       <CopyButton
         isFullScreen={isFullScreen}
-        isHover={isHover}
         isCopied={isCopied}
         onClick={handleCopy}
         aria-label="Copiar al portapapeles"

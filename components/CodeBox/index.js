@@ -7,22 +7,16 @@ import useFullScreen from 'hooks/useFullScreen'
 
 const CodeBox = ({ children, className = '' }) => {
   const element = useRef(null)
-  const [isHover, setIsHover] = useState(false)
   const [isFullScreen, toggleFullScreen] = useFullScreen(element)
   const language = className.replace(/language-/, '')
 
-  const handleToggleHover = () => setIsHover(!isHover)
-
   return (
     <Container
-      onMouseEnter={handleToggleHover}
-      onMouseOver={handleToggleHover}
       ref={element}
       isFullScreen={isFullScreen}
     >
       <Buttons
         text={children}
-        isHover={isHover}
         element={element}
         isFullScreen={isFullScreen}
         toggleFullScreen={toggleFullScreen}

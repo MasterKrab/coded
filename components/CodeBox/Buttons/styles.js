@@ -16,25 +16,31 @@ export const Container = styled.div`
 `
 
 export const Button = styled.button`
+  position: relative;
   font-size: 0.9rem;
   padding: 0.5rem;
   color: ${({ theme }) => theme.backgroundColor};
   opacity: var(--button-opacity);
   transition: transform 0.2s, opacity 0.2s;
 
+  &:focus,
+  &:focus-visible {
+    outline-color: ${({
+      theme: { textColor, backgroundColor },
+      isFullScreen,
+    }) => (isFullScreen ? textColor : backgroundColor)};
+    outline-offset: -5px;
+  }
+
   @media screen and (min-width: 768px) {
     padding-top: 1rem;
     padding-right: 1rem;
-  }
-
-  &:focus-visible {
-    outline: none;
-  }
-
-  @media screen and (min-width: 768px) {
     &:focus {
-      --button-opacity: ${({ isHover, isCopied }) =>
-        isHover ? '1' : isCopied ? '1' : '0'};
+      outline: none;
+    }
+
+    &:not(:hover):focus-visible {
+      --button-opacity: 1;
     }
 
     &:hover {
@@ -44,10 +50,17 @@ export const Button = styled.button`
 `
 
 export const CopyButton = styled(Button)`
+  @media screen and (min-width: 768px) {
+    &:focus,
+    &:focus-visible {
+      --button-opacity: ${({ isCopied }) => (isCopied ? '1' : '0')};
+    }
+  }
+
   &::before,
   &::after {
     content: '';
-    bottom: 5px;
+    top: 35px;
     right: 15px;
     position: absolute;
     opacity: ${({ isCopied }) => (isCopied ? '1' : '0')};
@@ -63,7 +76,7 @@ export const CopyButton = styled(Button)`
 
   &::after {
     content: 'Copied';
-    bottom: -17.5px;
+    top: 45px;
     right: 15px;
     background-color: ${({ theme }) => theme.backgroundColor};
     color: ${({ theme }) => theme.textColor};
