@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import palenight from 'prism-react-renderer/themes/palenight'
 import { Container, Pre, LineIndex } from './styles'
@@ -11,10 +11,7 @@ const CodeBox = ({ children, className = '' }) => {
   const language = className.replace(/language-/, '')
 
   return (
-    <Container
-      ref={element}
-      isFullScreen={isFullScreen}
-    >
+    <Container ref={element} isFullScreen={isFullScreen}>
       <Buttons
         text={children}
         element={element}
