@@ -14,19 +14,19 @@ const Buttons = ({ text, isHover, isFullScreen, toggleFullScreen }) => {
     })
   }
 
-  const props = { isFullScreen, isHover }
-
   return (
     <Container isFullScreen={isFullScreen}>
       <Button
-        {...props}
+        isFullScreen={isFullScreen}
+        isHover={isHover}
         onClick={toggleFullScreen}
         aria-label={`${isFullScreen ? 'Quitar' : 'Poner en'} pantalla completa`}
       >
         <FullScreenIcon width={20} height={20} />
       </Button>
       <CopyButton
-        {...props}
+        isFullScreen={isFullScreen}
+        isHover={isHover}
         isCopied={isCopied}
         onClick={handleCopy}
         aria-label="Copiar al portapapeles"
