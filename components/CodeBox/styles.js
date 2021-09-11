@@ -18,13 +18,14 @@ export const Pre = styled.pre`
   font-size: 0.8em;
   margin-top: 0;
   margin-bottom: ${({ isFullScreen }) => (isFullScreen ? '0' : '1rem')};
-  padding: 20px;
+  padding: 25px 20px 20px;
   height: calc(100% - 39px);
   color: ${({ color }) => color};
   box-shadow: 0 0 20px 10px ${({ theme }) => theme.codeShadow};
   overflow-y: auto;
 
   @media screen and (min-width: 768px) {
+    padding-top: 20px;
     height: 100%;
   }
 
