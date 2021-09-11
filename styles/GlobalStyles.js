@@ -89,7 +89,6 @@ const GlobalStyles = createGlobalStyle`
          outline: none;
       }
    }
-
 `
 
 export default GlobalStyles
