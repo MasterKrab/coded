@@ -7,6 +7,12 @@ export const Container = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+
+  @media screen and (max-width: 768px) {
+    position: ${({ isFullScreen }) => (isFullScreen ? 'relative' : 'absolute')};
+    background-color: ${({ theme, isFullScreen }) =>
+      isFullScreen ? theme.backgroundColor : 'none'};
+  }
 `
 
 export const Button = styled.button`

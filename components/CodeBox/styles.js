@@ -19,10 +19,14 @@ export const Pre = styled.pre`
   margin-top: 0;
   margin-bottom: ${({ isFullScreen }) => (isFullScreen ? '0' : '1rem')};
   padding: 20px;
-  height: 100%;
+  height: calc(100% - 39px);
   color: ${({ color }) => color};
   box-shadow: 0 0 20px 10px ${({ theme }) => theme.codeShadow};
   overflow-y: auto;
+
+  @media screen and (min-width: 768px) {
+    height: 100%;
+  }
 
   &::-webkit-scrollbar {
     background-color: #fff;

@@ -17,7 +17,7 @@ const Buttons = ({ text, isHover, isFullScreen, toggleFullScreen }) => {
   const props = { isFullScreen, isHover }
 
   return (
-    <Container>
+    <Container isFullScreen={isFullScreen}>
       <Button
         {...props}
         onClick={toggleFullScreen}
