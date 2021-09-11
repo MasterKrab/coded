@@ -7,13 +7,11 @@ import Header from 'components/Header'
 import { Main } from 'styles/app-styles'
 import LinkToTop from 'components/LinkToTop'
 import Footer from 'components/Footer'
-import loadFonts from 'utils/loadFonts'
+import loadFonts from 'utils/fonts/loadFonts'
 import 'styles/normalize.css'
 
 const MyApp = ({ Component, pageProps }) => {
-  useEffect(() => {
-    loadFonts()
-  })
+  useEffect(loadFonts)
 
   return (
     <>

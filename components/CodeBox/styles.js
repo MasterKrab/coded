@@ -20,6 +20,7 @@ export const Pre = styled.pre`
   margin-bottom: ${({ isFullScreen }) => (isFullScreen ? '0' : '1rem')};
   padding: ${({ isFullScreen }) => (isFullScreen ? '20px' : '35px 20px 20px')};
   height: calc(100% - 39px);
+  font-family: 'Fira Code', monospace;
   color: ${({ color }) => color};
   box-shadow: 0 0 20px 10px ${({ theme }) => theme.codeShadow};
   overflow-y: auto;
