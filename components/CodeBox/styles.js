@@ -18,7 +18,7 @@ export const Pre = styled.pre`
   font-size: 0.8em;
   margin-top: 0;
   margin-bottom: ${({ isFullScreen }) => (isFullScreen ? '0' : '1rem')};
-  padding: 25px 20px 20px;
+  padding: ${({ isFullScreen }) => (isFullScreen ? '20px' : '35px 20px 20px')};
   height: calc(100% - 39px);
   color: ${({ color }) => color};
   box-shadow: 0 0 20px 10px ${({ theme }) => theme.codeShadow};
