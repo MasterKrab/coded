@@ -26,16 +26,17 @@ export const Button = styled.button`
   &:focus,
   &:focus-visible {
     outline-color: ${({
-      theme: { textColor, backgroundColor },
+      theme: { textColor, codeboxButtonOutline },
       isFullScreen,
-    }) => (isFullScreen ? textColor : backgroundColor)};
+    }) => (isFullScreen ? textColor : codeboxButtonOutline)};
     outline-offset: -5px;
   }
 
   @media screen and (min-width: 768px) {
     padding-top: 1rem;
     padding-right: 1rem;
-    &:focus {
+
+    &:not(:focus):focus-visible {
       outline: none;
     }
 

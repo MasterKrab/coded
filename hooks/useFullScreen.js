@@ -1,19 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const useFullScreen = (element) => {
   const [isFullScreen, setIsFullScreen] = useState(false)
 
-  const toggleFullScreen = () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen()
-      setIsFullScreen(false)
-      return
-    }
+  useEffect(() => {
+    const handleFullScreenChange = () =>
+      setIsFullScreen(!!document.fullscreenElement)
 
-    element.current
-      .requestFullscreen()
-      .then(() => setIsFullScreen(true))
-      .catch(() => setIsFullScreen(false))
+    document.addEventListener('fullscreenchange', handleFullScreenChange)
+
+    return () =>
+      document.removeEventListener('fullscreenchange', handleFullScreenChange)
+  }, [])
+
+  const toggleFullScreen = () => {
+    if (document.fullscreenElement) return document.exitFullscreen()
+
+    element.current.requestFullscreen()
   }
 
   return [isFullScreen, toggleFullScreen]
