@@ -31,6 +31,7 @@ export const Pre = styled.pre`
 
   &::-webkit-scrollbar {
     background-color: #fff;
+    width: 8px;
     height: 8px;
   }
 

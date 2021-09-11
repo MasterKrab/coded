@@ -11,6 +11,7 @@ const colors = {
     footer: '#f6f8fa',
     resultMatch: '#d0ecff',
     resultMatchText: '#222222',
+    codeboxButtonOutline: '#ffffff',
   },
   dark: {
     backgroundColor: '#222222',
@@ -24,6 +25,7 @@ const colors = {
     footer: '#262626',
     resultMatch: '#d0ecff',
     resultMatchText: '#000000',
+    codeboxButtonOutline: '#ffffff',
   },
 }
 
