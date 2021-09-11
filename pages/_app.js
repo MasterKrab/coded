@@ -6,6 +6,7 @@ import SkipToMain from 'components/SkipToMain'
 import Header from 'components/Header'
 import { Main } from 'styles/app-styles'
 import LinkToTop from 'components/LinkToTop'
+import Footer from 'components/Footer'
 import loadFonts from 'utils/loadFonts'
 import 'styles/normalize.css'
 
@@ -25,6 +26,7 @@ const MyApp = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </Main>
         <LinkToTop />
+        <Footer />
       </StylesProviders>
     </>
   )

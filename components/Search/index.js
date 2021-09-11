@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import {
+  Toggle,
   Container,
   ResultsContainer,
   Results,
@@ -12,14 +13,20 @@ import {
 import SearchIcon from '@icons/SearchIcon'
 import Result from 'components/Result'
 
-const Search = ({ isMenu }) => {
+const Search = () => {
   const [search, setSearch] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
   const [isFocus, setIsFocus] = useState(false)
   const [results, setResults] = useState([])
 
   const router = useRouter()
 
-  useEffect(() => setSearch(''), [router.query])
+  useEffect(() => {
+    setSearch('')
+    setIsOpen(false)
+  }, [router.query])
+
+  const handleToggleSearch = () => setIsOpen(!isOpen)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -44,48 +51,61 @@ const Search = ({ isMenu }) => {
   }, [search])
 
   return (
-    <Container aria-label="search" isMenu={isMenu}>
-      <Form onSubmit={handleSubmit} role="search" isFocus={isFocus}>
-        <Input
-          onChange={handleChange}
-          onFocus={handleToggleFocus}
-          onBlur={handleToggleFocus}
-          type="search"
-          aria-label="Buscar articulo"
-          placeholder="Buscar..."
-          maxlength="250"
-          value={search}
+    <>
+      <Toggle
+        onClick={handleToggleSearch}
+        aria-label={`${isOpen ? 'Cerrar' : 'Abrir'} barra de búsqueda`}
+      >
+        <SearchIcon
+          aria-hidden="true"
+          width={22.5}
+          height={22.5}
+          fill="currentColor"
         />
-        <Button aria-label="Buscar" isFocus={isFocus}>
-          <SearchIcon
-            aria-hidden="true"
-            width={20}
-            height={20}
-            fill="currentColor"
+      </Toggle>
+      <Container aria-label="search" isOpen={isOpen}>
+        <Form onSubmit={handleSubmit} role="search" isFocus={isFocus}>
+          <Input
+            onChange={handleChange}
+            onFocus={handleToggleFocus}
+            onBlur={handleToggleFocus}
+            type="search"
+            aria-label="Buscar articulo"
+            placeholder="Buscar..."
+            maxlength="250"
+            value={search}
           />
-        </Button>
-      </Form>
-      {search.trim() && results.length ? (
-        <ResultsContainer>
-          <Results aria-live="polite">
-            {results.map(({ slug, _highlightResult }) => (
-              <Result
-                key={`result-${slug}`}
-                slug={slug}
-                title={_highlightResult.title.value}
-                description={_highlightResult.description.value}
-              />
-            ))}
-          </Results>
-          <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
-            <Image
-              src="/assets/icons/search-by-algolia-light-background.svg"
-              alt="Search by algolia"
+          <Button aria-label="Buscar" isFocus={isFocus}>
+            <SearchIcon
+              aria-hidden="true"
+              width={20}
+              height={20}
+              fill="currentColor"
             />
-          </a>
-        </ResultsContainer>
-      ) : null}
-    </Container>
+          </Button>
+        </Form>
+        {search.trim() && results.length ? (
+          <ResultsContainer>
+            <Results aria-live="polite">
+              {results.map(({ slug, _highlightResult }) => (
+                <Result
+                  key={`result-${slug}`}
+                  slug={slug}
+                  title={_highlightResult.title.value}
+                  description={_highlightResult.description.value}
+                />
+              ))}
+            </Results>
+            <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
+              <Image
+                src="/assets/icons/search-by-algolia-light-background.svg"
+                alt="Search by algolia"
+              />
+            </a>
+          </ResultsContainer>
+        ) : null}
+      </Container>
+    </>
   )
 }
 

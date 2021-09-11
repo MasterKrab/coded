@@ -1,12 +1,34 @@
 import styled from 'styled-components'
 
+export const Toggle = styled.button`
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  margin-right: 0.5rem;
+  color: ${({ theme }) => theme.textColor};
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`
+
 export const Container = styled.section`
   position: relative;
   margin-left: auto;
   margin-right: 1rem;
 
   @media screen and (max-width: 768px) {
-    display: ${({ isMenu }) => (isMenu ? 'block' : 'none')};
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 1000;
+    background-color: ${({ theme }) => theme.backgroundColor};
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+    visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+    opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+    transition: visibility 0.2s, opacity 0.2s;
   }
 `
 
@@ -80,7 +102,7 @@ export const Button = styled.button`
 
 export const ResultsContainer = styled.div`
   position: absolute;
-  top: 35px;
+  top: 55px;
   z-index: 10000000;
   background-color: ${({ theme }) => theme.backgroundColor};
   width: 85vw;
@@ -89,6 +111,7 @@ export const ResultsContainer = styled.div`
   box-shadow: 0 0 0 1px ${({ theme }) => theme.shadow};
 
   @media screen and (min-width: 768px) {
+    top: 35px;
     max-width: 350px;
   }
 `

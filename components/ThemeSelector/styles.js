@@ -3,8 +3,8 @@ import visuallyHidden from 'utils/visuallyHidden'
 
 const LEFT_BY_THEME = {
   light: '0',
-  device: '45px',
-  dark: '90px',
+  device: '42.5px',
+  dark: '85px',
 }
 
 export const Fieldset = styled.fieldset`
@@ -20,9 +20,9 @@ export const Fieldset = styled.fieldset`
   &::before {
     content: '';
     position: absolute;
-    top: 35px;
+    top: 32.5px;
     left: 0;
-    z-index: 100;
+    z-index: 10000;
     background-color: ${({ theme }) => theme.active};
     width: 30px;
     height: 2px;

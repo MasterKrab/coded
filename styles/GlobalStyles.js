@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
       }
       
       &::-webkit-scrollbar-thumb{
-         background-color: ${({ theme }) => theme.shadow};
+         background-color: ${({ theme }) => theme.textColor};
          border-radius: 0.5rem;
       }
    }
@@ -37,6 +37,7 @@ const GlobalStyles = createGlobalStyle`
    #__next{
       display: flex;
       flex-direction: column;
+      height: 100%;
    }
 
    a{
@@ -88,7 +89,6 @@ const GlobalStyles = createGlobalStyle`
          outline: none;
       }
    }
-
 `
 
 export default GlobalStyles
