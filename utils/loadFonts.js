@@ -10,7 +10,7 @@ const Fonts = () => {
 
   const Poppins = new FontFaceObserver('Poppins')
 
-  Poppins.load().then(() => {
+  Poppins.load(null, 5000).then(() => {
     document.documentElement.classList.add('Poppins')
   })
 }
