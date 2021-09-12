@@ -19,10 +19,13 @@ const UserThemeProvider = ({ children }) => {
   const changeTheme = (newTheme) => setTheme(newTheme)
 
   useEffect(() => {
+    theme !== THEME_STATES.NONE && setLoadedTheme(true)
+  }, [theme])
+
+  useEffect(() => {
     if (theme === THEME_STATES.NONE) {
       const savedTheme = localStorage.getItem('theme') || THEME_STATES.LIGHT
       setTheme(savedTheme)
-      setLoadedTheme(true)
     } else {
       localStorage.setItem('theme', theme)
     }
