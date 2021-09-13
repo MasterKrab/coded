@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const PostIndexContainer = styled.section`
-  background-color: ${({ theme }) => theme.backgroundColor};
   font-size: min(1.25rem, 4vw);
   padding: var(--padding);
 

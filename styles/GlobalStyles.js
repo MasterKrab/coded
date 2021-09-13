@@ -20,7 +20,13 @@ const GlobalStyles = createGlobalStyle`
    
    body{
       font-family: 'Poppins', sans-serif;
-      background-color: ${({ theme }) => theme.backgroundColor};
+      background-color: ${({ theme }) =>
+        theme.backgroundColor2};  background-image: ${({ theme }) =>
+  `url('./assets/illustrations/${theme.backgroundImage}')`};
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: bottom;
+      background-attachment: fixed;
       color: ${({ theme }) => theme.textColor};
       transition: background-color 0.2s, color 0.2s;
       
