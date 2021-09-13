@@ -7,10 +7,10 @@ const flex = css`
 `
 
 export const StyledFooter = styled.footer`
-  background-color: ${({ theme }) => theme.footer};
-  margin-top: auto;
+  background-color: ${({ theme }) => theme.backgroundColor2};
   padding: 1rem 1.5rem;
   z-index: 1000;
+  box-shadow: 0 0 2.5px ${({ theme }) => theme.shadow};
 `
 
 export const Container = styled.div`
