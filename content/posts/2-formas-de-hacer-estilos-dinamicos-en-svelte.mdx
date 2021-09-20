@@ -1,0 +1,202 @@
+---
+  title: '2 formas de hacer estilos dinámicos en Svelte'
+  description: ''
+  date: '2021-09-20'
+  image: 'assets/posts/svelte-dynamic-styles.png'
+  tags:
+  - svelte
+  - css
+---
+
+Son recurrentes los casos donde es necesario hacer css dinámico usando javascript y en nuestro caso en Svelte, normalmente se suelen usar estilos en línea para modificar las propiedades que necesitemos que sean dinámicas, pero este método tiene problemas de especificidad, rendimiento, es limitado y en general se trata de evitar lo más posible. Por esto es que en este artículo veremos como hacer estilos dinámicos con y sin estilos en línea en Svelte.
+
+<GiphyEmbed image="d3mlE7uhX8KFgEmY" />
+
+## Barra de progreso
+
+
+Para ilustrar ambos métodos, haremos una barra de progreso desde cero, crearemos un `div` con un `p` y otro `div` que será la barra de progreso.
+
+```html
+<div class="progress">
+  <p class="progress__label">Loading</p>
+  <div class="progress__bar" />
+</div>
+```
+
+Vamos a crear una variable con el valor del progreso y usaremos un intervalo para simular el progreso de la tarea.
+
+```html
+<script>
+  let progress = 0;
+
+  setInterval(() => {
+    // Aumenta en uno
+    progress++;
+
+    // Si llega a 100 reiniciamos el valor
+    if (progress === 100) progress = 0;
+  }, 100);
+</script>
+```
+
+Colocamos la variable en el párrafo y en la barra de progreso junto con los atributos de accesibilidad necesarios.
+
+El atributo `role="progressbar"` nos sirve para especificar a los lectores de pantalla que este elemento se trata de una barra de progreso, `aria-valuenow` tiene el objetivo de establecer el progreso de la tarea y por tanto es el atributo que tenemos que modificar dinamicamente, `aria-valuemin` determina el valor mínimo que puede tener la barra de progreso y `aria-valuemax` el valor máximo. También hacemos uso del atributo `aria-labelledby` donde debemos colocar el id del elemento que queramos que actué como un `label`.
+
+```html
+<div class="progress">
+  <p class="progress__label" id="progress-label">Loading {progress}%</p>
+  <div
+    class="progress__bar"
+    aria-labelledby="progress-label"
+    role="progressbar"
+    aria-valuenow={progress}
+    aria-valuemin="0"
+    aria-valuemax="100"
+  />
+</div>
+```
+
+Luego de tener esto listo, procedemos a hacer los estilos que tendrá la barra de progreso.
+
+```html
+<style>
+  .progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  }
+
+  .progress__label {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .progress__bar,
+  .progress__bar::before {
+    height: 20px;
+    border-radius: 0.5rem;
+  }
+
+  .progress__bar {
+    position: relative;
+    background-color: #eee;
+    width: 90%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .progress__bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #4169e1;
+  }
+</style>
+```
+
+Para que la barra de progreso funcioné, tenemos que modificar el valor de la propiedad `width` del pseudoelemento `before` de la barra de progreso.
+
+## Con estilos en línea
+
+Para hacerlo con estilos en línea usamos una variable css para el ancho que luego modificaremos con el atributo `style`.
+
+```css
+.progress__bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #4169e1;
+
+  /* Agregamos la variable */
+  width: var(--progress);
+}
+```
+
+```html
+<div class="progress">
+  <p class="progress__label" id="progress-label">Loading {progress}%</p>
+
+  <!-- Modificamos el atributo style con la variable -->
+  <div
+    style="--progress: {progress}"
+    class="progress__bar"
+    aria-labelledby="progress-label"
+    role="progressbar"
+    aria-valuenow={progress}
+    aria-valuemin="0"
+    aria-valuemax="100"
+  />
+</div>
+```
+
+Es una solución valida y sencilla, pero existe otra forma que es digna de ser presentada.
+
+## Sin estilos en línea
+
+Para no usar estilos en línea lo que haremos será crear un elemento `style` e insertarlo en el head, Svelte nos proporcioná el elemento especial `<svelte:head>` para añadir elementos al head. Para añadir los estilos que serán dinámicos tendremos que usar la etiqueta especial `{@html string}` esta recibe un `string` con `html`, un comportamiento muy similar al de `innerHtml` y de esa forma obtenemos el resultado esperado.
+
+```html
+<svelte:head>
+  {@html `<style>
+    .progress__bar::before{
+        width: ${progress}%;
+    }
+  </style>`}
+</svelte:head>
+
+<div class="progress">
+  <p class="progress__label" id="progress-label">Loading {progress}%</p>
+  <div
+    class="progress__bar"
+    aria-labelledby="progress-label"
+    role="progressbar"
+    aria-valuenow={progress}
+    aria-valuemin="0"
+    aria-valuemax="100"
+  />
+</div>
+```
+
+De esta manera podemos obtener lo mismo pero sin los problemas que conlleva usar estilos en línea y los beneficios de poder usar selectores.
+
+## Haciendo un componente
+
+Para poder reutilizar el código de esta técnica podemos hacer un componente bastante sencillo.
+
+```html
+<!-- Recibe la prop de css, está será donde tendremos que pasarle el css -->
+<script>
+  export let css = "";
+</script>
+
+<!-- Si le pasamos un string que no este vació, agrega el elemento con el css. -->
+<svelte:head>
+  {#if css.trim()}
+    {@html `<style>${css}</style>`}
+  {/if}
+</svelte:head>
+```
+
+Y podemos usarlo de esta forma.
+
+```html
+<Style css={`
+    .progress__bar::before{
+        width: ${progress}%;
+    }
+`} />
+```
+
+## Resultado
+
+Y obtenemos una barra de progreso accesible y con estilos dinámicos de una manera muy sencilla y limpia gracias a Svelte 🎉.
+
+![Barra de progreso completandose](assets/posts/progress-bar.gif)
