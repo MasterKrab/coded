@@ -14,7 +14,7 @@ import {
   Time,
   ReadTime,
   Content,
-} from 'styles/[slug].styles'
+} from 'styles/pages/[slug].styles'
 import Calendar from '@icons/CalendarIcon'
 import BookIcon from '@icons/BookIcon'
 import formatDate from 'utils/formatDate'

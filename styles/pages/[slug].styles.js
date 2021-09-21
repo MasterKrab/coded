@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import centerIcon from 'utils/centerIcon'
-import addOpacityToColor from 'utils/addOpacityToColor'
 
 export const Article = styled.article`
   position: relative;

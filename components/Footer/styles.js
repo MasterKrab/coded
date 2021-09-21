@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import visuallyHidden from 'utils/visuallyHidden'
 
 const flex = css`
   display: flex;
@@ -56,8 +55,4 @@ export const Figcaption = styled.figcaption`
     top: 1.5px;
     right: -30px;
   }
-`
-
-export const HiddenText = styled.span`
-  ${visuallyHidden};
 `
