@@ -70,7 +70,7 @@ export const ButtonIcon = styled.span`
       &,
       &::before,
       &::after {
-        background-color: #fff;
+        background-color: ${({ theme }) => theme.textColor};
       }
 
       &::before {
