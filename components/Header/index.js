@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import {
   Container,
@@ -17,6 +18,10 @@ const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false)
 
   const handleClick = () => setMenuOpen(!isMenuOpen)
+
+  const router = useRouter()
+
+  useEffect(() => setMenuOpen(false), [router.query])
 
   return (
     <Container>

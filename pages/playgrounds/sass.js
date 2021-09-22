@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
+import Head from 'next/head'
 import useFullScreen from 'hooks/useFullScreen'
 import {
   Container,
@@ -59,38 +60,47 @@ const Playground = () => {
     setOptions({ ...options, compressed: !options.compressed })
 
   return (
-    <Container ref={element}>
-      <Top>
-        <Title>
-          <SassIcon width={30} height={30} aria-hidden="true" />
-          <VisuallyHiddenSpan>SASS</VisuallyHiddenSpan> Playground
-        </Title>
-        <ButtonRight
-          aria-label={`${
-            isFullScreen ? 'Quitar' : 'Poner en'
-          } pantalla completa`}
-          onClick={toggleFullScreen}
-        >
-          <FullScreenIcon width={20} height={20} aria-hidden="true" />
-        </ButtonRight>
-        <ButtonMobileOnly onClick={handleToggleShowResult}>
-          {showResult ? 'Resultado' : 'Código'}
-        </ButtonMobileOnly>
-        <Button onClick={handleChangeLanguage}>
-          {options.extension.toUpperCase()}
-        </Button>
-        <Button onClick={handleChangeOutputStyle}>
-          {options.compressed ? 'Comprimido' : 'Expandido'}
-        </Button>
-      </Top>
-      <Editors
-        language={options.extension}
-        handleChange={setCode}
-        code={code}
-        result={result.code}
-        showResult={showResult}
-      />
-    </Container>
+    <>
+      <Head>
+        <title>Coded | Playground SASS</title>
+        <meta
+          name="description"
+          content="Playground de SASS, usa el editor y obtén el código compilado"
+        />
+      </Head>
+      <Container ref={element}>
+        <Top>
+          <Title>
+            <SassIcon width={30} height={30} aria-hidden="true" />
+            <VisuallyHiddenSpan>SASS</VisuallyHiddenSpan> Playground
+          </Title>
+          <ButtonRight
+            aria-label={`${
+              isFullScreen ? 'Quitar' : 'Poner en'
+            } pantalla completa`}
+            onClick={toggleFullScreen}
+          >
+            <FullScreenIcon width={20} height={20} aria-hidden="true" />
+          </ButtonRight>
+          <ButtonMobileOnly onClick={handleToggleShowResult}>
+            {showResult ? 'Resultado' : 'Código'}
+          </ButtonMobileOnly>
+          <Button onClick={handleChangeLanguage}>
+            {options.extension.toUpperCase()}
+          </Button>
+          <Button onClick={handleChangeOutputStyle}>
+            {options.compressed ? 'Comprimido' : 'Expandido'}
+          </Button>
+        </Top>
+        <Editors
+          language={options.extension}
+          handleChange={setCode}
+          code={code}
+          result={result.code}
+          showResult={showResult}
+        />
+      </Container>
+    </>
   )
 }
 
