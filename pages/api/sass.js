@@ -9,7 +9,7 @@ export default (req, res) => {
   if (extension !== 'scss' && extension !== 'sass')
     res.status(400).end('Invalid extension')
 
-  const fileName = path.join(process.cwd(), `${id()}.${extension}`)
+  const fileName = path.join(__dirname, `${id()}.${extension}`)
 
   fs.writeFileSync(fileName, code)
 
