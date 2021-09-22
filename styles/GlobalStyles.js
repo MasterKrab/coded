@@ -95,6 +95,20 @@ const GlobalStyles = createGlobalStyle`
          outline: none;
       }
    }
+
+   .editor-wrapper{
+      width: 100%;
+      height: 70vh;
+      min-height: 100%;
+      
+      @media screen and (min-width: 500px) {
+         height: 73vh;
+      }
+      
+      @media screen and (min-width: 1024px) {
+         height: 100vh;
+      }
+   }
 `
 
 export default GlobalStyles

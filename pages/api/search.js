@@ -15,8 +15,7 @@ export default (req, res) => {
     .then(({ hits }) => {
       const normalizedHits = limit ? hits.slice(0, limit) : hits
 
-      res.setHeader('Content-Type', 'application/json')
-      res.end(JSON.stringify(normalizedHits))
+      res.json(normalizedHits)
     })
     .catch((error) => {
       res.status(500).end('Error 505')

@@ -2,14 +2,18 @@ import { useState, useEffect } from 'react'
 import usePagination from 'hooks/usePagination'
 import ChangePosts from 'components/ChangePosts'
 import PostCard from 'components/PostCard'
-import { Container, Section, ContainerPosts, Image } from './styles'
+import { Container, Section, ContainerPosts, ImageAtributtion } from './styles'
 import Filter from 'components/Filter'
 import getTags from 'utils/getTags'
+import Search from 'components/Search'
+import { ErrorContainer, Title, Image } from 'components/Error'
 
-const Posts = ({ posts, title, isSearch }) => {
+const Posts = ({ posts, title }) => {
   const [filterPosts, setFilterPosts] = useState([])
+  const [resultsPosts, setResultsPosts] = useState([])
   const [selectedTag, setSelectedTag] = useState('all')
   const [currentPage, setCurrentPage] = useState(0)
+  const [search, setSearch] = useState('')
   const { paginatedPosts, isFirstPage, isLastPage } = usePagination(
     filterPosts,
     currentPage
@@ -19,30 +23,48 @@ const Posts = ({ posts, title, isSearch }) => {
 
   const handleChange = (e) => setSelectedTag(e.target.value)
 
+  useEffect(() => {
+    if (search.trim()) {
+      fetch(`https://www.coded.tech/api/search?search=${search}`)
+        .then((res) => res.json())
+        .then(setResultsPosts)
+        .catch((error) => console.error(error))
+    } else {
+      setResultsPosts(posts)
+    }
+  }, [search])
+
   useEffect(() => setFilterPosts(posts), [posts])
 
   useEffect(() => {
-    const filterPosts = posts.filter(
+    const filterPosts = resultsPosts.filter(
       ({ tags }) => selectedTag === 'all' || tags.includes(selectedTag)
     )
     setFilterPosts(filterPosts)
-  }, [selectedTag])
+  }, [resultsPosts, selectedTag])
 
   return (
     <Container>
       <Section>
         <h1>{title}</h1>
         <ContainerPosts aria-live="polite">
-          {paginatedPosts?.map(({ title, slug, date, readTime, tags }) => (
-            <PostCard
-              key={slug}
-              title={title}
-              slug={slug}
-              date={date}
-              readTime={readTime}
-              tags={tags}
-            />
-          ))}
+          {paginatedPosts.length ? (
+            paginatedPosts?.map(({ title, slug, date, readTime, tags }) => (
+              <PostCard
+                key={slug}
+                title={title}
+                slug={slug}
+                date={date}
+                readTime={readTime}
+                tags={tags}
+              />
+            ))
+          ) : (
+            <ErrorContainer>
+              <Title>No hay resultados</Title>
+              <Image src="/assets/illustrations/no-data.svg" alt="Sin datos" />
+            </ErrorContainer>
+          )}
         </ContainerPosts>
         {posts.length > 5 && paginatedPosts.length && (
           <ChangePosts
@@ -52,18 +74,19 @@ const Posts = ({ posts, title, isSearch }) => {
             isLastPage={isLastPage}
           />
         )}
-        {isSearch && (
-          <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
-            <Image
-              src="/assets/icons/search-by-algolia-light-background.svg"
-              alt="Search by algolia"
-            />
-          </a>
-        )}
       </Section>
-      {filteredTags.length && (
-        <Filter tags={filteredTags} handleChange={handleChange} />
-      )}
+      <aside>
+        {filteredTags.length && (
+          <Filter tags={filteredTags} handleChange={handleChange} />
+        )}
+        <Search search={search} setSearch={setSearch} />
+        <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
+          <ImageAtributtion
+            src="/assets/icons/search-by-algolia-light-background.svg"
+            alt="Search by algolia"
+          />
+        </a>
+      </aside>
     </Container>
   )
 }
