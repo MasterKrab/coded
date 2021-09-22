@@ -1,5 +1,6 @@
 import { nanoid as id } from 'nanoid'
 import fs from 'fs'
+import path from 'path'
 import sass from 'sass'
 
 export default (req, res) => {
@@ -8,9 +9,9 @@ export default (req, res) => {
   if (extension !== 'scss' && extension !== 'sass')
     res.status(400).end('Invalid extension')
 
-  const fileName = `${id()}.${extension}`
+  const fileName = path.join(process.cwd(), `${id()}.${extension}`)
 
-  fs.writeFileSync(`./${fileName}`, code)
+  fs.writeFileSync(fileName, code)
 
   try {
     const result = sass.renderSync({
