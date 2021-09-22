@@ -44,7 +44,7 @@ export const Label = styled.label`
   transition: transform 0.3s;
 
   &::after {
-    content: url('./assets/icons/newsletter.svg');
+    content: url('/assets/icons/newsletter.svg');
     position: absolute;
     top: -5px;
     left: 0;

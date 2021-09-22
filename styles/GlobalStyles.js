@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
       font-family: 'Poppins', sans-serif;
       background-color: ${({ theme }) =>
         theme.backgroundColor2};  background-image: ${({ theme }) =>
-  `url('./assets/illustrations/${theme.backgroundImage}')`};
+  `url('/assets/illustrations/${theme.backgroundImage}')`};
       background-repeat: no-repeat;
       background-size: 100%;
       background-position: bottom;
