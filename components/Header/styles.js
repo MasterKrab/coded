@@ -88,6 +88,7 @@ export const MenuContainer = styled.div`
   gap: 1rem;
   background-color: ${({ theme }) => theme.backgroundColor};
   width: 100%;
+  z-index: 100;
 
   @media screen and (max-width: 768px) {
     position: absolute;
