@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import CenterIcon from 'utils/CenterIcon'
+import centerIcon from 'utils/centerIcon'
 
 export const Container = styled.div`
   position: absolute;
@@ -35,7 +35,7 @@ export const Top = styled.section`
 `
 
 export const Title = styled.h1`
-  ${CenterIcon};
+  ${centerIcon};
   font-size: 1rem;
   font-weight: normal;
   margin-top: 0;
