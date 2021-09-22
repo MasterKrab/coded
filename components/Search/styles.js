@@ -1,69 +1,41 @@
 import styled from 'styled-components'
-
-export const Toggle = styled.button`
-  display: grid;
-  place-items: center;
-  margin-left: auto;
-  margin-right: 0.5rem;
-  color: ${({ theme }) => theme.textColor};
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`
+import centerIcon from 'utils/centerIcon'
 
 export const Container = styled.section`
   position: relative;
-  margin-left: auto;
-  margin-right: 1rem;
+  margin: min(2rem, 3vw);
+  width: 300px;
 
-  @media screen and (max-width: 768px) {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    z-index: 1000;
-    background-color: ${({ theme }) => theme.backgroundColor};
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100%;
-    visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
-    opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
-    transition: visibility 0.2s, opacity 0.2s;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 1.5rem;
   }
 `
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: row-reverse;
-  background-color: #e9e8eb;
-  background-color: ${({ theme }) => theme.backgroundColor};
-  height: 30px;
-  padding-right: 0.25rem;
-  border: 1px solid
-    ${({ isFocus, theme }) => (isFocus ? theme.active : theme.searchBar)};
-  border-radius: 0.5rem;
-
-  @media screen and (max-width: 768px) {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
+export const Title = styled.h2`
+  ${centerIcon};
+  font-weight: normal;
 `
 
 export const Input = styled.input`
-  background-color: inherit;
+  position: relative;
+  background-color: ${({ theme }) => theme.backgroundColor};
   width: 100%;
   height: 100%;
   border: none;
+  padding: 0.4rem 1rem;
+  border: 1px solid ${({ theme }) => theme.searchBar};
+  border-radius: 0.55rem;
   color: ${({ theme }) => theme.textColor};
-  z-index: 100000;
 
   &:focus {
     outline: none;
+    border-color: ${({ theme }) => theme.active};
   }
 
   &::-webkit-search-cancel-button {
     position: absolute;
     right: 0;
+    z-index: 10000;
     appearance: none;
     width: 15px;
     height: 15px;
@@ -84,54 +56,5 @@ export const Input = styled.input`
     );
     margin-right: 0.5rem;
     cursor: pointer;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 200px;
-  }
-`
-
-export const Button = styled.button`
-  display: grid;
-  place-items: center;
-  width: 35px;
-  height: 100%;
-  margin-right: auto;
-  color: ${({ isFocus, theme }) => (isFocus ? theme.active : theme.searchBar)};
-`
-
-export const ResultsContainer = styled.div`
-  position: absolute;
-  top: 55px;
-  z-index: 10000000;
-  background-color: ${({ theme }) => theme.backgroundColor};
-  width: 85vw;
-  max-width: 500px;
-  padding: 0 1rem 1rem;
-  box-shadow: 0 0 0 1px ${({ theme }) => theme.shadow};
-
-  @media screen and (min-width: 768px) {
-    top: 35px;
-    max-width: 350px;
-  }
-`
-
-export const Results = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-left: 0;
-  list-style: none;
-`
-
-export const Image = styled.img`
-  margin-left: auto;
-
-  @media screen and (min-width: 768px) {
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
   }
 `

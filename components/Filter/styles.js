@@ -6,16 +6,16 @@ export const Fieldset = styled.fieldset`
   margin: min(2rem, 3vw);
   padding: 0;
   border: none;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 3.5rem;
+  }
 `
 
 export const Legend = styled.legend`
   ${centerIcon};
   font-size: 1.5rem;
   padding-bottom: 0.5rem;
-
-  @media screen and (min-width: 1024px) {
-    padding-top: 1.75rem;
-  }
 `
 
 export const Tags = styled.div`

@@ -4,7 +4,7 @@ import { Container, EditorContainer } from './styles'
 import Editor from '@monaco-editor/react'
 
 const Editors = ({ showResult, language, handleChange, code, result }) => {
-  const { theme } = useContext(ThemeContext)
+  const { themeDevice } = useContext(ThemeContext)
 
   const THEME_STATES = {
     dark: 'vs-dark',
@@ -18,7 +18,7 @@ const Editors = ({ showResult, language, handleChange, code, result }) => {
           width=""
           height=""
           language={language}
-          theme={THEME_STATES[theme]}
+          theme={THEME_STATES[themeDevice]}
           value={code}
           onChange={handleChange}
           wrapperClassName="editor-wrapper"
@@ -31,7 +31,7 @@ const Editors = ({ showResult, language, handleChange, code, result }) => {
           width=""
           height=""
           language={language}
-          theme={THEME_STATES[theme]}
+          theme={THEME_STATES[themeDevice]}
           value={result}
           wrapperClassName="editor-wrapper"
           options={{ readOnly: true }}
