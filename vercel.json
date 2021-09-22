@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/sass.js": {
-      "includeFiles": "**"
-    }
-  }
-}
