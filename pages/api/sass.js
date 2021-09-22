@@ -1,6 +1,3 @@
-import { nanoid as id } from 'nanoid'
-import fs from 'fs'
-import path from 'path'
 import sass from 'sass'
 
 export default (req, res) => {
@@ -9,14 +6,11 @@ export default (req, res) => {
   if (extension !== 'scss' && extension !== 'sass')
     res.status(400).end('Invalid extension')
 
-  const fileName = path.join(__dirname, `${id()}.${extension}`)
-
-  fs.writeFileSync(fileName, code)
-
   try {
     const result = sass.renderSync({
-      file: fileName,
+      data: code,
       outputStyle: compressed ? 'compressed' : 'expanded',
+      indentedSyntax: extension === 'sass',
     })
 
     res.json({ type: 'success', code: result.css.toString() })
@@ -25,7 +19,5 @@ export default (req, res) => {
     const code = formatted.slice(0, formatted.lastIndexOf('\n'))
 
     res.json({ type: 'error', column, code, line })
-  } finally {
-    fs.unlinkSync(fileName)
   }
 }
