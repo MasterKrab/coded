@@ -1,4 +1,4 @@
-import Playground from 'components/playground/PlaygroundSass'
+import Playground from 'components/Playground/PlaygroundSass'
 import { Container } from './styles'
 
 const PlaygroundSass = ({ code, extension }) => (

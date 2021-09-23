@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import PlaygroundSass from 'components/playground/PlaygroundSass'
+import PlaygroundSass from 'components/Playground/PlaygroundSass'
 
 const Playground = () => (
   <>
