@@ -18,5 +18,6 @@ export const EditorContainer = styled.div`
   @media screen and (min-width: 1024px) {
     position: static;
     max-width: 50%;
+    z-index: 1;
   }
 `

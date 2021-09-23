@@ -34,7 +34,7 @@ const Playground = () => {
     if (code.trim()) {
       const { extension, compressed } = options
 
-      fetch('https://www.coded.tech/api/sass', {
+      fetch('http://localhost:3000/api/sass', {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
