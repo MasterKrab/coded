@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 export const Container = styled.div`
   display: grid;
   margin-bottom: 1rem;
@@ -24,7 +25,7 @@ export const Title = styled.h2`
   margin-top: 0;
 `
 
-export const ImageAtributtion = styled.img`
+export const ImageAtributtionContainer = styled.span`
   padding-left: min(2rem, 3vw);
 
   @media screen and (min-width: 768px) {

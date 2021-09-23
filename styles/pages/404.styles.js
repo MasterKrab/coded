@@ -21,3 +21,8 @@ export const StyledLink = styled.a`
     }
   }
 `
+
+export const Image = styled.img`
+  width: 90%;
+  max-width: 400px;
+`

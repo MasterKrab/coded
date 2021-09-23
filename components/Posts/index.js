@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import usePagination from 'hooks/usePagination'
 import ChangePosts from 'components/ChangePosts'
 import PostCard from 'components/PostCard'
-import { Container, Section, ContainerPosts, ImageAtributtion } from './styles'
+import {
+  Container,
+  Section,
+  ContainerPosts,
+  ImageAtributtionContainer,
+} from './styles'
 import Filter from 'components/Filter'
 import getTags from 'utils/getTags'
 import Search from 'components/Search'
-import { ErrorContainer, Title, Image } from 'components/Error'
+import { ErrorContainer, Title } from 'components/Error'
 
 const Posts = ({ posts, title }) => {
   const [filterPosts, setFilterPosts] = useState([])
@@ -62,7 +68,12 @@ const Posts = ({ posts, title }) => {
           ) : (
             <ErrorContainer>
               <Title>No hay resultados</Title>
-              <Image src="/assets/illustrations/no-data.svg" alt="Sin datos" />
+              <Image
+                src="/assets/illustrations/no-data.svg"
+                alt="Sin datos"
+                width={300}
+                height={300}
+              />
             </ErrorContainer>
           )}
         </ContainerPosts>
@@ -81,10 +92,14 @@ const Posts = ({ posts, title }) => {
         )}
         <Search search={search} setSearch={setSearch} />
         <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
-          <ImageAtributtion
-            src="/assets/icons/search-by-algolia-light-background.svg"
-            alt="Search by algolia"
-          />
+          <ImageAtributtionContainer>
+            <Image
+              src="/assets/icons/search-by-algolia-light-background.svg"
+              alt="Search by algolia"
+              width={167}
+              height={24}
+            />
+          </ImageAtributtionContainer>
         </a>
       </aside>
     </Container>

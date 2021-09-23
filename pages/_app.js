@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import AppHead from 'components/AppHead'
 import StylesProviders from 'components/StylesProviders'
 import GlobalStyles from 'styles/GlobalStyles'
@@ -8,13 +7,14 @@ import { Main } from 'styles/pages/app-styles'
 import Newsletter from 'components/Newsletter'
 import LinkToTop from 'components/LinkToTop'
 import Footer from 'components/Footer'
-import loadFonts from 'utils/fonts/loadFonts'
 import 'styles/normalize.css'
+import '@fontsource/poppins/300.css'
+import '@fontsource/poppins/400.css'
+import '@fontsource/poppins/500.css'
+import '@fontsource/poppins/700.css'
+import '@fontsource/fira-code'
 
-const MyApp = ({ Component, pageProps }) => {
-  useEffect(loadFonts)
-
-  return (
+const MyApp = ({ Component, pageProps }) => (
     <>
       <AppHead />
       <StylesProviders>
@@ -30,6 +30,6 @@ const MyApp = ({ Component, pageProps }) => {
       </StylesProviders>
     </>
   )
-}
+
 
 export default MyApp

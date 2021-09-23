@@ -11,6 +11,7 @@ const MDXComponents = {
   a: Link,
   h2: Title,
   h3: SubTitle,
+  img: (props) => <img loading="lazy" {...props} />,
   GiphyEmbed,
   PlaygroundSass,
 }

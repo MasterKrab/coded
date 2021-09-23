@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { StyledFooter, Container, Figure, Figcaption, Link } from './styles'
 import VisuallyHiddenSpan from 'utils/VisuallyHiddenSpan'
 import FeedIcon from '@icons/FeedIcon'
@@ -6,7 +7,12 @@ const Footer = () => (
   <StyledFooter>
     <Container>
       <Figure>
-        <img src="/assets/illustrations/dog.svg" alt="Un perro acostado" />
+        <Image
+          src="/assets/illustrations/dog.svg"
+          alt="Un perro acostado"
+          width={96}
+          height={44}
+        />
         <Figcaption>
           Hecho con <VisuallyHiddenSpan>amor</VisuallyHiddenSpan>
         </Figcaption>

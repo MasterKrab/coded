@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/fira-code": "^4.5.1",
+    "@fontsource/poppins": "^4.5.0",
     "@monaco-editor/react": "^4.2.2",
     "algoliasearch": "^4.10.3",
     "feed": "^4.2.2",
