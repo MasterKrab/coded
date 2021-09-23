@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   position: absolute;
@@ -15,9 +15,13 @@ export const EditorContainer = styled.div`
   height: 100%;
   z-index: ${({ show }) => (show ? '1' : '-1')};
 
-  @media screen and (min-width: 1024px) {
-    position: static;
-    max-width: 50%;
-    z-index: 1;
-  }
+  ${({ completeScreen }) =>
+    completeScreen &&
+    css`
+      @media screen and (min-width: 1024px) {
+        position: static;
+        max-width: 50%;
+        z-index: 1;
+      }
+    `}
 `

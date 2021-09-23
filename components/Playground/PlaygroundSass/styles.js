@@ -1,13 +1,14 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import centerIcon from 'utils/centerIcon'
 
 export const Container = styled.div`
   position: absolute;
   left: 0;
   display: flex;
+
   flex-wrap: wrap;
   width: 100%;
-  padding-top: 75px;
+  padding-top: ${({ completeScreen }) => (completeScreen ? '75px' : '50px')};
 
   @media screen and (min-width: 500px) {
     padding: 50px;
@@ -26,7 +27,7 @@ export const Top = styled.section`
   padding-left: 1rem;
   padding-right: 1rem;
   width: 100%;
-  height: 75px;
+  height: ${({ completeScreen }) => (completeScreen ? '75px' : '50px')};
   padding-bottom: 0.25rem;
 
   @media screen and (min-width: 500px) {
@@ -51,9 +52,13 @@ export const Button = styled.button`
 `
 
 export const ButtonMobileOnly = styled(Button)`
-  @media screen and (min-width: 1024px) {
-    display: none;
-  }
+  ${({ completeScreen }) =>
+    completeScreen &&
+    css`
+      @media screen and (min-width: 1024px) {
+        display: none;
+      }
+    `}
 `
 
 export const ButtonRight = styled(Button)`

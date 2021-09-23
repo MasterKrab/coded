@@ -98,16 +98,35 @@ const GlobalStyles = createGlobalStyle`
 
    .editor-wrapper{
       width: 100%;
-      height: 70vh;
+      height: 350px;
       min-height: 100%;
+
+      @media screen and (max-width: 500px) {
+         & .minimap{
+            display: none;
+         }
+      }
+
       
-      @media screen and (min-width: 500px) {
-         height: 73vh;
+      &--complete-screen{
+         height: 70vh;
+
+         @media screen and (max-width: 500px) {
+            & .minimap{
+               display: block;
+            }
+         }
+
+         @media screen and (min-width: 500px) {
+            height: 73vh;
+         }
+         
+         @media screen and (min-width: 1024px) {
+            height: 100vh;
+         }
+
       }
       
-      @media screen and (min-width: 1024px) {
-         height: 100vh;
-      }
    }
 `
 

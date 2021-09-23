@@ -3,6 +3,7 @@ import Link from './Link'
 import Title from './Title'
 import SubTitle from './SubTitle'
 import GiphyEmbed from './GiphyEmbed'
+import PlaygroundSass from './PlaygroundSass'
 
 const MDXComponents = {
   pre: (props) => <div {...props} />,
@@ -11,6 +12,7 @@ const MDXComponents = {
   h2: Title,
   h3: SubTitle,
   GiphyEmbed,
+  PlaygroundSass,
 }
 
 export default MDXComponents

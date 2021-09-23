@@ -3,7 +3,14 @@ import ThemeContext from 'context/theme'
 import { Container, EditorContainer } from './styles'
 import Editor from '@monaco-editor/react'
 
-const Editors = ({ showResult, language, handleChange, code, result }) => {
+const Editors = ({
+  showResult,
+  language,
+  handleChange,
+  code,
+  result,
+  completeScreen,
+}) => {
   const { themeDevice } = useContext(ThemeContext)
 
   const THEME_STATES = {
@@ -13,7 +20,7 @@ const Editors = ({ showResult, language, handleChange, code, result }) => {
 
   return (
     <Container>
-      <EditorContainer show={true}>
+      <EditorContainer show={true} completeScreen={completeScreen}>
         <Editor
           width=""
           height=""
@@ -21,20 +28,27 @@ const Editors = ({ showResult, language, handleChange, code, result }) => {
           theme={THEME_STATES[themeDevice]}
           value={code}
           onChange={handleChange}
-          wrapperClassName="editor-wrapper"
+          wrapperClassName={`editor-wrapper ${
+            completeScreen ? 'editor-wrapper--complete-screen' : ''
+          }`}
+          options={{ scrollbar: completeScreen }}
+        
           automaticLayout={true}
           fontFamily="Fira Code"
         />
       </EditorContainer>
-      <EditorContainer show={showResult}>
+      <EditorContainer show={showResult} completeScreen={completeScreen}>
         <Editor
           width=""
           height=""
           language={language}
           theme={THEME_STATES[themeDevice]}
           value={result}
-          wrapperClassName="editor-wrapper"
+          wrapperClassName={`editor-wrapper ${
+            completeScreen ? 'editor-wrapper--complete-screen' : ''
+          }`}
           options={{ readOnly: true }}
+
           automaticLayout={true}
           fontFamily="Fira Code"
         />
