@@ -9,6 +9,7 @@ const GiphyEmbed = ({ image }) => (
         height="100%"
         frameBorder="0"
         className="giphy-embed"
+        loading="lazy"
         allowFullScreen
       ></Iframe>
     </IframeContainer>
