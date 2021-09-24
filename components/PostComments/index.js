@@ -13,19 +13,21 @@ const PostComments = ({ title }) => {
 
   useEffect(() => {
     if (loadedTheme) {
-      const script = document.createElement('script')
-      script.src = 'https://giscus.app/client.js'
-      script.id = 'comments-script'
-      script.setAttribute('data-repo', 'MasterKrab/coded')
-      script.setAttribute('data-category', 'Comments')
-      script.setAttribute('data-category-id', 'DIC_kwDOF7TXS84B-5Hs')
-      script.setAttribute('data-mapping', 'specific')
-      script.setAttribute('data-term', title)
-      script.setAttribute('data-theme', getTheme())
-      script.setAttribute('crossOrigin', 'anonymous')
-      script.async = true
+      const link = document.createElement('link')
+      link.rel = 'preconnect'
+      link.as = 'script'
+      link.src = 'https://giscus.app/client.js'
+      link.id = 'comments-script'
+      link.setAttribute('data-repo', 'MasterKrab/coded')
+      link.setAttribute('data-category', 'Comments')
+      link.setAttribute('data-category-id', 'DIC_kwDOF7TXS84B-5Hs')
+      link.setAttribute('data-mapping', 'specific')
+      link.setAttribute('data-term', title)
+      link.setAttribute('data-theme', getTheme())
+      link.setAttribute('crossOrigin', 'anonymous')
+      link.async = true
 
-      document.body.appendChild(script)
+      document.body.appendChild(link)
     }
 
     return () => document.getElementById('comments-script')?.remove()
