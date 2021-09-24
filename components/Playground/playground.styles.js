@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import centerIcon from 'utils/centerIcon'
 
 export const Container = styled.div`
   position: absolute;
@@ -35,18 +34,6 @@ export const Top = styled.section`
   }
 `
 
-export const Title = styled.h1`
-  ${centerIcon};
-  font-size: 1rem;
-  font-weight: normal;
-  margin-top: 0;
-  margin-bottom: 0;
-
-  @media screen and (max-width: 500px) {
-    width: 100%;
-  }
-`
-
 export const Button = styled.button`
   color: ${({ theme }) => theme.textColor};
 `
@@ -59,19 +46,4 @@ export const ButtonMobileOnly = styled(Button)`
         display: none;
       }
     `}
-`
-
-export const ButtonRight = styled(Button)`
-  position: absolute;
-  top: 10px;
-  right: 20px;
-
-  @media screen and (min-width: 500px) {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &:focus {
-    position: absolute;
-  }
 `

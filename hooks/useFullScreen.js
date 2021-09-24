@@ -16,7 +16,7 @@ const useFullScreen = (element) => {
   const toggleFullScreen = () => {
     if (document.fullscreenElement) return document.exitFullscreen()
 
-    element.current.requestFullscreen()
+    element?.current.requestFullscreen()
   }
 
   return [isFullScreen, toggleFullScreen]

@@ -1,23 +1,20 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import { Title, List, Playground } from 'styles/pages/playgrounds.styles'
+import { Title, List } from 'styles/pages/playgrounds.styles'
+import PlaygroundLink from 'components/Playground/PlaygroundLink'
 import SassLogoIcon from '@icons/SassLogoIcon'
+import PugIcon from '@icons/PugIcon'
 
 const Playgrounds = () => (
   <>
     <Head>
       <title>Coded | Playgrounds</title>
+      <meta name="description" content="Playgrounds de distintos lenguajes" />
     </Head>
     <article>
       <Title>Playgrounds</Title>
       <List>
-        <Playground>
-          <Link href="playgrounds/sass">
-            <a aria-label="SASS">
-              <SassLogoIcon width={100} height={100} />
-            </a>
-          </Link>
-        </Playground>
+        <PlaygroundLink name="SASS" Icon={SassLogoIcon} />
+        <PlaygroundLink name="PUG" Icon={PugIcon} />
       </List>
     </article>
   </>

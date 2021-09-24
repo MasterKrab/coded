@@ -4,7 +4,7 @@ export default (req, res) => {
   const { code, extension = 'scss', compressed = false } = req.body
 
   if (extension !== 'scss' && extension !== 'sass')
-    res.status(400).end('Invalid extension')
+    return res.status(400).end('Invalid extension')
 
   try {
     const result = sass.renderSync({

@@ -21,6 +21,7 @@
     "next-mdx-remote": "^3.0.4",
     "prettier": "^2.3.2",
     "prism-react-renderer": "^1.2.1",
+    "pug": "^3.0.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-jsx-parser": "^1.28.4",
