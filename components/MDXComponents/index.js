@@ -2,6 +2,7 @@ import CodeBox from 'components/CodeBox'
 import Link from './Link'
 import Title from './Title'
 import SubTitle from './SubTitle'
+import Image from './Image'
 import GiphyEmbed from './GiphyEmbed'
 import Playground from './Playground'
 import Sass from 'components/Playground/PlaygroundSass'
@@ -13,7 +14,7 @@ const MDXComponents = {
   a: Link,
   h2: Title,
   h3: SubTitle,
-  img: (props) => <img loading="lazy" {...props} />,
+  img: Image,
   GiphyEmbed,
   PlaygroundSass: (props) => <Playground Component={Sass} {...props} />,
   PlaygroundPug: (props) => <Playground Component={Pug} {...props} />,

@@ -53,7 +53,12 @@ const Post = ({ source, frontmatter, headings }) => {
             </ReadTime>
           </Text>
         </Header>
-        {image && <Image src={image} alt={alt || ''} />}
+        {image && (
+          <picture>
+            <source srcSet={`/${image}.webp`} type="image/webp" />
+            <Image src={`/${image}.png`} alt={alt || ''} />
+          </picture>
+        )}
         {headings.length && <PostIndex headings={headings} />}
         <Content ref={contentNode}>
           <MDXRemote {...source} components={MDXComponents} />
