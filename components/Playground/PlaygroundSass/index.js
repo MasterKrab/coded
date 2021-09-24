@@ -1,16 +1,8 @@
 import { useRef, useState, useEffect } from 'react'
-import useFullScreen from 'hooks/useFullScreen'
-import {
-  Container,
-  Top,
-  Title,
-  Button,
-  ButtonMobileOnly,
-  ButtonRight,
-} from './styles'
+import { Container, Top, Button, ButtonMobileOnly } from '../playground.styles'
 import SassIcon from '@icons/SassIcon'
-import FullScreenIcon from '@icons/FullScreenIcon'
-import VisuallyHiddenSpan from 'utils/VisuallyHiddenSpan'
+import Title from 'components/Playground/Title'
+import FullScreenButton from 'components/Playground/FullScreenButton'
 import Editors from 'components/Playground/Editors'
 
 const PlaygroundSass = ({
@@ -19,9 +11,10 @@ const PlaygroundSass = ({
   completeScreen,
 }) => {
   const element = useRef(null)
-  const [isFullScreen, toggleFullScreen] = useFullScreen(element)
-  const [code, setCode] = useState(localStorage.getItem('sass-code') || '')
-  const [result, setResult] = useState({ code: defaultCode })
+  const [code, setCode] = useState(
+    localStorage.getItem('sass-code') || defaultCode
+  )
+  const [result, setResult] = useState('')
   const [showResult, setShowResult] = useState(false)
 
   const defaultOptions = {
@@ -51,7 +44,7 @@ const PlaygroundSass = ({
         body: JSON.stringify({ code, extension, compressed }),
       })
         .then((res) => res.json())
-        .then((result) => setResult({ code: result.code }))
+        .then(({ code }) => setResult(code))
         .catch((error) => console.error(error))
     }
   }, [code, options])
@@ -70,21 +63,8 @@ const PlaygroundSass = ({
   return (
     <Container ref={element} completeScreen={completeScreen}>
       <Top completeScreen={completeScreen}>
-        {completeScreen && (
-          <Title>
-            <SassIcon width={30} height={30} aria-hidden="true" />
-            <VisuallyHiddenSpan>SASS</VisuallyHiddenSpan> Playground
-          </Title>
-        )}
-        <ButtonRight
-          aria-label={`${
-            isFullScreen ? 'Quitar' : 'Poner en'
-          } pantalla completa`}
-          onClick={toggleFullScreen}
-        >
-          <FullScreenIcon width={20} height={20} aria-hidden="true" />
-        </ButtonRight>
-
+        {completeScreen && <Title Icon={SassIcon} name="SASS" />}
+        <FullScreenButton element={element} />
         <ButtonMobileOnly
           onClick={handleToggleShowResult}
           completeScreen={completeScreen}
@@ -106,7 +86,8 @@ const PlaygroundSass = ({
         language={options.extension}
         handleChange={setCode}
         code={code}
-        result={result.code}
+        result={result}
+        languageResult="css"
         showResult={showResult}
         completeScreen={completeScreen}
       />

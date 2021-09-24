@@ -9,6 +9,7 @@ const Editors = ({
   handleChange,
   code,
   result,
+  languageResult,
   completeScreen,
 }) => {
   const { themeDevice } = useContext(ThemeContext)
@@ -32,7 +33,6 @@ const Editors = ({
             completeScreen ? 'editor-wrapper--complete-screen' : ''
           }`}
           options={{ scrollbar: completeScreen }}
-        
           automaticLayout={true}
           fontFamily="Fira Code"
         />
@@ -41,14 +41,13 @@ const Editors = ({
         <Editor
           width=""
           height=""
-          language={language}
+          language={languageResult}
           theme={THEME_STATES[themeDevice]}
           value={result}
           wrapperClassName={`editor-wrapper ${
             completeScreen ? 'editor-wrapper--complete-screen' : ''
           }`}
           options={{ readOnly: true }}
-
           automaticLayout={true}
           fontFamily="Fira Code"
         />
