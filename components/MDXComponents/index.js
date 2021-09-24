@@ -3,7 +3,9 @@ import Link from './Link'
 import Title from './Title'
 import SubTitle from './SubTitle'
 import GiphyEmbed from './GiphyEmbed'
-import PlaygroundSass from './PlaygroundSass'
+import Playground from './Playground'
+import Sass from 'components/Playground/PlaygroundSass'
+import Pug from 'components/Playground/PlaygroundPug'
 
 const MDXComponents = {
   pre: (props) => <div {...props} />,
@@ -13,7 +15,8 @@ const MDXComponents = {
   h3: SubTitle,
   img: (props) => <img loading="lazy" {...props} />,
   GiphyEmbed,
-  PlaygroundSass,
+  PlaygroundSass: (props) => <Playground Component={Sass} {...props} />,
+  PlaygroundPug: (props) => <Playground Component={Pug} {...props} />,
 }
 
 export default MDXComponents
