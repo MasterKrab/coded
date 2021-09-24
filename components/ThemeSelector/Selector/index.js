@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import ThemeContext from 'context/theme'
 import { Input, IconContainer } from './styles'
+import VisuallyHiddenSpan from 'utils/VisuallyHiddenSpan'
 
 const Selector = ({ theme, Icon }) => {
   const { theme: selectedTheme, changeTheme } = useContext(ThemeContext)
@@ -16,7 +17,8 @@ const Selector = ({ theme, Icon }) => {
         value={theme}
         defaultChecked={selectedTheme === theme}
       />
-      <IconContainer aria-label={theme}>
+      <VisuallyHiddenSpan>{theme}</VisuallyHiddenSpan>
+      <IconContainer>
         <Icon aria-hidden="true" width={27.5} height={27.5} />
       </IconContainer>
     </label>
