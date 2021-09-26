@@ -1,7 +1,8 @@
 import { useRef, useState, useEffect } from 'react'
-import { Container, Top, ButtonMobileOnly, Button } from '../playground.styles'
+import { Container, Top, ButtonMobileOnly } from '../playground.styles'
 import PugIcon from '@icons/PugIcon'
 import Title from 'components/Playground/Title'
+import CompressedSwitch from 'components/Playground/CompressedSwitch'
 import FullScreenButton from 'components/Playground/FullScreenButton'
 import Editors from 'components/Playground/Editors'
 
@@ -25,7 +26,7 @@ const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
     }
 
     if (code.trim()) {
-      fetch('https://www.coded.tech/api/pug', {
+      fetch('http://localhost:3000/api/pug', {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -55,9 +56,10 @@ const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
           {showResult ? 'Resultado' : 'Código'}
         </ButtonMobileOnly>
         {completeScreen && (
-          <Button onClick={handleChangeCompressed}>
-            {compressed ? 'Comprimido' : 'Expandido'}
-          </Button>
+          <CompressedSwitch
+            handleToggle={handleChangeCompressed}
+            isCompressed={compressed}
+          />
         )}
       </Top>
       <Editors

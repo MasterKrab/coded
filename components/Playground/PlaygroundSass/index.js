@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { Container, Top, Button, ButtonMobileOnly } from '../playground.styles'
 import SassIcon from '@icons/SassIcon'
 import Title from 'components/Playground/Title'
+import CompressedSwitch from 'components/Playground/CompressedSwitch'
 import FullScreenButton from 'components/Playground/FullScreenButton'
 import Editors from 'components/Playground/Editors'
 
@@ -39,7 +40,7 @@ const PlaygroundSass = ({
     if (code.trim()) {
       const { extension, compressed } = options
 
-      fetch('https://www.coded.tech/api/sass', {
+      fetch('http://localhost:3000/api/sass', {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -80,9 +81,10 @@ const PlaygroundSass = ({
             <Button onClick={handleChangeLanguage}>
               {options.extension.toUpperCase()}
             </Button>
-            <Button onClick={handleChangeOutputStyle}>
-              {options.compressed ? 'Comprimido' : 'Expandido'}
-            </Button>
+            <CompressedSwitch
+              handleToggle={handleChangeOutputStyle}
+              isCompressed={options.compressed}
+            />
           </>
         )}
       </Top>
