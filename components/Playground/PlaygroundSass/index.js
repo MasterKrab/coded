@@ -12,7 +12,7 @@ const PlaygroundSass = ({
   completeScreen,
 }) => {
   const element = useRef(null)
-  const [code, setCode] = useState()
+  const [code, setCode] = useState(null)
   const [result, setResult] = useState('')
   const [showResult, setShowResult] = useState(false)
 
@@ -21,7 +21,7 @@ const PlaygroundSass = ({
     compressed: false,
   }
 
-  const [options, setOptions] = useState(null)
+  const [options, setOptions] = useState(defaultOptions)
 
   useEffect(() => {
     setCode(
