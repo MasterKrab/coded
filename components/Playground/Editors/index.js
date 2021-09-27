@@ -1,7 +1,12 @@
 import { useContext } from 'react'
+import dynamic from 'next/dynamic'
 import ThemeContext from 'context/theme'
 import { Container, EditorContainer } from './styles'
-import Editor from '@monaco-editor/react'
+
+const Editor = dynamic(import('@monaco-editor/react'), {
+  ssr: false,
+  suspense: true,
+})
 
 const Editors = ({
   showResult,

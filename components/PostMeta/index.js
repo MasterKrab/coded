@@ -10,12 +10,12 @@ const PostMeta = ({ title, description, image, slug }) => (
       <>
         <meta
           property="og:image"
-          content={`https://coded.tech/${image}.png`}
+          content={`https://coded.tech/${image}`}
           key="og-image"
         />
         <meta
           name="twitter:image"
-          content={`https://coded.tech/${image}.png`}
+          content={`https://coded.tech/${image}`}
           key="twitter-image"
         />
       </>

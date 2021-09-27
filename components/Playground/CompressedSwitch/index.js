@@ -5,6 +5,7 @@ const CompressedSwitch = ({ handleToggle, isCompressed }) => (
     onClick={handleToggle}
     aria-label="Comprimido"
     aria-checked={isCompressed}
+    role="switch"
   >
     {isCompressed ? 'Comprimido' : 'Expandido'}
   </Button>

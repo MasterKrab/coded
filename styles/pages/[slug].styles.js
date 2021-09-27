@@ -21,7 +21,7 @@ export const Header = styled.header`
   border-bottom: 3px solid ${({ theme }) => theme.textColor};
 `
 
-export const Image = styled.img`
+export const ImageContainer = styled.div`
   width: calc(97% - var(--separation));
   margin-top: 1rem;
   margin-left: auto;

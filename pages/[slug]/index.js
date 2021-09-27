@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
 import { getFileBySlug, getFiles } from 'lib/mdx'
 import PostMeta from 'components/PostMeta'
@@ -8,7 +9,7 @@ import PostComments from 'components/PostComments'
 import {
   Article,
   Header,
-  Image,
+  ImageContainer,
   Title,
   Text,
   Time,
@@ -54,10 +55,9 @@ const Post = ({ source, frontmatter, headings }) => {
           </Text>
         </Header>
         {image && (
-          <picture>
-            <source srcSet={`/${image}.webp`} type="image/webp" />
-            <Image src={`/${image}.png`} alt={alt || ''} />
-          </picture>
+          <ImageContainer>
+            <Image src={`/image`} alt={alt || ''} width={3456} height={1728} />
+          </ImageContainer>
         )}
         {headings.length && <PostIndex headings={headings} />}
         <Content ref={contentNode}>
@@ -84,7 +84,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-  const posts = await getFiles()
+  const posts = getFiles()
 
   const paths = posts.map((post) => ({
     params: {

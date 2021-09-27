@@ -15,21 +15,20 @@ import '@fontsource/poppins/700.css'
 import '@fontsource/fira-code'
 
 const MyApp = ({ Component, pageProps }) => (
-    <>
-      <AppHead />
-      <StylesProviders>
-        <GlobalStyles />
-        <SkipToMain />
-        <Header />
-        <Main id="main">
-          <Component {...pageProps} />
-        </Main>
-        <Newsletter />
-        <LinkToTop />
-        <Footer />
-      </StylesProviders>
-    </>
-  )
-
+  <>
+    <AppHead />
+    <StylesProviders>
+      <GlobalStyles />
+      <SkipToMain />
+      <Header />
+      <Main id="main">
+        <Component {...pageProps} />
+      </Main>
+      <Newsletter />
+      <LinkToTop />
+      <Footer />
+    </StylesProviders>
+  </>
+)
 
 export default MyApp
