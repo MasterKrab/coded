@@ -12,11 +12,7 @@ const PlaygroundSass = ({
   completeScreen,
 }) => {
   const element = useRef(null)
-  const [code, setCode] = useState(
-    completeScreen
-      ? localStorage.getItem('sass-code') || defaultCode
-      : defaultCode
-  )
+  const [code, setCode] = useState()
   const [result, setResult] = useState('')
   const [showResult, setShowResult] = useState(false)
 
@@ -25,11 +21,20 @@ const PlaygroundSass = ({
     compressed: false,
   }
 
-  const [options, setOptions] = useState(
-    completeScreen
-      ? JSON.parse(localStorage.getItem('sass-options')) || defaultOptions
-      : defaultOptions
-  )
+  const [options, setOptions] = useState(null)
+
+  useEffect(() => {
+    setCode(
+      completeScreen
+        ? localStorage.getItem('sass-code') || defaultCode
+        : defaultCode
+    )
+    setOptions(
+      completeScreen
+        ? JSON.parse(localStorage.getItem('sass-options')) || defaultOptions
+        : defaultOptions
+    )
+  }, [])
 
   useEffect(() => {
     if (completeScreen) {

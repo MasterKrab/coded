@@ -8,16 +8,19 @@ import Editors from 'components/Playground/Editors'
 
 const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
   const element = useRef(null)
-  const [code, setCode] = useState(
-    completeScreen
-      ? localStorage.getItem('pug-code') || defaultCode
-      : defaultCode
-  )
+  const [code, setCode] = useState(null)
   const [result, setResult] = useState('')
   const [showResult, setShowResult] = useState(false)
-  const [compressed, setCompressed] = useState(
-    !!localStorage.getItem('pug-compressed') && completeScreen
-  )
+  const [compressed, setCompressed] = useState(null)
+
+  useEffect(() => {
+    setCode(
+      completeScreen
+        ? (localStorage && localStorage.getItem('pug-code')) || defaultCode
+        : defaultCode
+    )
+    setCompressed(!!localStorage.getItem('pug-compressed') && completeScreen)
+  }, [])
 
   useEffect(() => {
     if (completeScreen) {
