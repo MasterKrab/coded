@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://www.coded.tech/sitemap.xml
+Sitemap: https://coded.tech/sitemap.xml

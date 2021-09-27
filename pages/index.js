@@ -25,10 +25,10 @@ export const getStaticProps = async () => {
   const posts = getAllFilesMetadata()
 
   if (process.env.NODE_ENV === 'production') {
-    generateRSSFeed(posts)
-    generateSiteMap(posts)
     readPostsAndSendToAlgolia(posts)
   }
+  generateRSSFeed(posts)
+  generateSiteMap(posts)
 
   return {
     props: { posts },

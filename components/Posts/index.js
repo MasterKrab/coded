@@ -31,7 +31,7 @@ const Posts = ({ posts, title }) => {
 
   useEffect(() => {
     if (search.trim()) {
-      fetch(`https://www.coded.tech/api/search?search=${search}`)
+      fetch(`https://coded.tech/api/search?search=${search}`)
         .then((res) => res.json())
         .then(setResultsPosts)
         .catch((error) => console.error(error))
