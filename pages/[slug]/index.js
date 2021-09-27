@@ -56,7 +56,12 @@ const Post = ({ source, frontmatter, headings }) => {
         </Header>
         {image && (
           <ImageContainer>
-            <Image src={`/image`} alt={alt || ''} width={3456} height={1728} />
+            <Image
+              src={`/${image}`}
+              alt={alt || ''}
+              width={3456}
+              height={1728}
+            />
           </ImageContainer>
         )}
         {headings.length && <PostIndex headings={headings} />}
