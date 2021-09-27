@@ -8,10 +8,10 @@ import Editors from 'components/Playground/Editors'
 
 const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
   const element = useRef(null)
-  const [code, setCode] = useState(null)
+  const [code, setCode] = useState('')
   const [result, setResult] = useState('')
   const [showResult, setShowResult] = useState(false)
-  const [compressed, setCompressed] = useState(null)
+  const [compressed, setCompressed] = useState(false)
 
   useEffect(() => {
     setCode(
@@ -25,7 +25,7 @@ const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
   useEffect(() => {
     if (completeScreen) {
       localStorage.setItem('pug-code', code)
-      localStorage.getItem('pug-compressed', compressed.toString())
+      localStorage.setItem('pug-compressed', compressed.toString())
     }
 
     if (code.trim()) {

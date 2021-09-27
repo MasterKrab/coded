@@ -26,9 +26,9 @@ export const getStaticProps = async () => {
 
   if (process.env.NODE_ENV === 'production') {
     readPostsAndSendToAlgolia(posts)
+    generateSiteMap(posts)
+    generateRSSFeed(posts)
   }
-  generateRSSFeed(posts)
-  generateSiteMap(posts)
 
   return {
     props: { posts },

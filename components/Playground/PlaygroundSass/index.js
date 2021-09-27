@@ -12,7 +12,7 @@ const PlaygroundSass = ({
   completeScreen,
 }) => {
   const element = useRef(null)
-  const [code, setCode] = useState(null)
+  const [code, setCode] = useState('')
   const [result, setResult] = useState('')
   const [showResult, setShowResult] = useState(false)
 
