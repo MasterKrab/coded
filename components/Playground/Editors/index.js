@@ -32,7 +32,7 @@ const Editors = ({
           wrapperClassName={`editor-wrapper ${
             completeScreen ? 'editor-wrapper--complete-screen' : ''
           }`}
-          options={{ scrollbar: completeScreen }}
+          options={{ scrollbar: completeScreen, minimap: { enabled: false } }}
           automaticLayout={true}
           fontFamily="Fira Code"
         />
@@ -47,7 +47,7 @@ const Editors = ({
           wrapperClassName={`editor-wrapper ${
             completeScreen ? 'editor-wrapper--complete-screen' : ''
           }`}
-          options={{ readOnly: true }}
+          options={{ readOnly: true, minimap: { enabled: false } }}
           automaticLayout={true}
           fontFamily="Fira Code"
         />
