@@ -7,12 +7,12 @@ import colors from 'styles/theme/colors'
 const SetupStyles = ({ children }) => {
   const { themeDevice, loadedTheme } = useContext(ThemeContext)
 
+  if (process.browser && !loadedTheme) return null
+
   return (
-    loadedTheme && (
-      <ThemeProvider theme={colors[themeDevice] || colors[THEME_STATES.LIGHT]}>
-        {children}
-      </ThemeProvider>
-    )
+    <ThemeProvider theme={colors[themeDevice] || colors[THEME_STATES.LIGHT]}>
+      {children}
+    </ThemeProvider>
   )
 }
 

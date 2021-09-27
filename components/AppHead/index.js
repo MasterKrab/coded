@@ -4,6 +4,9 @@ import Favicons from './Favicons'
 const AppHead = () => (
   <Head>
     <Favicons />
+    <title>Coded</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
     <meta property="og:type" content="website"></meta>
     <meta
       property="og:image"
