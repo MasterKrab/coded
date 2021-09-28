@@ -29,7 +29,7 @@ const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
     }
 
     if (code.trim()) {
-      fetch('http://localhost:3000/api/pug', {
+      fetch('https://coded.tech/api/pug', {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
