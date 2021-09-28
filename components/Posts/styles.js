@@ -22,7 +22,7 @@ export const ContainerPosts = styled.div`
 `
 
 export const Title = styled.h2`
-  margin-top: 0;
+  font-size: min(2.25rem, 5vw);
 `
 
 export const ImageAtributtionContainer = styled.span`

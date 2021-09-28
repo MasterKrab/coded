@@ -7,12 +7,13 @@ import {
   Container,
   Section,
   ContainerPosts,
+  Title,
   ImageAtributtionContainer,
 } from './styles'
 import Filter from 'components/Filter'
 import getTags from 'utils/getTags'
 import Search from 'components/Search'
-import { ErrorContainer, Title } from 'components/Error'
+import { ErrorContainer } from 'components/Error'
 
 const Posts = ({ posts, title }) => {
   const [filterPosts, setFilterPosts] = useState([])
