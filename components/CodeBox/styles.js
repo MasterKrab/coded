@@ -44,6 +44,10 @@ export const Pre = styled.pre`
       background-color: #aba7a7ee;
     }
   }
+
+  .token:last-child {
+    margin-right: 1rem;
+  }
 `
 
 export const LineIndex = styled.span`
