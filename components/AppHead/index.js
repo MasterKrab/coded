@@ -10,12 +10,12 @@ const AppHead = () => (
     <meta property="og:type" content="website"></meta>
     <meta
       property="og:image"
-      content="https://www.coded.tech/assets/thumbnail.png"
+      content="https://coded.tech/assets/thumbnail.png"
       key="og-image"
     />
     <meta
       name="twitter:image"
-      content="https://www.coded.tech/assets/thumbnail.png"
+      content="https://coded.tech/assets/thumbnail.png"
       key="twitter-image"
     />
     <meta name="twitter:card" content="summary_large_image" />
