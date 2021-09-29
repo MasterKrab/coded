@@ -6,7 +6,7 @@ const formatDate = (date) => {
   const normalizedMonth = month.replace(/(^|-)0+/g, '$1')
 
   const normalizedDate = Date.parse(
-    `${day} ${monthsSlugs[normalizedMonth]} ${year}`
+    `${day} ${monthsSlugs[normalizedMonth - 1]} ${year}`
   )
 
   return new Intl.DateTimeFormat('es-ES', {
