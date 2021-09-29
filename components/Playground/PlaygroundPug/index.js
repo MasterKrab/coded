@@ -6,7 +6,7 @@ import CompressedSwitch from 'components/Playground/CompressedSwitch'
 import FullScreenButton from 'components/Playground/FullScreenButton'
 import Editors from 'components/Playground/Editors'
 
-const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
+const PlaygroundPug = ({ completeScreen }) => {
   const element = useRef(null)
   const [code, setCode] = useState('')
   const [result, setResult] = useState('')
@@ -16,8 +16,8 @@ const PlaygroundPug = ({ defaultCode = '', completeScreen }) => {
   useEffect(() => {
     setCode(
       completeScreen
-        ? (localStorage && localStorage.getItem('pug-code')) || defaultCode
-        : defaultCode
+        ? (localStorage && localStorage.getItem('pug-code')) || ''
+        : ''
     )
     setCompressed(!!localStorage.getItem('pug-compressed') && completeScreen)
   }, [])

@@ -6,11 +6,7 @@ import CompressedSwitch from 'components/Playground/CompressedSwitch'
 import FullScreenButton from 'components/Playground/FullScreenButton'
 import Editors from 'components/Playground/Editors'
 
-const PlaygroundSass = ({
-  defaultCode = '',
-  defaultExtension = 'scss',
-  completeScreen,
-}) => {
+const PlaygroundSass = ({ defaultExtension = 'scss', completeScreen }) => {
   const element = useRef(null)
   const [code, setCode] = useState('')
   const [result, setResult] = useState('')
@@ -24,11 +20,7 @@ const PlaygroundSass = ({
   const [options, setOptions] = useState(defaultOptions)
 
   useEffect(() => {
-    setCode(
-      completeScreen
-        ? localStorage.getItem('sass-code') || defaultCode
-        : defaultCode
-    )
+    setCode(completeScreen ? localStorage.getItem('sass-code') || '' : '')
     setOptions(
       completeScreen
         ? JSON.parse(localStorage.getItem('sass-options')) || defaultOptions

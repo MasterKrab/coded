@@ -16,8 +16,10 @@ const MDXComponents = {
   h3: SubTitle,
   img: Image,
   GiphyEmbed,
-  PlaygroundSass: (props) => <Playground Component={Sass} {...props} />,
-  PlaygroundPug: (props) => <Playground Component={Pug} {...props} />,
+  PlaygroundSass: ({ extension }) => (
+    <Playground Component={Sass} extension={extension} />
+  ),
+  PlaygroundPug: () => <Playground Component={Pug} />,
 }
 
 export default MDXComponents

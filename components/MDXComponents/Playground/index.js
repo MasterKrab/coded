@@ -1,8 +1,8 @@
 import { Container } from './styles'
 
-const PlaygroundSass = ({ Component, code, extension }) => (
+const PlaygroundSass = ({ Component, extension }) => (
   <Container>
-    <Component defaultCode={code.trim()} defaultExtension={extension} />
+    <Component defaultExtension={extension} />
   </Container>
 )
 
