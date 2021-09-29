@@ -28,7 +28,7 @@ export const Fieldset = styled.fieldset`
     height: 2px;
     border-radius: 50%;
     transform: translate(
-      ${({ selectedTheme }) => LEFT_BY_THEME[selectedTheme]},
+      ${({ selectedTheme }) => LEFT_BY_THEME[selectedTheme] || 0},
       0
     );
     transition: transform 0.5s;
