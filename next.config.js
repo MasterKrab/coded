@@ -1,5 +1,6 @@
 module.exports = {
   reactStrictMode: true,
+  trailingSlash: true,
   webpack: (config, { isServer, dev }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
