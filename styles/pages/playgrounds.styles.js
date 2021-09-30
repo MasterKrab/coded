@@ -1,9 +1,19 @@
 import styled from 'styled-components'
 import resetList from 'utils/resetList'
 
+export const Article = styled.article`
+  text-align: center;
+`
+
 export const Title = styled.h1`
   text-align: center;
   margin-top: 3rem;
+`
+
+export const Text = styled.p`
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `
 
 export const List = styled.ul`

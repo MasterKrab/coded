@@ -11,7 +11,7 @@ const ThemeSelector = () => {
 
   return (
     <Fieldset selectedTheme={theme}>
-      <Legend>Theme</Legend>
+      <Legend>Tema</Legend>
       <Selector theme={'light'} Icon={SunIcon} />
       <Selector theme={'device'} Icon={DeviceIcon} />
       <Selector theme={'dark'} Icon={MoonIcon} />

@@ -8,6 +8,12 @@ const Selector = ({ theme, Icon }) => {
 
   const handleChange = (e) => changeTheme(e.target.value)
 
+  const THEME_LABELS = {
+    light: "Claro",
+    device: "Dispositivo",
+    dark: "Oscuro"
+  }
+
   return (
     <label>
       <Input
@@ -17,7 +23,7 @@ const Selector = ({ theme, Icon }) => {
         value={theme}
         defaultChecked={selectedTheme === theme}
       />
-      <VisuallyHiddenSpan>{theme}</VisuallyHiddenSpan>
+      <VisuallyHiddenSpan>{THEME_LABELS[theme]}</VisuallyHiddenSpan>
       <IconContainer>
         <Icon aria-hidden="true" width={27.5} height={27.5} />
       </IconContainer>
