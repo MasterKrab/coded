@@ -59,6 +59,7 @@ const Post = ({ source, frontmatter, headings }) => {
             <Image
               src={`/${image}`}
               alt={alt || ''}
+              loading="eager"
               width={3456}
               height={1728}
             />
