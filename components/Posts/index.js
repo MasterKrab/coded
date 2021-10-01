@@ -21,7 +21,7 @@ const Posts = ({ posts, title }) => {
   const [selectedTag, setSelectedTag] = useState('all')
   const [currentPage, setCurrentPage] = useState(0)
   const [search, setSearch] = useState('')
-  const { paginatedPosts, isFirstPage, isLastPage } = usePagination(
+  const { paginatedPosts, isFirstPage, isLastPage, isLoaded } = usePagination(
     filterPosts,
     currentPage
   )
@@ -55,28 +55,28 @@ const Posts = ({ posts, title }) => {
       <Section>
         <h1>{title}</h1>
         <ContainerPosts aria-live="polite">
-          {paginatedPosts.length ? (
-            paginatedPosts?.map(({ title, slug, date, readTime, tags }) => (
-              <PostCard
-                key={slug}
-                title={title}
-                slug={slug}
-                date={date}
-                readTime={readTime}
-                tags={tags}
-              />
-            ))
-          ) : (
-            <ErrorContainer>
-              <Title>No hay resultados</Title>
-              <Image
-                src="/assets/illustrations/no-data.svg"
-                alt="Sin datos"
-                width={300}
-                height={300}
-              />
-            </ErrorContainer>
-          )}
+          {paginatedPosts.length
+            ? paginatedPosts?.map(({ title, slug, date, readTime, tags }) => (
+                <PostCard
+                  key={slug}
+                  title={title}
+                  slug={slug}
+                  date={date}
+                  readTime={readTime}
+                  tags={tags}
+                />
+              ))
+            : isLoaded && (
+                <ErrorContainer>
+                  <Title>No hay resultados</Title>
+                  <Image
+                    src="/assets/illustrations/no-data.svg"
+                    alt="Sin datos"
+                    width={300}
+                    height={300}
+                  />
+                </ErrorContainer>
+              )}
         </ContainerPosts>
         {posts.length > 5 && paginatedPosts.length && (
           <ChangePosts

@@ -4,6 +4,7 @@ const usePagination = (posts, currentPage) => {
   const [paginatedPosts, setPaginatedPosts] = useState([])
   const [isFirstPage, setIsFirstPage] = useState(true)
   const [isLastPage, setIsLastPage] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     const initialIndex = currentPage * 5
@@ -15,9 +16,10 @@ const usePagination = (posts, currentPage) => {
     const paginatedPosts = posts.slice(initialIndex, limitIndex)
 
     setPaginatedPosts(paginatedPosts)
+    setIsLoaded(true)
   }, [currentPage, posts])
 
-  return { paginatedPosts, isFirstPage, isLastPage }
+  return { paginatedPosts, isFirstPage, isLastPage, isLoaded }
 }
 
 export default usePagination
