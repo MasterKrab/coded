@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useContext, useEffect } from 'react'
 import ThemeContext from 'context/theme'
-import THEME_STATES from 'context/theme/states'
+import THEME_STATES from 'utils/THEME_STATES'
 import Link from './Link'
 import { Container } from './styles'
 

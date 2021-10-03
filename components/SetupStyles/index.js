@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 import ThemeContext from 'context/theme'
-import THEME_STATES from 'context/theme/states'
+import THEME_STATES from 'utils/THEME_STATES'
 import colors from 'styles/theme/colors'
 
 const SetupStyles = ({ children }) => {
