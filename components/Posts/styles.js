@@ -25,8 +25,11 @@ export const Title = styled.h2`
   font-size: min(2.25rem, 5vw);
 `
 
-export const ImageAtributtionContainer = styled.span`
-  padding-left: min(2rem, 3vw);
+export const AtributtionLink = styled.a`
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-left: min(2rem, 3vw);
 
   @media screen and (min-width: 768px) {
     transition: transform 0.2s;

@@ -48,6 +48,7 @@ export const Title = styled.h2`
 `
 
 export const List = styled.ul`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;

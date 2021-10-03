@@ -19,3 +19,9 @@ export const Playground = styled.li`
     }
   }
 `
+
+export const StyledLink = styled.a`
+  &:focus {
+    outline-offset: 30px;
+  }
+`

@@ -18,7 +18,8 @@ export const Container = styled.div`
 export const Button = styled.button`
   position: relative;
   font-size: 0.9rem;
-  padding: 0.5rem;
+  padding: 0.75rem 0.75rem 0.5rem;
+  margin: 0.25rem;
   color: ${({ theme }) => theme.backgroundColor};
   opacity: var(--button-opacity);
   transition: transform 0.2s, opacity 0.2s;
@@ -33,8 +34,8 @@ export const Button = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    padding-top: 1rem;
-    padding-right: 1rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
 
     &:not(:focus):focus-visible {
       outline: none;

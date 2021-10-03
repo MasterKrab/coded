@@ -1,10 +1,7 @@
 import { Container, Title, Input } from './styles'
 import SearchIcon from '@icons/SearchIcon'
 
-const Search = ({ search, setSearch }) => {
-  const handleChange = (e) => setSearch(e.target.value)
-
-  return (
+const Search = ({ search, handleInput }) => (
     <Container>
       <Title>
         <SearchIcon
@@ -16,7 +13,7 @@ const Search = ({ search, setSearch }) => {
         Buscar
       </Title>
       <Input
-        onChange={handleChange}
+        onInput={handleInput}
         type="search"
         aria-label="Buscar articulo"
         placeholder="Buscar..."
@@ -25,6 +22,6 @@ const Search = ({ search, setSearch }) => {
       />
     </Container>
   )
-}
+
 
 export default Search

@@ -19,17 +19,23 @@ export const Title = styled.h2`
 export const Input = styled.input`
   position: relative;
   background-color: ${({ theme }) => theme.backgroundColor};
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 40px;
   border: none;
   padding: 0.4rem 1rem;
   border: 1px solid ${({ theme }) => theme.searchBar};
   border-radius: 0.55rem;
   color: ${({ theme }) => theme.textColor};
+  transition: box-shadow 0.2s, font-size 0.2s ease-out;
+
+  &:placeholder-shown {
+    font-size: 0.75rem;
+  }
 
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.active};
+    box-shadow: 0 0 5px ${({ theme }) => theme.active};
   }
 
   &::-webkit-search-cancel-button {

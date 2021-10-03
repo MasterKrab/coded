@@ -37,7 +37,7 @@ const PlaygroundSass = ({ defaultExtension = 'scss', completeScreen }) => {
     if (code.trim()) {
       const { extension, compressed } = options
 
-      fetch('https://coded.tech/api/sass', {
+      fetch('/api/sass', {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',

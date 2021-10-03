@@ -120,6 +120,7 @@ export const List = styled.ul`
 `
 
 export const StyledLink = styled.a`
+  position: relative;
   ${flex};
   gap: 0.5rem;
 `

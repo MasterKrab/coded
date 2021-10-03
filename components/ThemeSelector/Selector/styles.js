@@ -16,5 +16,7 @@ export const Input = styled.input`
 `
 
 export const IconContainer = styled.span`
+  position: relative;
+  z-index: 100;
   cursor: pointer;
 `

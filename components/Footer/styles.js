@@ -21,7 +21,7 @@ export const Container = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column-reverse;
-    gap: 2rem;
+    gap: 1rem;
   }
 `
 
@@ -29,17 +29,18 @@ export const Link = styled.a`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
-  @media screen and (max-width: 768px) {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid ${({ theme }) => theme.textColor};
-  }
+  width: min-content;
 `
 
 export const Figure = styled.figure`
   ${flex};
   gap: 1rem;
   margin: 0;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 1.5rem;
+    border-top: 1px solid ${({ theme }) => theme.textColor};
+  }
 `
 
 export const Figcaption = styled.figcaption`

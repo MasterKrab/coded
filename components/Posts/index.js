@@ -8,7 +8,7 @@ import {
   Section,
   ContainerPosts,
   Title,
-  ImageAtributtionContainer,
+  AtributtionLink,
 } from './styles'
 import Filter from 'components/Filter'
 import getTags from 'utils/getTags'
@@ -21,7 +21,7 @@ const Posts = ({ posts, title }) => {
   const [selectedTag, setSelectedTag] = useState('all')
   const [currentPage, setCurrentPage] = useState(0)
   const [search, setSearch] = useState('')
-  const { paginatedPosts, isFirstPage, isLastPage, isLoaded } = usePagination(
+  const { paginatedPosts, isFirstPage, isLastPage } = usePagination(
     filterPosts,
     currentPage
   )
@@ -30,9 +30,11 @@ const Posts = ({ posts, title }) => {
 
   const handleChange = (e) => setSelectedTag(e.target.value)
 
+  const handleInputSearch = (e) => setSearch(e.target.value)
+
   useEffect(() => {
     if (search.trim()) {
-      fetch(`https://coded.tech/api/search?search=${search}`)
+      fetch(`/api/search?search=${search}`)
         .then((res) => res.json())
         .then(setResultsPosts)
         .catch((error) => console.error(error))
@@ -56,7 +58,7 @@ const Posts = ({ posts, title }) => {
         <h1>{title}</h1>
         <ContainerPosts aria-live="polite">
           {paginatedPosts.length
-            ? paginatedPosts?.map(({ title, slug, date, readTime, tags }) => (
+            ? paginatedPosts.map(({ title, slug, date, readTime, tags }) => (
                 <PostCard
                   key={slug}
                   title={title}
@@ -66,7 +68,7 @@ const Posts = ({ posts, title }) => {
                   tags={tags}
                 />
               ))
-            : isLoaded && (
+            : search && (
                 <ErrorContainer>
                   <Title>No hay resultados</Title>
                   <Image
@@ -91,17 +93,19 @@ const Posts = ({ posts, title }) => {
         {filteredTags.length && (
           <Filter tags={filteredTags} handleChange={handleChange} />
         )}
-        <Search search={search} setSearch={setSearch} />
-        <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
-          <ImageAtributtionContainer>
-            <Image
-              src="/assets/icons/search-by-algolia-light-background.svg"
-              alt="Search by algolia"
-              width={167}
-              height={24}
-            />
-          </ImageAtributtionContainer>
-        </a>
+        <Search search={search} handleInput={handleInputSearch} />
+        <AtributtionLink
+          href="https://www.algolia.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Image
+            src="/assets/icons/search-by-algolia-light-background.svg"
+            alt="Search by algolia"
+            width={167}
+            height={24}
+          />
+        </AtributtionLink>
       </aside>
     </Container>
   )
