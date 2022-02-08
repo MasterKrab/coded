@@ -1,5 +1,4 @@
 const THEME_STATES = {
-  NONE: null,
   LIGHT: 'light',
   DARK: 'dark',
   DEVICE: 'device',

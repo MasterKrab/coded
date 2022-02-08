@@ -1,5 +1,6 @@
 module.exports = {
   reactStrictMode: true,
+  swcMinify: true,
   trailingSlash: true,
   webpack: (config, { isServer, dev }) => {
     if (!isServer) {
