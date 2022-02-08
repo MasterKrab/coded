@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
-import { getFileBySlug, getFiles } from 'lib/mdx'
 import PostMeta from 'components/PostMeta'
 import MDXComponents from 'components/MDXComponents'
 import PostIndex from 'components/PostIndex'
@@ -19,6 +18,7 @@ import {
 import Calendar from '@icons/CalendarIcon'
 import BookIcon from '@icons/BookIcon'
 import formatDate from 'utils/formatDate'
+import blurImage from 'utils/blurImage'
 
 const Post = ({ source, frontmatter, headings }) => {
   const { title, description, date, readTime, image, alt, slug } = frontmatter
@@ -59,7 +59,9 @@ const Post = ({ source, frontmatter, headings }) => {
             <Image
               src={`/${image}`}
               alt={alt || ''}
-              loading="eager"
+              placeholder="blur"
+              blurDataURL={blurImage}
+              priority={true}
               width={3456}
               height={1728}
             />
@@ -77,7 +79,9 @@ const Post = ({ source, frontmatter, headings }) => {
 
 export default Post
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
+  const { getFileBySlug } = await import('lib/mdx')
+
   const { source, frontmatter, headings } = await getFileBySlug(params.slug)
 
   return {
@@ -86,20 +90,5 @@ export const getStaticProps = async ({ params }) => {
       frontmatter,
       headings: JSON.parse(JSON.stringify(headings)),
     },
-  }
-}
-
-export const getStaticPaths = async () => {
-  const posts = getFiles()
-
-  const paths = posts.map((post) => ({
-    params: {
-      slug: post.replace('.mdx', ''),
-    },
-  }))
-
-  return {
-    paths,
-    fallback: false,
   }
 }

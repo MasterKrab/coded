@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import checkMediaQueriesSupport from 'utils/checkMediaQueriesSupport'
 import THEME_STATES from 'utils/THEME_STATES'
+import useEventListener from './useEventListener'
 
-const usePrefersColorScheme = (theme) => {
-  const [themeDevice, setThemeDevice] = useState(THEME_STATES.LIGHT)
+const usePrefersColorScheme = (theme, initialTheme) => {
+  const [themeDevice, setThemeDevice] = useState(initialTheme)
 
   const getPrefersColorScheme = () =>
     window.matchMedia('(prefers-color-scheme: dark)')
@@ -22,13 +23,7 @@ const usePrefersColorScheme = (theme) => {
 
   useEffect(getMatchMedia, [theme])
 
-  useEffect(() => {
-    const matchMedia = getPrefersColorScheme()
-
-    matchMedia.addEventListener('change', getMatchMedia)
-
-    return () => matchMedia.removeEventListener('change', getMatchMedia)
-  }, [])
+  useEventListener('change', getMatchMedia, getPrefersColorScheme)
 
   return themeDevice
 }

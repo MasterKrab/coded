@@ -7,6 +7,7 @@ import { Main } from 'styles/pages/app-styles'
 import Newsletter from 'components/Newsletter'
 import LinkToTop from 'components/LinkToTop'
 import Footer from 'components/Footer'
+import cookie from 'cookie'
 import 'styles/normalize.css'
 import '@fontsource/poppins/300.css'
 import '@fontsource/poppins/400.css'
@@ -14,10 +15,10 @@ import '@fontsource/poppins/500.css'
 import '@fontsource/poppins/700.css'
 import '@fontsource/fira-code'
 
-const MyApp = ({ Component, pageProps }) => (
+const MyApp = ({ Component, pageProps, themeDevice, theme }) => (
   <>
     <AppHead />
-    <StylesProviders>
+    <StylesProviders themeDevice={themeDevice} theme={theme}>
       <GlobalStyles />
       <SkipToMain />
       <Header />
@@ -30,5 +31,15 @@ const MyApp = ({ Component, pageProps }) => (
     </StylesProviders>
   </>
 )
+
+MyApp.getInitialProps = async (context) => {
+  const cookies = context.ctx.req?.headers.cookie
+
+  if (!cookies) return {}
+
+  const { themeDevice, theme } = cookie.parse(cookies)
+
+  return { themeDevice, theme }
+}
 
 export default MyApp

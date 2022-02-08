@@ -13,12 +13,17 @@ const AppHead = () => (
       content="https://coded.tech/assets/thumbnail.png"
       key="og-image"
     />
+    <meta property="og:image:width" content="3456" />
+    <meta property="og:image:height" content="1728" />
     <meta
       name="twitter:image"
       content="https://coded.tech/assets/thumbnail.png"
       key="twitter-image"
     />
+    <meta name="twitter:image:width" content="3456" />
+    <meta name="twitter:image:height" content="1728" />
     <meta name="twitter:card" content="summary_large_image" />
+
     <meta name="theme-color" content="#000000" />
   </Head>
 )

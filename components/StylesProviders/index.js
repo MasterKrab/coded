@@ -1,8 +1,8 @@
 import UserThemeProvider from 'context/theme/UserThemeProvider'
 import SetupStyles from 'components/SetupStyles'
 
-const StylesProviders = ({ children }) => (
-  <UserThemeProvider>
+const StylesProviders = ({ themeDevice, theme, children }) => (
+  <UserThemeProvider initialThemeDevice={themeDevice} initialTheme={theme}>
     <SetupStyles>{children}</SetupStyles>
   </UserThemeProvider>
 )

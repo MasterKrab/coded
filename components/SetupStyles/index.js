@@ -5,9 +5,7 @@ import THEME_STATES from 'utils/THEME_STATES'
 import colors from 'styles/theme/colors'
 
 const SetupStyles = ({ children }) => {
-  const { themeDevice, loadedTheme } = useContext(ThemeContext)
-
-  if (process.browser && !loadedTheme) return null
+  const { themeDevice } = useContext(ThemeContext)
 
   return (
     <ThemeProvider theme={colors[themeDevice] || colors[THEME_STATES.LIGHT]}>
