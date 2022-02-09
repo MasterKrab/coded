@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Script from 'next/script'
 import { useContext, useEffect } from 'react'
 import ThemeContext from 'context/theme'
 import THEME_STATES from 'utils/THEME_STATES'
@@ -6,30 +7,28 @@ import Link from './Link'
 import { Container } from './styles'
 
 const PostComments = ({ title }) => {
-  const { themeDevice, loadedTheme } = useContext(ThemeContext)
+  const { themeDevice } = useContext(ThemeContext)
 
   const getTheme = () =>
     themeDevice === THEME_STATES.LIGHT ? 'light' : 'transparent_dark'
 
   useEffect(() => {
-    if (loadedTheme) {
-      const script = document.createElement('script')
-      script.src = 'https://giscus.app/client.js'
-      script.id = 'comments-script'
-      script.setAttribute('data-repo', 'MasterKrab/coded')
-      script.setAttribute('data-category', 'Comments')
-      script.setAttribute('data-category-id', 'DIC_kwDOF7TXS84B-5Hs')
-      script.setAttribute('data-mapping', 'specific')
-      script.setAttribute('data-term', title)
-      script.setAttribute('data-theme', getTheme())
-      script.setAttribute('crossOrigin', 'anonymous')
-      script.async = true
+    const script = document.createElement('script')
+    script.src = 'https://giscus.app/client.js'
+    script.id = 'comments-script'
+    script.setAttribute('data-repo', 'MasterKrab/coded')
+    script.setAttribute('data-category', 'Comments')
+    script.setAttribute('data-category-id', 'DIC_kwDOF7TXS84B-5Hs')
+    script.setAttribute('data-mapping', 'specific')
+    script.setAttribute('data-term', title)
+    script.setAttribute('data-theme', getTheme())
+    script.setAttribute('crossOrigin', 'anonymous')
+    script.async = true
 
-      document.body.appendChild(script)
-    }
+    document.body.appendChild(script)
 
     return () => document.getElementById('comments-script')?.remove()
-  }, [loadedTheme])
+  }, [])
 
   useEffect(() => {
     const iframe = document.querySelector('.giscus-frame')
@@ -53,6 +52,17 @@ const PostComments = ({ title }) => {
       <Head>
         <Link theme="light" />
         <Link theme="transparent_dark" />
+        <Script
+          src="https://giscus.app/client.js"
+          data-repo="MasterKrab/coded"
+          data-category="Comments"
+          data-category-id="DIC_kwDOF7TXS84B-5Hs"
+          data-mapping="specific"
+          data-term={title}
+          data-theme={getTheme()}
+          crossOrigin="anonymous"
+          async={true}
+        />
       </Head>
       <Container>
         <div className="giscus" />

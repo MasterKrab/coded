@@ -82,7 +82,11 @@ export default Post
 export const getServerSideProps = async ({ params }) => {
   const { getFileBySlug } = await import('lib/mdx')
 
-  const { source, frontmatter, headings } = await getFileBySlug(params.slug)
+  const file = await getFileBySlug(params.slug)
+
+  if (!file) return { props: { notFound: true } }
+
+  const { source, frontmatter, headings } = file
 
   return {
     props: {
