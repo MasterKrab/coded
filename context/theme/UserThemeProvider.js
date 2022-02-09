@@ -6,7 +6,7 @@ import cookie from 'cookie'
 
 const UserThemeProvider = ({
   initialThemeDevice = THEME_STATES.LIGHT,
-  initialTheme = THEME_STATES.LIGHT,
+  initialTheme = THEME_STATES.DEVICE,
   children,
 }) => {
   const [theme, setTheme] = useState(initialTheme)
