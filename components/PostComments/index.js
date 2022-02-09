@@ -17,7 +17,7 @@ const PostComments = ({ title }) => {
     script.id = 'comments-script'
     script.setAttribute('data-repo', 'MasterKrab/coded')
     script.setAttribute('data-category', 'Comments')
-    script.setAttribute('data-category-id', 'DIC_kwDOF7TXS84B-5Hs')
+    script.setAttribute('data-category-id', 'MDEwOlJlcG9zaXRvcnkzOTc3Mjc1NjM')
     script.setAttribute('data-mapping', 'specific')
     script.setAttribute('data-term', title)
     script.setAttribute('data-theme', getTheme())
