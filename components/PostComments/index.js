@@ -52,17 +52,6 @@ const PostComments = ({ title }) => {
       <Head>
         <Link theme="light" />
         <Link theme="transparent_dark" />
-        <Script
-          src="https://giscus.app/client.js"
-          data-repo="MasterKrab/coded"
-          data-category="Comments"
-          data-category-id="DIC_kwDOF7TXS84B-5Hs"
-          data-mapping="specific"
-          data-term={title}
-          data-theme={getTheme()}
-          crossOrigin="anonymous"
-          async={true}
-        />
       </Head>
       <Container>
         <div className="giscus" />
