@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Script from 'next/script'
 import { useContext, useEffect } from 'react'
 import ThemeContext from 'context/theme'
 import THEME_STATES from 'utils/THEME_STATES'
