@@ -84,15 +84,9 @@ export const getServerSideProps = async ({ params }) => {
 
   const file = await getFileBySlug(params.slug)
 
-  if (!file) return { props: { notFound: true } }
-
-  const { source, frontmatter, headings } = file
+  if (!file) return { notFound: true }
 
   return {
-    props: {
-      source,
-      frontmatter,
-      headings: JSON.parse(JSON.stringify(headings)),
-    },
+    props: file,
   }
 }
