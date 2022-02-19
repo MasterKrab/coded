@@ -1,6 +1,7 @@
 import AppHead from 'components/AppHead'
 import StylesProviders from 'components/StylesProviders'
 import GlobalStyles from 'styles/GlobalStyles'
+import ProgressBar from 'components/ProgressBar'
 import SkipToMain from 'components/SkipToMain'
 import Header from 'components/Header'
 import { Main } from 'styles/pages/app-styles'
@@ -20,6 +21,7 @@ const MyApp = ({ Component, pageProps, themeDevice, theme }) => (
     <AppHead />
     <StylesProviders themeDevice={themeDevice} theme={theme}>
       <GlobalStyles />
+      <ProgressBar />
       <SkipToMain />
       <Header />
       <Main id="main">
