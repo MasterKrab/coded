@@ -6,7 +6,7 @@ export const StyledLink = styled.a`
   position: fixed;
   bottom: 15px;
   right: 15px;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   width: 50px;
   height: 50px;
   color: ${({ theme }) => theme.textColor};
@@ -20,8 +20,8 @@ export const StyledLink = styled.a`
     transition: visibility 0.5s, opacity 0.5s, background-color 0.5s, color 0.5s;
 
     &:hover {
-      background-color: ${({ theme }) => theme.textColor};
-      color: ${({ theme }) => theme.backgroundColor};
+      background-color: ${({ theme }) => theme.secondaryColor};
+      color: ${({ theme }) => theme.primaryColor};
     }
   }
 `
