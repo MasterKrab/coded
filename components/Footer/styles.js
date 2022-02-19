@@ -6,7 +6,7 @@ const flex = css`
 `
 
 export const StyledFooter = styled.footer`
-  background-color: ${({ theme }) => theme.backgroundColor2};
+  background-color: ${({ theme }) => theme.tertiaryColor};
   padding: 1rem 1.5rem;
   z-index: 1000;
   box-shadow: 0 0 2.5px ${({ theme }) => theme.shadow};
@@ -39,7 +39,7 @@ export const Figure = styled.figure`
 
   @media screen and (max-width: 768px) {
     padding-top: 1.5rem;
-    border-top: 1px solid ${({ theme }) => theme.textColor};
+    border-top: 1px solid ${({ theme }) => theme.secondaryColor};
   }
 `
 

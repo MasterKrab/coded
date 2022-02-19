@@ -17,9 +17,9 @@ export const Input = styled.input`
   width: 250px;
   padding: 0.5rem;
   border: none;
-  border-bottom: 2px solid ${({ theme }) => theme.textColor};
-  color: ${({ theme }) => theme.textColor};
-  box-shadow: 0 0 0 30px white ${({ theme }) => theme.textColor};
+  border-bottom: 2px solid ${({ theme }) => theme.secondaryColor};
+  color: ${({ theme }) => theme.secondaryColor};
+  box-shadow: 0 0 0 30px white ${({ theme }) => theme.secondaryColor};
   transition: border-color 0.2s;
 
   &:focus {

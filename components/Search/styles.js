@@ -18,14 +18,14 @@ export const Title = styled.h2`
 
 export const Input = styled.input`
   position: relative;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   width: 300px;
   height: 40px;
   border: none;
   padding: 0.4rem 1rem;
   border: 1px solid ${({ theme }) => theme.searchBar};
   border-radius: 0.55rem;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.secondaryColor};
   transition: box-shadow 0.2s, font-size 0.2s ease-out;
 
   &:placeholder-shown {

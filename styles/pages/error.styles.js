@@ -8,16 +8,16 @@ export const Title = styled.h1`
 export const StyledLink = styled.a`
   padding: 0.5rem 1rem;
   margin-bottom: 1.5rem;
-  border: 1px solid ${({ theme }) => theme.textColor};
+  border: 1px solid ${({ theme }) => theme.secondaryColor};
   border-radius: 0.5rem;
 
   @media screen and (min-width: 768px) {
     transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 
     &:hover {
-      background-color: ${({ theme }) => theme.textColor};
-      border: 1px solid ${({ theme }) => theme.backgroundColor};
-      color: ${({ theme }) => theme.backgroundColor};
+      background-color: ${({ theme }) => theme.secondaryColor};
+      border: 1px solid ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.primaryColor};
     }
   }
 `

@@ -11,7 +11,7 @@ export const Container = styled.div`
   @media screen and (max-width: 768px) {
     position: ${({ isFullScreen }) => (isFullScreen ? 'relative' : 'absolute')};
     background-color: ${({ theme, isFullScreen }) =>
-      isFullScreen ? theme.backgroundColor : 'none'};
+      isFullScreen ? theme.primaryColor : 'none'};
   }
 `
 
@@ -20,7 +20,7 @@ export const Button = styled.button`
   font-size: 0.9rem;
   padding: 0.75rem 0.75rem 0.5rem;
   margin: 0.25rem;
-  color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.primaryColor};
   opacity: var(--button-opacity);
   transition: transform 0.2s, opacity 0.2s;
 
@@ -70,8 +70,8 @@ export const CopyButton = styled(Button)`
   }
 
   &::before {
-    border-right: 5px solid ${({ theme }) => theme.backgroundColor};
-    border-bottom: 5px solid ${({ theme }) => theme.backgroundColor};
+    border-right: 5px solid ${({ theme }) => theme.primaryColor};
+    border-bottom: 5px solid ${({ theme }) => theme.primaryColor};
     border-top: 5px solid transparent;
     border-left: 5px solid transparent;
   }
@@ -80,7 +80,7 @@ export const CopyButton = styled(Button)`
     content: 'Copied';
     top: 45px;
     right: 15px;
-    background-color: ${({ theme }) => theme.backgroundColor};
+    background-color: ${({ theme }) => theme.primaryColor};
     color: ${({ theme }) => theme.textColor};
     padding: 0.25rem;
   }

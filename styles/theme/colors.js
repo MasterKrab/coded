@@ -1,10 +1,10 @@
 const colors = {
   light: {
     backgroundImage: 'marginalia.svg',
-    backgroundColor: '#ffffff',
-    backgroundColor2: '#fafafa',
+    primaryColor: '#ffffff',
+    tertiaryColor: '#fafafa',
     titleColor: '#333333',
-    textColor: '#222222',
+    secondaryColor: '#222222',
     codeColor: '#eee',
     codeShadow: 'rgba(0, 0, 0, 0.15)',
     shadow: 'rgba(0, 0, 0, 0.15)',
@@ -16,10 +16,10 @@ const colors = {
   },
   dark: {
     backgroundImage: 'cyborg.svg',
-    backgroundColor: '#202020',
-    backgroundColor2: '#232323',
+    primaryColor: '#202020',
+    tertiaryColor: '#232323',
     titleColor: '#eeeeee',
-    textColor: '#eeeeee',
+    secondaryColor: '#eeeeee',
     codeColor: '#222222',
     codeShadow: 'rgba(250, 250, 250, 0.020)',
     shadow: 'rgba(255, 255, 255, 0.1)',

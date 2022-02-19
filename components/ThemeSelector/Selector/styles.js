@@ -6,7 +6,7 @@ export const Input = styled.input`
 
   &:focus + span,
   &:focus-visible + span {
-    outline: 2px dashed ${({ theme }) => theme.textColor};
+    outline: 2px dashed ${({ theme }) => theme.secondaryColor};
     outline-offset: 5px;
   }
 

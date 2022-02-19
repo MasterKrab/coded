@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Aside = styled.aside`
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   margin-top: auto;
   padding: min(2.5rem, 5vw);
   z-index: 100;
@@ -47,10 +47,10 @@ export const Fields = styled.div`
 `
 
 export const Button = styled.button`
-  background-color: ${({ theme }) => theme.textColor};
+  background-color: ${({ theme }) => theme.secondaryColor};
   font-weight: bold;
-  color: ${({ theme }) => theme.backgroundColor};
-  border: 2px solid ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.primaryColor};
+  border: 2px solid ${({ theme }) => theme.secondaryColor};
   border-radius: 0.25rem;
   padding: 0.5rem;
 
@@ -58,9 +58,9 @@ export const Button = styled.button`
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 
     &:hover {
-      background-color: ${({ theme }) => theme.backgroundColor};
-      color: ${({ theme }) => theme.textColor};
-      border-color: ${({ theme }) => theme.textColor};
+      background-color: ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.secondaryColor};
+      border-color: ${({ theme }) => theme.secondaryColor};
     }
   }
 `

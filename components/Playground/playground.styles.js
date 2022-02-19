@@ -22,7 +22,7 @@ export const Top = styled.section`
   flex-wrap: wrap;
   align-items: center;
   column-gap: 2rem;
-  background-color: ${({ theme }) => theme.backgroundColor2};
+  background-color: ${({ theme }) => theme.tertiaryColor};
   padding-left: 1rem;
   padding-right: 1rem;
   width: 100%;
@@ -35,7 +35,7 @@ export const Top = styled.section`
 `
 
 export const Button = styled.button`
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.secondaryColor};
 `
 
 export const ButtonMobileOnly = styled(Button)`

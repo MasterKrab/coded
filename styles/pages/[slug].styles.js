@@ -3,7 +3,7 @@ import centerIcon from 'utils/centerIcon'
 
 export const Article = styled.article`
   position: relative;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   max-width: 800px;
   margin-top: 1rem;
   margin-left: auto;
@@ -18,7 +18,7 @@ export const Article = styled.article`
 
 export const Header = styled.header`
   padding-bottom: 1.5rem;
-  border-bottom: 3px solid ${({ theme }) => theme.textColor};
+  border-bottom: 3px solid ${({ theme }) => theme.secondaryColor};
 `
 
 export const ImageContainer = styled.div`

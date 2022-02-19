@@ -7,7 +7,7 @@ const flex = css`
 `
 
 export const Container = styled.div`
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   width: 100%;
   box-shadow: 5px 0 15px ${({ theme }) => theme.shadow};
   transition: box-shadow 0.2s;
@@ -45,7 +45,7 @@ export const ButtonIcon = styled.span`
   &::after {
     width: 20px;
     height: 2px;
-    background-color: ${({ theme }) => theme.textColor};
+    background-color: ${({ theme }) => theme.secondaryColor};
     transition: transform 0.5s, background-color 0.5s;
   }
 
@@ -70,7 +70,7 @@ export const ButtonIcon = styled.span`
       &,
       &::before,
       &::after {
-        background-color: ${({ theme }) => theme.textColor};
+        background-color: ${({ theme }) => theme.secondaryColor};
       }
 
       &::before {
@@ -86,7 +86,7 @@ export const ButtonIcon = styled.span`
 export const MenuContainer = styled.div`
   ${flex};
   gap: 1rem;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   width: 100%;
   z-index: 100;
 

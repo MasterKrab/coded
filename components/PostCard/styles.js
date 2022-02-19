@@ -5,7 +5,7 @@ export const Card = styled.article`
   flex-direction: column;
   position: relative;
   z-index: 1;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   font-size: min(1.15rem, 5vw);
   padding: 1rem;
   border: 2px solid var(--color, ${({ theme }) => theme.shadow});
@@ -81,7 +81,7 @@ export const Item = styled.li`
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.primaryColor};
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 `
