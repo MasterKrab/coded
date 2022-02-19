@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { PHASE_PRODUCTION_BUILD } from 'next/constants'
 import Posts from 'components/Posts'
 import { getAllFilesMetadata } from 'lib/mdx'
 import generateRSSFeed from 'lib/generateRSSFeed'
@@ -24,7 +25,8 @@ export default Home
 export const getStaticProps = async () => {
   const posts = getAllFilesMetadata()
 
-  if (process.env.NODE_ENV === 'production') {
+  // Check if getStaticProps is running in build time
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
     readPostsAndSendToAlgolia(posts)
     generateSiteMap(posts)
     generateRSSFeed(posts)
@@ -32,5 +34,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { posts },
+    revalidate: true,
   }
 }
