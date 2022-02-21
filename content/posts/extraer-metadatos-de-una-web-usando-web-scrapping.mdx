@@ -1,0 +1,256 @@
+---
+  title: 'Extraer metadatos de una web usando web scrapping'
+  description: 'Aprende a hacer web scrapping con NodeJS obteniendo los metadatos de cualquier web'
+  date: '2022-21-02'
+  tags:
+  - javascript
+---
+
+Es usual ver sitios donde podemos previsualizar un enlace y obtener información sobre él. Por ejemplo, una aplicación de búsqueda de enlaces o un chat. Para ello, se usa una técnica llamada **web scrapping**.
+
+## Web scrapping
+
+El web scrapping es una técnica que nos permite extraer información de un sitio web, como por ejemplo, el título de una página, el contenido de una página, el autor de una página, etc.
+
+Para realizar web scrapping debemos obtener el html de una web y luego extraer información de él. Para mostrar esto aprenderemos a hacer web scrapping usando NodeJS.
+
+## Obtener el html de una web
+
+Para esto debemos hacer una petición a la url para obtener el html, en este caso usaremos el paquete (node-fetch)[https://www.npmjs.com/package/node-fetch] para hacer la petición.
+
+```js
+import fetch from 'node-fetch'
+
+// Hacemos la peticion a la url
+fetch('https://www.google.com')
+  .then((response) => response.text())
+  // Y obtenemos el html
+  .then((html) => {
+    console.log('HTML:', html)
+  })
+```
+
+De esta forma, podemos obtener el html de la web que queramos y luego podemos extraer la información que queramos. Pero ¿Que pasa si la web se renderiza en el cliente usando javascript?
+
+## Web scrapping en el cliente
+
+Si la web se renderiza en el cliente, podemos usar un navegador sin interfaz gráfica como (puppeteer)[https://www.npmjs.com/package/puppeteer] para ejecutar el javascript y obtener el html de la web ya renderizada. Veamos como hacerlo.
+
+```js
+import puppeteer from 'puppeteer'
+import cheerio from 'cheerio'
+
+// Creamos una instancia de puppeteer
+const browser = await puppeteer.launch()
+// Creamos una nueva página
+const page = await browser.newPage()
+
+try {
+  // Hacemos la petición a la url
+  await page.goto('https://www.google.com')
+
+  // Obtenemos el html de la página
+  const html = await page.content()
+
+  console.log('HTML:', html)
+} catch (error) {
+  console.error(error)
+} finally {
+  // Cerramos la instancia de puppeteer
+  await browser.close()
+}
+```
+
+## Metadatos de una web
+
+Los metadatos de una web se encuentran dentro de la etiqueta `<head>` de la web. Los más comunes son la etiqueta `title` y `meta`.
+
+```html
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Soy el título de la web</title>
+
+    <meta name="description" content="Soy la descripción de la web" />
+  </head>
+  <body>
+    <!-- Contenido -->
+  </body>
+</html>
+```
+
+El `title` es el título de la web, y el `meta` contiene un atributo `name` o `property` y un atributo `content`, con el primero especificamos que se trata de la descripción de la web y con el segundo colocamos el valor del metadato.
+
+[Puedes ver una lista de etiquetas estándar para metadatos en este enlace](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name).
+
+Adicionalmente a las etiquetas estándar, existen etiquetas no estándar para los metadatos de una web como las usadas en los protocolos **Open Graph** y **Twitter Card**. [Puedes ver una lista completa de etiquetas no estándar en este enlace](https://wiki.whatwg.org/wiki/MetaExtensions).
+
+### Open Graph
+
+[Open Graph](https://ogp.me/) es un protocolo creado originalmente por facebook para darle un estándar a las metadatos de una web. Gracias a este podemos añadir información extra a la web que nos ayuda a compartirla en redes sociales.
+
+Usando nuevamente la etiqueta `meta`, podemos añadir metadatos a la web usando este protocolo.
+
+```html
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Soy el título de la web</title>
+
+    <meta name="description" content="Soy la descripción de la web" />
+
+    <meta property="og:title" content="Soy el título de la web" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="www.url-de-ejemplo.com" />
+    <meta property="og:image" content="www.url-de-ejemplo.com/imagen.png" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
+  </head>
+  <body>
+    <!-- Contenido -->
+  </body>
+</html>
+```
+
+- `og:title`: Título de la web
+- `og:type`: Tipo del recurso, web, video, musica, etc.
+- `og:url`: Url de la web
+- `og:image`: Imagen de la web
+- `og:image:width`: Ancho de la imagen
+- `og:image:height`: Alto de la imagen
+
+Puedes ver una lista completa de los metadatos de Open Graph [aquí](https://ogp.me/).
+
+## Twitter Card
+
+[Twitter Card](https://dev.twitter.com/cards) es un protocolo de twitter para mostrar una previsualización de una web especialmente para twitter y tener una mejor experiencia de usuario.
+
+Podemos hacerlo de igual forma que con Open Graph, usando la etiqueta `meta`.
+
+```html
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Soy el título de la web</title>
+
+    <meta name="description" content="Soy la descripción de la web" />
+
+    <meta property="twitter:title" content="Soy el título de la web" />
+    <meta property="twitter:card" content="summary" />
+    <meta
+      property="twitter:description"
+      content="Soy la descripción de la web"
+    />
+    <meta
+      property="twitter:image"
+      content="www.url-de-ejemplo.com/imagen.png"
+    />
+    <meta property="twitter:image:width" content="500" />
+    <meta property="twitter:image:height" content="500" />
+    <meta property="twitter:url" content="www.url-de-ejemplo.com" />
+  </head>
+  <body>
+    <!-- Contenido -->
+  </body>
+</html>
+```
+
+- `twitter:title`: Título de la web
+- `twitter:card`: Tipo de tarjeta, `summary`, `summary_large_image`, `app`, or `player`
+- `twitter:description`: Descripción de la web
+- `twitter:image`: Imagen de la web
+- `twitter:image:width`: Ancho de la imagen
+- `twitter:image:height`: Alto de la imagen
+- `twitter:url`: Url de la web
+
+Puedes ver una lista completa de los metadatos de Twitter Card [aquí](https://dev.twitter.com/cards).
+
+## Extraer los datos del HTML
+
+Una vez que tenemos el html de la web, podemos extraer los datos que necesitamos. Vamos a usar el paquete [cheerio](https://www.npmjs.com/package/cheerio), con este paquete tenemos que cargar el html y luego usar [selectores css](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) para obtener las etiquetas y datos que necesitamos.
+
+Primero usamos el metodo `.load()` para cargar el html y obtener la función `$` que nos permite usar los selectores css. Por ejemplo, para obtener el título de la web podemos usar el selector `title` y luego usar el método `text()` para obtener el texto.
+
+```js
+import puppeteer from 'puppeteer'
+import cheerio from 'cheerio'
+
+// Creamos una instancia de puppeteer
+const browser = await puppeteer.launch()
+// Creamos una nueva página
+const page = await browser.newPage()
+
+try {
+  // Hacemos la petición a la url
+  await page.goto('https://www.google.com')
+
+  // Obtenemos el html de la página
+  const html = await page.content()
+
+  // Creamos una instancia de cheerio
+  const $ = cheerio.load(html)
+
+  // Obtenemos el título de la página
+  const title = $('title').text()
+
+  console.log(title) // Google
+} catch (error) {
+  console.error(error)
+} finally {
+  // Cerramos la instancia de puppeteer
+  await browser.close()
+}
+```
+
+Y para obtener la descripción de la página podemos usar el selector `meta[name="description"]` y luego usar el método `attr()` para obtener el valor de la etiqueta.
+
+```js
+const description = $('meta[name="description"]').attr('content')
+```
+
+En caso que se haya usado `property` en vez de `name` podemos usar el selector `meta[property="description"]`.
+
+```js
+const getDescription = () =>
+  $('meta[name="description"]').attr('content') ||
+  $('meta[property="description"]').attr('content')
+```
+
+Y de esta manera podemos obtener los datos de los demás metadatos, en este caso añadiremos Open Graph y Twitter Card en remplazo de los metadatos de la web.
+
+```js
+const getMetaTag = (name) =>
+  $(`meta[name="${name}"]`).attr('content') ||
+  $(`meta[property="${name}"]`).attr('content')
+
+const getMetadata = (name) =>
+  getMetaTag(name) || getMetaTag(`og:${name}`) || getMetaTag(`twitter:${name}`)
+
+const getAllMetadata = () => {
+  const title = $('title').text() || getMetaTag('title')
+  const description = getMetadata('description')
+  const image = getMetadata('image')
+  const imageWidth = getMetadata('image:width')
+  const imageHeight = getMetadata('image:height')
+  const url = getMetadata('url')
+
+  return {
+    title,
+    description,
+    image,
+    imageWidth,
+    imageHeight,
+    url,
+  }
+}
+```
+
+## Conclusión
+
+En este artículo usted ha aprendido como funcionan los metadatos de la web y como extraer los datos de los metadatos de forma automatizada de una web. Espero que haya sido de su agrado y que les sirva de guía.
