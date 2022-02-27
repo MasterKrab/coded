@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node ./lib/generate.mjs",
     "start": "next start",
     "lint": "next lint"
   },
