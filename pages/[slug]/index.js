@@ -80,7 +80,7 @@ const Post = ({ source, frontmatter, headings }) => {
 export default Post
 
 export const getServerSideProps = async ({ params }) => {
-  const { getFileBySlug } = await import('lib/mdx')
+  const { getFileBySlug } = await import('lib/mdx.mjs')
 
   const file = await getFileBySlug(params.slug)
 

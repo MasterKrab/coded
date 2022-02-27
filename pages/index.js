@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Posts from 'components/Posts'
-import { getAllFilesMetadata } from 'lib/mdx'
+import { getAllFilesMetadata } from 'lib/mdx.mjs'
 
 const Home = ({ posts }) => (
   <>
