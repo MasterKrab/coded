@@ -27,9 +27,9 @@ export const Button = styled.button`
   &:focus,
   &:focus-visible {
     outline-color: ${({
-      theme: { textColor, codeboxButtonOutline },
+      theme: { secondaryColor, codeboxButtonOutline },
       isFullScreen,
-    }) => (isFullScreen ? textColor : codeboxButtonOutline)};
+    }) => (isFullScreen ? secondaryColor : codeboxButtonOutline)};
     outline-offset: -5px;
   }
 
@@ -81,7 +81,7 @@ export const CopyButton = styled(Button)`
     top: 45px;
     right: 15px;
     background-color: ${({ theme }) => theme.primaryColor};
-    color: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.secondaryColor};
     padding: 0.25rem;
   }
 `
