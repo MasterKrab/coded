@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled, { css } from 'styled-components'
 import resetList from 'utils/resetList'
 
@@ -119,7 +120,7 @@ export const List = styled.ul`
   }
 `
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(Link)`
   position: relative;
   ${flex};
   gap: 0.5rem;

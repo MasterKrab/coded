@@ -30,6 +30,10 @@ const Post = ({ source, frontmatter, headings }) => {
     for (let i = 0; i < headings.length; i++) {
       headingsElements[i].id = headings[i].link.replace('#', '')
     }
+
+    const hash = window.location.hash.substring(1)
+
+    document.getElementById(hash)?.scrollIntoView()
   }, [contentNode])
 
   return (
@@ -64,6 +68,10 @@ const Post = ({ source, frontmatter, headings }) => {
               priority={true}
               width={3456}
               height={1728}
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
           </ImageContainer>
         )}

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import {
   Container,
   StyledHeader,
@@ -8,7 +7,6 @@ import {
   Button,
   ButtonIcon,
   Navigation,
-  List,
   StyledLink,
 } from './styles'
 import LogoComplete from '@icons/LogoComplete'
@@ -29,22 +27,11 @@ const Header = () => {
         <Button onClick={handleClick} aria-label="Menu">
           <ButtonIcon isOpen={isMenuOpen} />
         </Button>
-        <MenuContainer isOpen={isMenuOpen}>
+        <MenuContainer>
           <Navigation>
-            <List>
-              <li>
-                <Link href="/" passHref>
-                  <StyledLink aria-label="Home">
-                    <LogoComplete aria-hidden="true" width={80} height={30} />
-                  </StyledLink>
-                </Link>
-              </li>
-              <li>
-                <Link href="/playgrounds" passHref>
-                  <StyledLink>Playgrounds</StyledLink>
-                </Link>
-              </li>
-            </List>
+            <StyledLink href="/" aria-label="Home">
+              <LogoComplete aria-hidden="true" width={80} height={30} />
+            </StyledLink>
           </Navigation>
         </MenuContainer>
         <ThemeSelector />

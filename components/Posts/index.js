@@ -59,26 +59,26 @@ const Posts = ({ posts, title }) => {
         <ContainerPosts aria-live="polite">
           {paginatedPosts.length
             ? paginatedPosts.map(({ title, slug, date, readTime, tags }) => (
-              <PostCard
-                key={slug}
-                title={title}
-                slug={slug}
-                date={date}
-                readTime={readTime}
-                tags={tags}
-              />
-            ))
-            : search && (
-              <ErrorContainer>
-                <Title>No hay resultados</Title>
-                <Image
-                  src="/assets/illustrations/no-data.svg"
-                  alt="Sin datos"
-                  width={300}
-                  height={300}
+                <PostCard
+                  key={slug}
+                  title={title}
+                  slug={slug}
+                  date={date}
+                  readTime={readTime}
+                  tags={tags}
                 />
-              </ErrorContainer>
-            )}
+              ))
+            : search && (
+                <ErrorContainer>
+                  <Title>No hay resultados</Title>
+                  <Image
+                    src="/assets/illustrations/no-data.svg"
+                    alt="Sin datos"
+                    width={300}
+                    height={300}
+                  />
+                </ErrorContainer>
+              )}
         </ContainerPosts>
         {posts.length > 5 && paginatedPosts.length ? (
           <ChangePosts

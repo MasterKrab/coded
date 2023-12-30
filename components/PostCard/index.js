@@ -13,9 +13,7 @@ const PostCard = ({ title, slug, date, readTime, tags }) => {
   return (
     <Card onClick={handleCardClick}>
       <Title>
-        <Link href={`/${slug}`}>
-          <a>{title}</a>
-        </Link>
+        <Link href={`/${slug}`}>{title}</Link>
       </Title>
       <Footer>
         <Text>

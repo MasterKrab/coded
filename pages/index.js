@@ -22,6 +22,6 @@ export const getServerSideProps = () => {
   const posts = getAllFilesMetadata()
 
   return {
-      props: { posts }
+    props: { posts },
   }
 }

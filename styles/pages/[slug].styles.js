@@ -22,7 +22,8 @@ export const Header = styled.header`
 `
 
 export const ImageContainer = styled.div`
-  width: calc(97% - var(--separation));
+  width: auto;
+  height: auto;
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;

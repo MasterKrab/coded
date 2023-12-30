@@ -1,29 +1,4 @@
-module.exports = {
-  reactStrictMode: true,
-  swcMinify: true,
-  trailingSlash: true,
-  webpack: (config, { isServer, dev }) => {
-    if (!isServer) {
-      config.resolve.fallback.fs = false
-    }
+/** @type {import('next').NextConfig} */
+const nextConfig = {}
 
-    if (dev) {
-      config.devtool = 'cheap-module.source-map'
-    }
-
-    return config
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Permissions-Policy',
-            value: 'interest-cohort=()',
-          },
-        ],
-      },
-    ]
-  },
-}
+module.exports = nextConfig
